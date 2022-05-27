@@ -54,3 +54,8 @@ Below are an evolving list of project requirements to develop a prototype versio
     - Create a mapping of question responses to vacation destinations
     - Python script for webscraping data from vacation destination wikipedia pages
     - Storing vacation destinations with large text scraped from wikipedia page for sentiment analysis (setting up MongoDB and the necessary queries)
+
+### Initial Welcome Page Mockup
+<p align="center">
+<img src="/assets/Welcome page.png" width="700px"/>
+  </p>
