@@ -6,6 +6,12 @@
 ### A CPSC 455 Project
 With just the click of a button, get swept away by the perfect vacation tailored just for you . 
 
+### Project Team
+- Ronin Cunningham - m0c2b 
+- Sherman Lam - 
+- Weichong Zhao - x4x2b 
+- Josh Tillson - i4i2b
+
 ## Project Description
 
 Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and steps to book their travels directly within the site. Youfly is geared towards those **eager travellers who have been going stir crazy** over the course of the pandemic and are **ready to travel** with the reduced restrictions but **don't know where to go** first. Youfly makes the decision for our users by finding the optimal destination for each and every traveller. 
