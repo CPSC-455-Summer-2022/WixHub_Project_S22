@@ -22,16 +22,17 @@ Below are an evolving list of project requirements to develop a prototype versio
 - Straightforward and comprehensive profile creation process that maximizes retention
 - Vacation Destination matching to user profile
 
-### Standard Requirements 
+### Standard Requirements (No ML Implemented)
 - Interactive welcome page with walk through tutorial
-- Multiple optimal travel destination options 
-- Links to associated booking sites (air travel, hotel, excursions) for that particular travel destination
-- Excursions within that travel destination that match individual profile
+- Multiple optimal travel destination options
+- Curating pre-planned travel recommendations in MongoDB
 
-### Stretch Requirements
+### Stretch Requirements (Possible ML Implementation)
+- Connect with massive database of Hotels and Flights
+- Excursions within that travel destination that match individual profile
 - Machine Learning model to ensure continuous optimization for travel destination matching
 - Profile linking and grouping between multiple individuals/parties looking to travel together
-- Direct booking capabilities through external booking site APIs
+- Direct booking capabilities through external booking site APIs (viability tbd)
 
 ### Minimal Requirements Breakdown *(still expanding)*
 1. Simple modern design and easy to use interface 
