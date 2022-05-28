@@ -64,3 +64,8 @@ Below are an evolving list of project requirements to develop a prototype versio
 <p align="center">
 <img src="/assets/A9C62B29-404C-45D5-A259-EA57235EACCB.jpeg" width="700px"/>
   </p>
+
+### Initial Sign Up Page Mockup
+<p align="center">
+<img src="/assets/sign up.jpg" width="700px"/>
+  </p>
