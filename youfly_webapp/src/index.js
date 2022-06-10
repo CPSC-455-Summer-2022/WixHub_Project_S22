@@ -9,8 +9,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { HomePage } from "./components/HomePage";
-import { LoginPage } from "./components/LoginPage";
+import { LandingPage } from "./components/LandingPage";
+import { UserDashboardPage } from "./components/UserDashboardPage";
 import { SignUpPage } from "./components/SignUpPage";
 // 
 
@@ -19,7 +19,7 @@ import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 
-const store = configureStore({reducer: rootReducer});
+const store = configureStore({ reducer: rootReducer });
 //
 
 
@@ -31,8 +31,8 @@ root.render(
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="LoginPage" element={<LoginPage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="LoginPage" element={<UserDashboardPage />} />
           <Route path="SignUpPage" element={<SignUpPage />} />
         </Routes>
       </BrowserRouter>
