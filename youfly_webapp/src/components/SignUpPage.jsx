@@ -1,5 +1,9 @@
 export const SignUpPage = () => {
 	return (
-		<div>Sign up page</div>
+		<div>
+			<h1>
+				Sign up page
+			</h1>
+		</div>
 	);
 }
