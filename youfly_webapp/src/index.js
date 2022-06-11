@@ -12,7 +12,8 @@ import {
 import { LandingPage } from "./components/LandingPage";
 import { UserDashboardPage } from "./components/UserDashboardPage";
 import { SignUpPage } from "./components/SignUpPage";
-// 
+import {LoginVsSignup} from "./components/LoginVsSignup";
+//
 
 // Redux
 import rootReducer from "./redux/reducers";
@@ -34,6 +35,7 @@ root.render(
           <Route path="/" element={<LandingPage />} />
           <Route path="LoginPage" element={<UserDashboardPage />} />
           <Route path="SignUpPage" element={<SignUpPage />} />
+          <Route path="LoginVsSignup" element={<LoginVsSignup/>} />
         </Routes>
       </BrowserRouter>
     </Provider>
