@@ -2,14 +2,14 @@
     font-family: Arial, sans-sarif;
   }
 
-  .recipeCard {
+  .userTile {
     width: 400px;
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
     transition: .3s;
   }
-  .recipeCard:hover {
+  .userTile:hover {
     width: 400px;
     padding: 1em;
     border: 1px solid rgb(255, 255, 255);
