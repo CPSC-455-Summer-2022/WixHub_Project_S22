@@ -14,7 +14,7 @@ With just the click of a button, get swept away by the perfect vacation tailored
 
 ## Project Description
 
-Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and steps to book their travels directly within the site. Youfly is geared towards those **eager travellers who have been going stir crazy** over the course of the pandemic and are **ready to travel** with the reduced restrictions but **don't know where to go** first. Youfly makes the decision for our users by finding the optimal destination for each and every traveller. 
+Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and the top activities to do at that destination. Youfly is geared towards those **eager travellers who have been going stir crazy** over the course of the pandemic and are **ready to travel** with the reduced restrictions but **don't know where to go** first. Youfly makes the decision for our users by finding the optimal destination for each and every traveller. 
 
 Youfly stores user **profile data** and their **accompanying destination matching** to provide optimal recommendations. Youfly also stores **data around its travel destinations** (key words scraped from Wikipedia pages for sentiment analysis) to optimize the destination and traveller matching. 
 
@@ -32,10 +32,10 @@ Below are an evolving list of project requirements to develop a prototype versio
 - Interactive welcome page with walk through tutorial
 - Multiple optimal travel destination options
 - Curating pre-planned travel recommendations in MongoDB
+- API integration with TripAdvisor to get a destinations top activities
 
 ### Stretch Requirements (Possible ML Implementation)
-- Connect with massive database of Hotels and Flights
-- Excursions within that travel destination that match individual profile
+- Selecting activities/excursions within that travel destination that match individual profile
 - Machine Learning model to ensure continuous optimization for travel destination matching
 - Profile linking and grouping between multiple individuals/parties looking to travel together
 - Direct booking capabilities through external booking site APIs (viability tbd)
