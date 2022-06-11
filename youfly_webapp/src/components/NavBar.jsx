@@ -6,6 +6,7 @@ export const NavBar = () => {
 		<nav>
 			<Link to="/">Home</Link>
 			<Link to="LoginPage">User Dashboard</Link>
+			<Link to="SignUpPage">Sign Up</Link>
 		</nav>
 	);
 }
