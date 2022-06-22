@@ -8,7 +8,7 @@ With just the click of a button, get swept away by the perfect vacation tailored
 
 ### Project Team
 - Ronin Cunningham - m0c2b 
-- Sherman Lam - 
+- Sherman Lam - z2o2b
 - Weichong Zhao - x4x2b 
 - Josh Tillson - i4i2b
 
