@@ -94,4 +94,10 @@ router.get('/', function (req, res, next) {
     res.send(questions);
 });
 
+/* GET a single questionin JSON format. */
+router.get('/find', function (req, res, next) {
+    const foundQuestion = questions.find(question => question.id === req.query.id);
+    return res.send(foundQuestion);
+});
+
 module.exports = router;
