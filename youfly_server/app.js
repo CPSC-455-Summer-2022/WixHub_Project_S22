@@ -7,7 +7,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var destinationsRouter = require('./routes/destinations');
 var questionsRouter = require('./routes/questions');
-var destinationMappingRouter = require('./routes/destinationMapping');
 
 var app = express();
 
@@ -21,6 +20,5 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/destinations', destinationsRouter);
 app.use('/questions', questionsRouter);
-app.use('/destinationMapping', destinationMappingRouter);
 
 module.exports = app;
