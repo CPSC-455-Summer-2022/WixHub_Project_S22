@@ -1,6 +1,5 @@
-import users from "./users"
-import destinations from "./destinations"
-
+var userRouter = require('./users');
+var destinationRouter = require('./destinations');
 var express = require('express');
 var router = express.Router();
 var { v4: uuid } = require('uuid');
@@ -8,7 +7,6 @@ var { v4: uuid } = require('uuid');
 // destination mapping shows which destination is best matched to a specific 
 // question response and the associated score added to that destination
 // to ultimately do the matching in the end
-
 let questions = [
     {
         "id": uuid(),
@@ -104,9 +102,10 @@ router.get('/find', function (req, res, next) {
 });
 
 function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s4) {
-    switch (question) {
+    ;
+    switch (parseInt(question)) {
         case 1:
-            destinationsScore[d1] += s1;
+            destinationsScore[d1] = s1;
             break;
         case 2:
             destinationsScore[d2] += s2;
@@ -123,7 +122,7 @@ function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s
 
 // provide a destination recommendation based on a series of question answers
 router.post('/recommendation', function (req, res, next) {
-    let destinationsScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let destinationsScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     destinationsScore = switchHelper(req.body.question1, destinationsScore, 12, 9, 8, 2, 4, 6, 8, 5);
     destinationsScore = switchHelper(req.body.question2, destinationsScore, 1, 7, 9, 3, 6, 9, 7, 4);
     destinationsScore = switchHelper(req.body.question3, destinationsScore, 12, 6, 13, 14, 5, 6, 8, 7);
@@ -137,19 +136,22 @@ router.post('/recommendation', function (req, res, next) {
     let maxVal = 0;
     let maxIndex = 0;
     for (let i = 0; i < destinationsScore.length; i++) {
+        console.log(JSON.stringify(destinationsScore[i]));
         if (maxVal < destinationsScore[i]) {
             maxVal = destinationsScore[i];
             maxIndex = i;
         }
     }
-    for (user in users) {
+    maxIndex = maxIndex + 1;
+
+    for (user in userRouter.users) {
         if (user.id == req.body.id) {
-            user.destinations.push(maxIndex + 1);
+            user['destinations'].push(maxIndex);
         }
     }
     let recommendedDestination = {};
-    for (destination in destinations) {
-        if (destination.id = maxIndex + 1) {
+    for (destination in destinationRouter.destinations) {
+        if (destination.id = maxIndex) {
             recommendedDestination = destination;
         }
     }
@@ -159,3 +161,6 @@ router.post('/recommendation', function (req, res, next) {
 });
 
 module.exports = router;
+
+
+

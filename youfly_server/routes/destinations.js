@@ -32,4 +32,5 @@ router.get('/find', function (req, res, next) {
 
 
 
-module.exports = router;
+module.exports.router = router;
+module.exports.destinations = destinations;
