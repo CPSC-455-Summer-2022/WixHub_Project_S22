@@ -112,17 +112,17 @@ function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s
             destinationsScore[d2] += s2;
             break;
         case 3:
-            destinationScore[d3] += s3;
+            destinationsScore[d3] += s3;
             break;
         case 4:
-            destinationScore[d4] += s4;
+            destinationsScore[d4] += s4;
             break;
     }
-    return destinationScore;
+    return destinationsScore;
 }
 
 // provide a destination recommendation based on a series of question answers
-router.post('/', function (req, res, next) {
+router.post('/recommendation', function (req, res, next) {
     let destinationsScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     destinationsScore = switchHelper(req.body.question1, destinationsScore, 12, 9, 8, 2, 4, 6, 8, 5);
     destinationsScore = switchHelper(req.body.question2, destinationsScore, 1, 7, 9, 3, 6, 9, 7, 4);
