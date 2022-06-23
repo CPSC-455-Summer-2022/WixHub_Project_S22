@@ -1,3 +1,6 @@
+import users from "./users"
+import destinations from "./destinations"
+
 var express = require('express');
 var router = express.Router();
 var { v4: uuid } = require('uuid');
@@ -98,6 +101,164 @@ router.get('/', function (req, res, next) {
 router.get('/find', function (req, res, next) {
     const foundQuestion = questions.find(question => question.id === req.query.id);
     return res.send(foundQuestion);
+});
+
+// function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s4) {
+//     switch (question) {
+//         case 1:
+//             destinationsScore[d1] += s1;
+//             break;
+//         case 2:
+//             destinationsScore[d2] += s2;
+//             break;
+//         case 3:
+//             destinationScore[d3] += s3;
+//             break;
+//         case 4:
+//             destinationScore[d4] += s4;
+//             break;
+//     }
+//     return destinationScore;
+// }
+
+// provide a destination recommendation based on a series of question answers
+router.post('/', function (req, res, next) {
+    let destinationsScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    // destinationsScore = switchHelper(req.body.question1, destinationsScore, 12, 9, 8, 2, 4, 6, 8, 5);
+    switch (req.body.question1) {
+        case 1:
+            destinationsScore[12] += 4;
+            break;
+        case 2:
+            destinationsScore[9] += 6;
+            break;
+        case 3:
+            destinationScore[8] += 8;
+            break;
+        case 4:
+            destinationScore[2] += 5;
+            break;
+    }
+    switch (req.body.question2) {
+        case 1:
+            destinationsScore[1] += 6;
+            break;
+        case 2:
+            destinationsScore[7] += 9;
+            break;
+        case 3:
+            destinationScore[9] += 7;
+            break;
+        case 4:
+            destinationScore[3] += 4;
+            break;
+    }
+    switch (req.body.question3) {
+        case 1:
+            destinationsScore[12] += 5;
+            break;
+        case 2:
+            destinationsScore[6] += 6;
+            break;
+        case 3:
+            destinationScore[13] += 8;
+            break;
+        case 4:
+            destinationScore[14] += 7;
+            break;
+    }
+    switch (req.body.question4) {
+        case 1:
+            destinationsScore[2] += 5;
+            break;
+        case 2:
+            destinationsScore[11] += 8;
+            break;
+        case 3:
+            destinationScore[6] += 4;
+            break;
+        case 4:
+            destinationScore[8] += 8;
+            break;
+    }
+    switch (req.body.question5) {
+        case 1:
+            destinationsScore[2] += 6;
+            break;
+        case 2:
+            destinationsScore[3] += 6;
+            break;
+        case 3:
+            destinationScore[6] += 8;
+            break;
+        case 4:
+            destinationScore[12] += 5;
+            break;
+    }
+    switch (req.body.question6) {
+        case 1:
+            destinationsScore[7] += 6;
+            break;
+        case 2:
+            destinationsScore[12] += 9;
+            break;
+        case 3:
+            destinationScore[10] += 7;
+            break;
+        case 4:
+            destinationScore[8] += 5;
+            break;
+    }
+    switch (req.body.question7) {
+        case 1:
+            destinationsScore[13] += 6;
+            break;
+        case 2:
+            destinationsScore[9] += 6;
+            break;
+        case 3:
+            destinationScore[1] += 8;
+            break;
+        case 4:
+            destinationScore[8] += 5;
+            break;
+    }
+    switch (req.body.question8) {
+        case 1:
+            destinationsScore[12] += 4;
+            break;
+        case 2:
+            destinationsScore[6] += 6;
+            break;
+        case 3:
+            destinationScore[4] += 8;
+            break;
+        case 4:
+            destinationScore[9] += 5;
+            break;
+    }
+    let maxVal = 0;
+    let maxIndex = 0;
+    for (let i = 0; i < destinationsScore.length; i++) {
+        if (maxVal < destinationsScore[i]) {
+            maxVal = destinationsScore[i];
+            maxIndex = i;
+        }
+    }
+    for (user in users) {
+        if (user.id == req.body.id) {
+            user.destinations.push(maxIndex + 1);
+        }
+    }
+    let recommendedDestination = {};
+    for (destination in destinations) {
+        if (destination.id = maxIndex + 1) {
+            recommendedDestination = destination;
+        }
+    }
+    return res
+        .status(201)
+        .send(recommendedDestination);
 });
 
 module.exports = router;
