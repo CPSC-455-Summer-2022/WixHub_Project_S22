@@ -25,7 +25,7 @@ export const NavBar = () => {
 			<Toolbar>
 				<IconButton component={Link} to="/">
 					{/* <LogoIcon /> */}
-					<AirplaneTicketIcon />
+					<AirplaneTicketIcon sx={{ color: 'white'}} />
 				</IconButton>
 				<Typography variant="h6" component='div' sx={{flexGrow: 1}}>
 					YouFly
@@ -33,7 +33,7 @@ export const NavBar = () => {
 				<Stack direction='row' spacing={2}>
 					<Button component={Link} to="/" color='inherit'>Home</Button>
 					<Button component={Link} to="LoginPage" color='inherit'>User Dashboard</Button>
-					<Button component={Link} to="SignUpPage" color='inherit' variant="contained" disableElevation>Sign up</Button>
+					<Button component={Link} to="SignUpPage" sx={{ color: 'white', backgroundColor: '#BBDDEE'}} variant="contained" disableElevation>Sign up</Button>
 				</Stack>
 			</Toolbar>
 		</AppBar>
