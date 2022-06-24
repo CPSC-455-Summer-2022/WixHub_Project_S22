@@ -38,8 +38,10 @@ const getQuestion = async (id) => {
     return response.json();
 };
 
-export default {
+const questionService = {
     recommendationGenerator,
-    getQuestions,
-    getQuestion
-}; 
+    getQuestion,
+    getQuestions
+};
+
+export default questionService;
