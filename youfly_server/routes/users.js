@@ -105,4 +105,5 @@ router.put('/edit', function (req, res) {
 });
 
 
-module.exports = router;
+module.exports.router = router;
+module.exports.users = users;
