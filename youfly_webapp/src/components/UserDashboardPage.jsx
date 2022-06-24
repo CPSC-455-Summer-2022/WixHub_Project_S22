@@ -60,7 +60,7 @@ export const UserDashboardPage = () => {
 				{reccs(2)}
 				{reccs(3)}
 			</div>
-			<DestinationMatching />
+			{/* <DestinationMatching /> */}
 		</div>
 	);
 }
