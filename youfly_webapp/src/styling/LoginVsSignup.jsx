@@ -1,0 +1,1 @@
+export const paperStyle = {padding:20,height:'400px',width:300, margin:"0 auto"}

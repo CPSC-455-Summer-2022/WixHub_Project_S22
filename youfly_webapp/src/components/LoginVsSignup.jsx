@@ -3,12 +3,12 @@ import {Avatar, Box, Button, Grid, Paper, Tab, Tabs, TextField, Typography} from
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import {LockOutlined} from "@material-ui/icons";
 import {Link} from "react-router-dom";
+import {paperStyle} from "../styling/LoginVsSignup.jsx";
 
 export const LoginVsSignup = () => {
 
     // login part for the mini login vs. signup tile
     const login = () => {
-        const paperStyle={padding:20,height:'400px',width:300, margin:"0 auto"}
         const avatarStyle={backgroundColor:'#FFAFCC'}
         return(
             <Grid>
