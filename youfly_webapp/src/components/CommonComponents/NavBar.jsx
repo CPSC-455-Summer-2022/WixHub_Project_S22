@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import "../styling/NavBar.css";
 import { AppBar, Button, IconButton, Toolbar, Typography, Stack } from "@mui/material";
-import { SvgIcon } from '@material-ui/core';
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 
+/*
 function LogoIcon(props) {
 	return (
 		<SvgIcon {...props}>
@@ -18,10 +17,11 @@ function LogoIcon(props) {
 		</SvgIcon>
 	)
 }
+*/
 
 export const NavBar = () => {
 	return (
-		<AppBar position="static" sx={{ bgcolor: "#a2d2ff" }}>
+		<AppBar position="relative" sx={{ bgcolor: "#a2d2ff" }}>
 			<Toolbar>
 				<IconButton component={Link} to="/">
 					{/* <LogoIcon /> */}
