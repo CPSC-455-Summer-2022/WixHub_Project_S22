@@ -1,6 +1,6 @@
 import React from "react";
 import {Grid} from "@material-ui/core";
-import {LoginVsSignup} from "./LoginVsSignup";
+import {LoginVsSignup} from "../Login/LoginVsSignup";
 
 export const LandingPage = () => {
 	return (

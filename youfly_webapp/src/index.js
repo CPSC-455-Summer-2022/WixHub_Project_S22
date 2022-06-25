@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { NavBar } from "./components/NavBar";
 
 // react-router-dom + route components
 import {
@@ -9,10 +8,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { LandingPage } from "./components/LandingPage";
-import { UserDashboardPage } from "./components/UserDashboardPage";
-import { SignUpPage } from "./components/SignUpPage";
-import {LoginVsSignup} from "./components/LoginVsSignup";
+import { NavBar } from "./components/CommonComponents/NavBar";
+import { LandingPage } from "./components/HomePage/HomePage";
+import { UserDashboardPage } from "./components/UserDashboard/UserDashboardPage";
+import { SignUpPage } from "./components/Signup/SignupPage";
+import { LoginVsSignup } from "./components/Login/LoginVsSignup";
 //
 
 // Redux

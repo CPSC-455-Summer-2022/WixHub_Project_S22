@@ -1,6 +1,6 @@
-import { DestinationMatching } from "./DestinationMatching";
+import { DestinationMatching } from "../DestionationSuggestion/DestinationMatching";
 import { Grid, Paper } from "@material-ui/core";
-import "../styling/UserDashboardPage.css"
+import "../../css-styling/UserDashboardPage.css"
 import { UserPreferences } from "./UserPreferences";
 import map from "lodash/map";
 import range from "lodash/range";
