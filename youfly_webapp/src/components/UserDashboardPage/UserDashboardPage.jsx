@@ -21,35 +21,57 @@ import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
 
 const cards = [
-  {
-    location: "Vancouver",
-    description: "a Canadian city in Beautiful British Columbia"
-  },
-  {
-    location: "London",
-    description: "a cool British city"
-  },
-  {
-    location: "Shanghai",
-    description: "a cool Asian city"
-  }
-];
+	{
+	  location: "Vancouver",
+	  description: "a Canadian city in Beautiful British Columbia"
+	},
+	{
+	  location: "London",
+	  description: "a cool British city"
+	},
+	{
+	  location: "Shanghai",
+	  description: "a cool Asian city"
+	},
+	{
+		location: "Vancouver",
+		description: "a Canadian city in Beautiful British Columbia"
+	  },
+	  {
+		location: "London",
+		description: "a cool British city"
+	  },
+	  {
+		location: "Shanghai",
+		description: "a cool Asian city"
+	  },
+	  {
+		location: "Vancouver",
+		description: "a Canadian city in Beautiful British Columbia"
+	  },
+	  {
+		location: "London",
+		description: "a cool British city"
+	  },
+	  {
+		location: "Shanghai",
+		description: "a cool Asian city"
+	  },
+  ];
 
 const theme = createTheme();
 
-const description = "Youfly is a travel booking website that allows users to create\
- a personalized profile by answering a series of questions.\
- Based on your profile, Youfly will provide optimal travel destination recommendations";
+const description = "Find your Suggestion History and Account Settings here"
 
-export default function LandingPage() {
+export default function UserDashboardPage() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <main>
-        <HeroUnit title={"Welcome!"} description={description} />
-        <Album cards={cards} hasActions={false} />
+		<HeroUnit title={"User Dashboard"} description={description} />
+		<Album cards={cards} hasActions={true} />
       </main>
-      <Footer />
+	  <Footer />
     </ThemeProvider>
   );
 }

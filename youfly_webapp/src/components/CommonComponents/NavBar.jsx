@@ -20,7 +20,7 @@ function LogoIcon(props) {
 
 export const NavBar = () => {
 	return (
-		<AppBar position="static" sx={{ bgcolor: "#a2d2ff" }}>
+		<AppBar position="relative" sx={{ bgcolor: "#a2d2ff" }}>
 			<Toolbar>
 				<IconButton component={Link} to="/">
 					{/* <LogoIcon /> */}

@@ -1,4 +1,3 @@
-import "../../css-styling/DestinationMatching.css";
 import React from 'react';
 import Picture from '../../assets/Vancouver_Image.jpg'
 

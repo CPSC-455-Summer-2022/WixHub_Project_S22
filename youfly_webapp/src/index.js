@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+// import './index.css';
 
 // react-router-dom + route components
 import {
@@ -9,10 +9,9 @@ import {
   Route,
 } from "react-router-dom";
 import { NavBar } from "./components/CommonComponents/NavBar";
-import { LandingPage } from "./components/HomePage/HomePage";
-import { UserDashboardPage } from "./components/UserDashboard/UserDashboardPage";
-import { SignUpPage } from "./components/Signup/SignupPage";
-import { LoginVsSignup } from "./components/Login/LoginVsSignup";
+import LandingPage from "./components/HomePage/HomePage";
+import UserDashboardPage from "./components/UserDashboardPage/UserDashboardPage";
+import SignUpPage from "./components/Signup/SignupPage";
 //
 
 // Redux
@@ -35,7 +34,6 @@ root.render(
           <Route path="/" element={<LandingPage />} />
           <Route path="LoginPage" element={<UserDashboardPage />} />
           <Route path="SignUpPage" element={<SignUpPage />} />
-          <Route path="LoginVsSignup" element={<LoginVsSignup/>} />
         </Routes>
       </BrowserRouter>
     </Provider>
