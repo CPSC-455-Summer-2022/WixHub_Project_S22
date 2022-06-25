@@ -20,7 +20,7 @@ import Footer from "../CommonComponents/Footer";
 import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
 
-const cards = [
+const homePageCards = [
   {
     location: "Vancouver",
     description: "a Canadian city in Beautiful British Columbia"
@@ -47,7 +47,7 @@ export default function LandingPage() {
       <CssBaseline />
       <main>
         <HeroUnit title={"Welcome!"} description={description} />
-        <Album cards={cards} hasActions={false} />
+        <Album cards={homePageCards} hasActions={false} />
       </main>
       <Footer />
     </ThemeProvider>

@@ -19,59 +19,23 @@ import Copyright from "../CommonComponents/Copyright";
 import Footer from "../CommonComponents/Footer";
 import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
-
-const cards = [
-	{
-	  location: "Vancouver",
-	  description: "a Canadian city in Beautiful British Columbia"
-	},
-	{
-	  location: "London",
-	  description: "a cool British city"
-	},
-	{
-	  location: "Shanghai",
-	  description: "a cool Asian city"
-	},
-	{
-		location: "Vancouver",
-		description: "a Canadian city in Beautiful British Columbia"
-	  },
-	  {
-		location: "London",
-		description: "a cool British city"
-	  },
-	  {
-		location: "Shanghai",
-		description: "a cool Asian city"
-	  },
-	  {
-		location: "Vancouver",
-		description: "a Canadian city in Beautiful British Columbia"
-	  },
-	  {
-		location: "London",
-		description: "a cool British city"
-	  },
-	  {
-		location: "Shanghai",
-		description: "a cool Asian city"
-	  },
-  ];
+import { useSelector } from 'react-redux';
 
 const theme = createTheme();
 
 const description = "Find your Suggestion History and Account Settings here"
 
 export default function UserDashboardPage() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <main>
-		<HeroUnit title={"User Dashboard"} description={description} />
-		<Album cards={cards} hasActions={true} />
-      </main>
-	  <Footer />
-    </ThemeProvider>
-  );
+	const cards = useSelector(state => state.cards);
+
+	return (
+		<ThemeProvider theme={theme}>
+		<CssBaseline />
+		<main>
+			<HeroUnit title={"User Dashboard"} description={description} />
+			<Album cards={cards} hasActions={true} />
+		</main>
+		<Footer />
+		</ThemeProvider>
+	);
 }
