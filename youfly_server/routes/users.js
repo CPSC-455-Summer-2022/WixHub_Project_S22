@@ -51,7 +51,7 @@ router.get('/find', function (req, res, next) {
 /* Post a single user listing in JSON format (adding it to the list) */
 router.post('/', function (req, res, next) {
   const user = {
-    id: uuid(), f_name: req.body.f_name,
+    id: uuid(), rname: req.body.rname, f_name: req.body.f_name,
     l_name: req.body.l_name, country: req.body.country, destinations: req.body.destinations,
     question_responses: req.body.question_responses
   };
