@@ -3,6 +3,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// setup db
+const dbSetup = require("./models/dbSetUp");
+dbSetup().then();
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var destinationsRouter = require('./routes/destinations');
