@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "../../css-styling/NavBar.css";
 import { AppBar, Button, IconButton, Toolbar, Typography, Stack } from "@mui/material";
 import { SvgIcon } from '@material-ui/core';
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
