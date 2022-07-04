@@ -105,7 +105,7 @@ function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s
     ;
     switch (parseInt(question)) {
         case 1:
-            destinationsScore[d1] = s1;
+            destinationsScore[d1] += s1;
             break;
         case 2:
             destinationsScore[d2] += s2;
