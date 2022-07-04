@@ -1,29 +1,33 @@
+/*
+Ronin and Sherman TODO:
+Rework navigation if required for MUI
+Learn MUI layout/grid mechanics
+Request user data from Josh's endpoints
+Make all buttons clickable (confirm with )
+*/
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { NavBar } from "./components/NavBar";
 
-// react-router-dom + route components
+// MARK - react-router-dom + route components
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
-import { LandingPage } from "./components/LandingPage";
-import { UserDashboardPage } from "./components/UserDashboardPage";
-import { SignUpPage } from "./components/SignUpPage";
-import {LoginVsSignup} from "./components/LoginVsSignup";
+import { NavBar } from "./components/CommonComponents/NavBar";
+import LandingPage from "./components/HomePage/HomePage";
+import UserDashboardPage from "./components/UserDashboardPage/UserDashboardPage";
+import SignUpPage from "./components/Signup/SignupPage";
 //
 
-// Redux
+// MARK - Redux
 import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({ reducer: rootReducer });
 //
-
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,7 +39,6 @@ root.render(
           <Route path="/" element={<LandingPage />} />
           <Route path="LoginPage" element={<UserDashboardPage />} />
           <Route path="SignUpPage" element={<SignUpPage />} />
-          <Route path="LoginVsSignup" element={<LoginVsSignup/>} />
         </Routes>
       </BrowserRouter>
     </Provider>
