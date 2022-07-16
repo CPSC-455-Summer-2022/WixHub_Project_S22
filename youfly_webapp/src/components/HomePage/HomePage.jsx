@@ -6,17 +6,17 @@ import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
 import GenerateRecommendation from './GenerateRecommendation';
 
-const homePageCards = [
+const destinations = [
   {
-    location: "Vancouver",
+    city: "Vancouver",
     description: "a Canadian city in Beautiful British Columbia"
   },
   {
-    location: "London",
+    city: "London",
     description: "a cool British city"
   },
   {
-    location: "Tokyo",
+    city: "Tokyo",
     description: "a cool Japanese city"
   }
 ];
@@ -31,7 +31,7 @@ export default function LandingPage() {
       <CssBaseline />
       <main>
         <HeroUnit title={"Welcome!"} description={description} />
-        <Album cards={homePageCards} hasActions={false} />
+        <Album destinations={destinations} hasActions={false} />
         <HeroUnit description={"Curious about our accuracy?"} />
         <GenerateRecommendation />
       </main>
