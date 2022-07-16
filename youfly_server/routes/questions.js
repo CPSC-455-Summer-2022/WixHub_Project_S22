@@ -3,6 +3,7 @@ var destinationRouter = require('./destinations');
 var express = require('express');
 var router = express.Router();
 var { v4: uuid } = require('uuid');
+const Question = require("../models/questions");
 
 // destination mapping shows which destination is best matched to a specific 
 // question response and the associated score added to that destination
@@ -92,13 +93,27 @@ let questions = [
 
 /* GET question listing. */
 router.get('/', function (req, res, next) {
-    res.send(questions);
+    // res.send(questions);
+    Question.find().then((result) => {
+        res.send(result);
+    })
 });
 
 /* GET a single questionin JSON format. */
 router.get('/find', function (req, res, next) {
     const foundQuestion = questions.find(question => question.id === req.query.id);
     return res.send(foundQuestion);
+});
+// new find question api by id in path parameter to replace top one
+router.get('/:id', function (req, res, next) {
+    const questionId = req.params.id;
+    Question.findById(questionId).then((result) => {
+        if (result) {
+            res.send(result);
+        } else {
+            res.status(404).send();
+        }
+    });
 });
 
 function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s4) {

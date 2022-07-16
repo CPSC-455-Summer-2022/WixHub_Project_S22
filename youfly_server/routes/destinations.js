@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const Destination = require("../models/destinations");
 
 let destinations = [
     { "id": 1, "city": "Vancouver", "country": "Canada" },
@@ -21,13 +21,36 @@ let destinations = [
 
 /* GET destinations. */
 router.get('/', function (req, res, next) {
-    res.send(destinations);
+    //res.send(destinations);
+    Destination.find().then((result) => {
+        res.send(result);
+    });
+
 });
 
 /* GET a single destination listing in JSON format. */
 router.get('/find', function (req, res, next) {
     const foundDestination = destinations.find(destinations => destinations.id === req.query.id);
     return res.send(foundDestination);
+    // const destinationId = req.query.id;
+    // Destination.findById(destinationId).then((result) => {
+    //     if (result) {
+    //         res.send(result);
+    //     } else {
+    //         res.status(404).send();
+    //     }
+    // });
+});
+//replace top one, put id in path
+router.get("/:id", function (req, res, next) {
+    const destinationId = req.params.id;
+    Destination.findById(destinationId).then((result) => {
+        if (result) {
+            res.send(result);
+        } else {
+            res.status(404).send();
+        }
+    });
 });
 
 
