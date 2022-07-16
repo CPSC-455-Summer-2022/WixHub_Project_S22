@@ -27,9 +27,7 @@ const getUsers = async () => {
 };
 
 const getUser = async (id) => {
-    const response = await fetch('http://localhost:3001/users/find?' + new URLSearchParams({
-        id: id
-    }), {
+    const response = await fetch(`http://localhost:3001/users/${id}`, {
         method: 'GET',
         mode: 'cors'
     });
