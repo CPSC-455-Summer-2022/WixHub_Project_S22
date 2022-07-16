@@ -5,6 +5,10 @@ const Schema = mongoose.Schema;
 
 // create destination schema
 const DestinationSchema = new Schema({
+    destinationId: {
+        type: Number,
+        require: true
+    },
     city: {
         type: String,
         require: true

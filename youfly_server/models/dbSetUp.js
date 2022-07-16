@@ -107,20 +107,20 @@ const initializeQuestions =  async function() {
 const initializeDestinations =  async function() {
     await Destination.collection.drop().catch((err) => {});
     await Destination.insertMany([
-        { "city": "Vancouver", "country": "Canada" },
-        { "city": "London", "country": "England" },
-        { "city": "Amsterdam", "country": "Netherlands" },
-        { "city": "Dubai", "country": "United Arab Emirates" },
-        { "city": "Beijing", "country": "China" },
-        { "city": "Bali", "country": "Indonesia" },
-        { "city": "Crete", "country": "Greece" },
-        { "city": "Cabo San Lucas", "country": "Mexico" },
-        { "city": "Paris", "country": "France" },
-        { "city": "Oslo", "country": "Norway" },
-        { "city": "Rome", "country": "Italy" },
-        { "city": "New York", "country": "United States" },
-        { "city": "Kyushi", "country": "Japan" },
-        { "city": "Singapore", "country": "Singapore" },
+        { "destinationId": 1, "city": "Vancouver", "country": "Canada" },
+        { "destinationId": 2, "city": "London", "country": "England" },
+        { "destinationId": 3, "city": "Amsterdam", "country": "Netherlands" },
+        { "destinationId": 4, "city": "Dubai", "country": "United Arab Emirates" },
+        { "destinationId": 5, "city": "Beijing", "country": "China" },
+        { "destinationId": 6, "city": "Bali", "country": "Indonesia" },
+        { "destinationId": 7, "city": "Crete", "country": "Greece" },
+        { "destinationId": 8, "city": "Cabo San Lucas", "country": "Mexico" },
+        { "destinationId": 9, "city": "Paris", "country": "France" },
+        { "destinationId": 10, "city": "Oslo", "country": "Norway" },
+        { "destinationId": 11, "city": "Rome", "country": "Italy" },
+        { "destinationId": 12, "city": "New York", "country": "United States" },
+        { "destinationId": 13, "city": "Kyushi", "country": "Japan" },
+        { "destinationId": 14, "city": "Singapore", "country": "Singapore" },
     ]);
 };
 
