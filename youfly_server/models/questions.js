@@ -4,15 +4,19 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const destinationMappingSchema = new Schema({
-    response : {
+    response: {
+        type: String,
+        require: true
+    },
+    responseNumber: {
         type: Number,
         require: true
     },
-    destination : {
+    destination: {
         type: Number,
         require: true
     },
-    weighting : {
+    weighting: {
         type: Number,
         require: true
     },
@@ -20,7 +24,7 @@ const destinationMappingSchema = new Schema({
 
 // create question schema
 const QuestionSchema = new Schema({
-    question : {
+    question: {
         type: String,
         require: true
     },
@@ -29,7 +33,7 @@ const QuestionSchema = new Schema({
             type: destinationMappingSchema
         }
     ]
-}, {timestamps: true});
+}, { timestamps: true });
 
 const Question = mongoose.model("Question", QuestionSchema);
 

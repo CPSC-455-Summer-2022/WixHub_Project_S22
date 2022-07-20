@@ -2,101 +2,101 @@ const mongoose = require("mongoose");
 const User = require("./users");
 const Destination = require("./destinations");
 const Question = require("./questions");
-const {v4: uuid} = require("uuid");
+const { v4: uuid } = require("uuid");
 
 const dburl = "mongodb+srv://m001-student:m001-mongodb-basics@cluster0.grgqp0e.mongodb.net/?retryWrites=true&w=majority";
 
-const connectDb = async function() {
+const connectDb = async function () {
     await mongoose.connect(dburl);
     console.log("connected to Mongo db");
 };
 
-const dbSetUp = async function() {
+const dbSetUp = async function () {
     await connectDb();
     await initializeDb();
 };
 
-const initializeDb = async function() {
+const initializeDb = async function () {
     await initializeUsers();
     await initializeDestinations();
     await initializeQuestions();
     console.log("db is initialized");
 };
 
-const initializeQuestions =  async function() {
-    await Question.collection.drop().catch((err) => {});
+const initializeQuestions = async function () {
+    await Question.collection.drop().catch((err) => { });
     await Question.insertMany(
         [
             {
                 "question": "What type of traveller are you?",
                 "destinationMapping": [
-                    { "response": 1, "destination": 12, "weighting": 4 },
-                    { "response": 2, "destination": 9, "weighting": 6 },
-                    { "response": 3, "destination": 8, "weighting": 8 },
-                    { "response": 4, "destination": 2, "weighting": 5 },
+                    { "response": "I like to go with the flow", "responseNumber": 1, "destination": 12, "weighting": 4 },
+                    { "response": "I plan everything", "responseNumber": 2, "destination": 9, "weighting": 6 },
+                    { "response": "I just want to relax", "responseNumber": 3, "destination": 8, "weighting": 8 },
+                    { "response": "I want to do everything", "responseNumber": 4, "destination": 2, "weighting": 5 },
                 ]
             },
             {
                 "question": "Who are you travelling with?",
                 "destinationMapping": [
-                    { "response": 1, "destination": 1, "weighting": 6 },
-                    { "response": 2, "destination": 7, "weighting": 9 },
-                    { "response": 3, "destination": 9, "weighting": 7 },
-                    { "response": 4, "destination": 3, "weighting": 4 },
+                    { "response": "The family", "responseNumber": 1, "destination": 1, "weighting": 6 },
+                    { "response": "Friends", "responseNumber": 2, "destination": 7, "weighting": 9 },
+                    { "response": "Signicant Other", "responseNumber": 3, "destination": 9, "weighting": 7 },
+                    { "response": "Solo", "responseNumber": 4, "destination": 3, "weighting": 4 },
                 ]
             },
             {
                 "question": "How long do you want to travel for?",
                 "destinationMapping": [
-                    { "response": 1, "destination": 12, "weighting": 5 },
-                    { "response": 2, "destination": 6, "weighting": 6 },
-                    { "response": 3, "destination": 13, "weighting": 8 },
-                    { "response": 4, "destination": 14, "weighting": 7 },
+                    { "response": "A weekend", "responseNumber": 1, "destination": 12, "weighting": 5 },
+                    { "response": "A week", "responseNumber": 2, "destination": 6, "weighting": 6 },
+                    { "response": "Two weeks", "responseNumber": 3, "destination": 13, "weighting": 8 },
+                    { "response": "A month", "responseNumber": 4, "destination": 14, "weighting": 7 },
                 ]
             },
             {
                 "question": "Which activity do you like most?",
                 "destinationMapping": [
-                    { "response": 1, "destination": 2, "weighting": 5 },
-                    { "response": 2, "destination": 11, "weighting": 8 },
-                    { "response": 3, "destination": 6, "weighting": 4 },
-                    { "response": 4, "destination": 8, "weighting": 8 },
+                    { "response": "Visit museums", "responseNumber": 1, "destination": 2, "weighting": 5 },
+                    { "response": "Explore Ancient Relics", "responseNumber": 2, "destination": 11, "weighting": 8 },
+                    { "response": "Hike through mountains", "responseNumber": 3, "destination": 6, "weighting": 4 },
+                    { "response": "Sunbathe on the beach", "responseNumber": 4, "destination": 8, "weighting": 8 },
                 ]
             },
             {
                 "question": "Which food are you most likely to try?",
                 "destinationMapping": [
-                    { "response": 1, "destination": 2, "weighting": 6 },
-                    { "response": 2, "destination": 3, "weighting": 6 },
-                    { "response": 3, "destination": 6, "weighting": 8 },
-                    { "response": 4, "destination": 12, "weighting": 5 },
+                    { "response": "Anything sweet", "responseNumber": 1, "destination": 2, "weighting": 6 },
+                    { "response": "Nothing too spicy", "responseNumber": 2, "destination": 3, "weighting": 6 },
+                    { "response": "Anything!", "responseNumber": 3, "destination": 6, "weighting": 8 },
+                    { "response": "You're very picky", "responseNumber": 4, "destination": 12, "weighting": 5 },
                 ]
             },
             {
                 "question": "What type of footwear define you?",
                 "destinationMapping": [
-                    { "response": 1, "destination": 7, "weighting": 6 },
-                    { "response": 2, "destination": 12, "weighting": 9 },
-                    { "response": 3, "destination": 10, "weighting": 7 },
-                    { "response": 4, "destination": 8, "weighting": 5 },
+                    { "response": "Hiking boots", "responseNumber": 1, "destination": 7, "weighting": 6 },
+                    { "response": "Leather dress shoes", "responseNumber": 2, "destination": 12, "weighting": 9 },
+                    { "response": "Runners", "responseNumber": 3, "destination": 10, "weighting": 7 },
+                    { "response": "Sandals", "responseNumber": 4, "destination": 8, "weighting": 5 },
                 ]
             },
             {
                 "question": "What's your favourite aspect of a holiday?",
                 "destinationMapping": [
-                    { "response": 1, "destination": 13, "weighting": 6 },
-                    { "response": 2, "destination": 9, "weighting": 6 },
-                    { "response": 3, "destination": 1, "weighting": 8 },
-                    { "response": 4, "destination": 8, "weighting": 5 },
+                    { "response": "Immersing in different cultures", "responseNumber": 1, "destination": 13, "weighting": 6 },
+                    { "response": "Delving into the history of a place", "responseNumber": 2, "destination": 9, "weighting": 6 },
+                    { "response": "Exploring nature", "responseNumber": 3, "destination": 1, "weighting": 8 },
+                    { "response": "Interacting with locals", "responseNumber": 4, "destination": 8, "weighting": 5 },
                 ]
             },
             {
                 "question": "Which three words best describe your ideal vacation?",
                 "destinationMapping": [
-                    { "response": 1, "destination": 12, "weighting": 4 },
-                    { "response": 2, "destination": 6, "weighting": 6 },
-                    { "response": 3, "destination": 4, "weighting": 8 },
-                    { "response": 4, "destination": 9, "weighting": 5 },
+                    { "response": "Exotic, surprising and serene", "responseNumber": 1, "destination": 12, "weighting": 4 },
+                    { "response": "Adventurous, fun and undiscovered", "responseNumber": 2, "destination": 6, "weighting": 6 },
+                    { "response": "Luxurious slow paced and beautiful", "responseNumber": 3, "destination": 4, "weighting": 8 },
+                    { "response": "Educational, cultural and amusing", "responseNumber": 4, "destination": 9, "weighting": 5 },
                 ]
             },
         ]
@@ -104,8 +104,8 @@ const initializeQuestions =  async function() {
 
 }
 
-const initializeDestinations =  async function() {
-    await Destination.collection.drop().catch((err) => {});
+const initializeDestinations = async function () {
+    await Destination.collection.drop().catch((err) => { });
     await Destination.insertMany([
         { "destinationId": 1, "city": "Vancouver", "country": "Canada" },
         { "destinationId": 2, "city": "London", "country": "England" },
@@ -124,8 +124,8 @@ const initializeDestinations =  async function() {
     ]);
 };
 
-const initializeUsers = async function() {
-    await User.collection.drop().catch((err) => {});
+const initializeUsers = async function () {
+    await User.collection.drop().catch((err) => { });
     await User.insertMany([
         {
             "f_name": "Josh",
