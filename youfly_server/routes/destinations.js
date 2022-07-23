@@ -38,4 +38,3 @@ router.get("/destinationID/:id", function (req, res, next) {
 
 
 module.exports.router = router;
-module.exports.destinations = destinations;
