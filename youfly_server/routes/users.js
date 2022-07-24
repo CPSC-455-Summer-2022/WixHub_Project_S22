@@ -2,8 +2,66 @@ var express = require('express');
 var router = express.Router();
 var { v4: uuid } = require('uuid');
 const User = require("../models/users");
+/**
+ * @swagger
+ *  tags:
+ *    name: Users
+ *    description: user specific requests
+ */
 
-// GET users listing in JSON format.
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - userId
+ *         - rname
+ *         - lname
+ *         - country
+ *         - destinations
+ *         - question_responses
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: The Auto-generated id of a post
+ *         rname:
+ *           type: string
+ *           description: first name of user
+ *         lname:
+ *           type: string
+ *           description: last name of usert
+ *         country:
+ *           type: string
+ *           descripton: country of user
+ *         question_responses:
+ *           type: array
+ *           descripton: users question responeses
+ *       example:
+ *         id: 1
+ *         rname: josh
+ *         lname: tillson
+ *         country: canada
+ *         question_responses: [1,1,1,1,1,1,1,1]
+ */
+
+/**
+* @swagger
+* /users:
+*   get:
+*     summary: Returns all users
+*     tags: [Users]
+*     responses:
+*       200:
+*         description: the list of all Users
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*                 $ref: '#/components/schemas/User'
+*/
 router.get('/', function (req, res, next) {
   User.find().then((result) => {
     res.send(result);
