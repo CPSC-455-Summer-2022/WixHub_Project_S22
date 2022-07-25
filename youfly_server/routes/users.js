@@ -69,7 +69,27 @@ router.get('/', function (req, res, next) {
   // res.send(users);
 });
 
-// new find user api by id in path parameter
+/**
+* @swagger
+* /users/:id:
+*   get:
+*     summary: Returns specified user according to provided id
+*     tags: [Users]
+*     responses:
+*       200:
+*         description: a single user based on a given id
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               items:
+*                 $ref: '#/components/schemas/User'
+*     parameters:
+*     - name: id
+*       description: user's id
+*       required: true
+*       type: string
+*/
 router.get('/:id', function (req, res, next) {
   const userId = req.params.id;
   User.findById(userId).then((result) => {
@@ -81,15 +101,45 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
-/* Post a single user listing in JSON format (adding it to the list) */
+/**
+* @swagger
+* /users:
+*   post:
+*     summary: Adds a single user listing in JSON format to user database
+*     tags: [Users]
+*     responses:
+*       200:
+*         description: adds a new user to the db
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               items:
+*                 $ref: '#/components/schemas/User'
+*     parameters:
+*     - name: f_name
+*       description: user's first name
+*       required: true
+*       type: string
+*     - name: l_name
+*       description: user's last name
+*       required: true
+*       type: string
+*     - name: country
+*       description: user's country
+*       required: true
+*       type: string
+*     - name: question_responses
+*       description: a user's question responses (please enter in array format)
+*       required: false
+*       type: array
+*/
 router.post('/', function (req, res, next) {
   const user = {
     f_name: req.body.f_name,
     l_name: req.body.l_name, country: req.body.country, destinations: req.body.destinations,
     question_responses: req.body.question_responses
   };
-  // users.push(user);
-  // return res.status(201).send(req.body);
   User.create(user).then((result) => {
     res.status(201).send(result);
   }).catch((err) => {
@@ -97,7 +147,27 @@ router.post('/', function (req, res, next) {
   });
 });
 
-// new delete user api by id in path parameter
+/**
+* @swagger
+* /users/:id:
+*   delete:
+*     summary: delete specified user according to provided id
+*     tags: [Users]
+*     responses:
+*       200:
+*         description: a single user based on a given id
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               items:
+*                 $ref: '#/components/schemas/User'
+*     parameters:
+*     - name: id
+*       description: user's id
+*       required: true
+*       type: string
+*/
 router.delete('/:id', function (req, res) {
   const userId = req.params.id;
   User.findByIdAndDelete(userId).then((result) => {
@@ -109,8 +179,22 @@ router.delete('/:id', function (req, res) {
   });
 });
 
-// orginal /deleteAll path are depreciate for mongo.
-/* Delete all users in stored user list*/
+/**
+* @swagger
+* /users:
+*   delete:
+*     summary: deletes all users in db
+*     tags: [Users]
+*     responses:
+*       200:
+*         description: the list of all Users
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*                 $ref: '#/components/schemas/User'
+*/
 router.delete('/', function (req, res) {
   User.deleteMany({}).then((result1) => {
     User.find().then((result2) => {
@@ -119,7 +203,43 @@ router.delete('/', function (req, res) {
   });
 });
 
-
+/**
+* @swagger
+* /users:
+*   put:
+*     summary: Edits a single user listing in JSON format within user database
+*     tags: [Users]
+*     responses:
+*       200:
+*         description: edits an existing user in the db
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               items:
+*                 $ref: '#/components/schemas/User'
+*     parameters:
+*     - name: id
+*       description: user's id
+*       required: true
+*       type: string
+*     - name: f_name
+*       description: user's first name
+*       required: true
+*       type: string
+*     - name: l_name
+*       description: user's last name
+*       required: true
+*       type: string
+*     - name: country
+*       description: user's country
+*       required: true
+*       type: string
+*     - name: question_responses
+*       description: a user's question responses (please enter in array format)
+*       required: false
+*       type: array
+*/
 router.put('/edit', function (req, res) {
   const userId = req.body.id;
   const updatedInfo = {
