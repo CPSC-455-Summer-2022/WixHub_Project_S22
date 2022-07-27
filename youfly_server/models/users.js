@@ -26,7 +26,15 @@ const UserSchema = new Schema({
         {
             type: Number
         }
-    ]
+    ],
+    email: {
+        type: String,
+        require: true
+    },
+    password: {
+        type: String,
+        require: true
+    }
 }, {timestamps: true});
 
 // create model
