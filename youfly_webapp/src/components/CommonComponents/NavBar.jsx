@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { AppBar, Button, IconButton, Toolbar, Typography, Stack } from "@mui/material";
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 
+import React, { useContext } from 'react';
+import { AuthContext } from '../../context/auth';
+
 /*
 function LogoIcon(props) {
 	return (
@@ -20,7 +23,26 @@ function LogoIcon(props) {
 */
 
 export const NavBar = () => {
-	return (
+	const { user, logout } = useContext(AuthContext);
+	if (user) {
+		return (<AppBar position="relative" sx={{ bgcolor: "#a2d2ff" }}>
+			<Toolbar>
+				<IconButton component={Link} to="/">
+					{/* <LogoIcon /> */}
+					<AirplaneTicketIcon sx={{ color: 'white'}} />
+				</IconButton>
+				<Typography variant="h6" component='div' sx={{flexGrow: 1}}>
+					YouFly
+				</Typography>
+				<Stack direction='row' spacing={2}>
+					<Button component={Link} to="/" color='inherit'>Home</Button>
+					<Button component={Link} to="UserDashboardPage" color='inherit'>User Dashboard</Button>
+					<Button onClick={logout} sx={{ color: 'white', backgroundColor: '#BBDDEE'}} variant="contained" disableElevation>Sign Out</Button>
+				</Stack>
+			</Toolbar>
+		</AppBar>);
+	}
+	else return (
 		<AppBar position="relative" sx={{ bgcolor: "#a2d2ff" }}>
 			<Toolbar>
 				<IconButton component={Link} to="/">
@@ -32,7 +54,7 @@ export const NavBar = () => {
 				</Typography>
 				<Stack direction='row' spacing={2}>
 					<Button component={Link} to="/" color='inherit'>Home</Button>
-					<Button component={Link} to="LoginPage" color='inherit'>User Dashboard</Button>
+					<Button component={Link} to="LoginPage" color='inherit'>Login</Button>
 					<Button component={Link} to="SignUpPage" sx={{ color: 'white', backgroundColor: '#BBDDEE'}} variant="contained" disableElevation>Sign up</Button>
 				</Stack>
 			</Toolbar>

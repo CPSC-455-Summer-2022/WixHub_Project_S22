@@ -43,3 +43,10 @@ export const deleteUserAsync = createAsyncThunk(
         return await UserService.deleteUser(id);
     }
 );
+
+export const loginUserAsync = createAsyncThunk(
+    actionTypes.LOGIN_USER,
+    async (emailPass) => {
+        return await UserService.loginUser(emailPass);
+    }
+)

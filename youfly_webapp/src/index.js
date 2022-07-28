@@ -19,6 +19,9 @@ import { NavBar } from "./components/CommonComponents/NavBar";
 import LandingPage from "./components/HomePage/HomePage";
 import UserDashboardPage from "./components/UserDashboardPage/UserDashboardPage";
 import SignUpPage from "./components/Signup/SignupPage";
+import LoginPage from "./components/LoginPage/LoginPage"
+import { AuthProvider } from './context/auth';
+import AuthRoute from './util/AuthRoute';
 //
 
 // MARK - Redux
@@ -32,15 +35,20 @@ const store = configureStore({ reducer: rootReducer });
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="LoginPage" element={<UserDashboardPage />} />
-          <Route path="SignUpPage" element={<SignUpPage />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <AuthProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="LoginPage" element={<LoginPage />} />
+            <Route path="SignUpPage" element={<SignUpPage />} />
+            <Route element={<AuthRoute />}>
+              <Route path="UserDashboardPage" element={<UserDashboardPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </AuthProvider>
   </React.StrictMode>
 );

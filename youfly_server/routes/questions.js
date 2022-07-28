@@ -91,7 +91,55 @@ let questions = [
     },
 ];
 
-/* GET question listing. */
+/**
+ * @swagger
+ *  tags:
+ *    name: Questions
+ *    description: question specific requests
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Question:
+ *       type: object
+ *       required:
+ *         - id
+ *         - question
+ *         - destinationMapping
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: The Auto-generated id of a post
+ *         question:
+ *           type: string
+ *           description: question asked
+ *         destinationMapping:
+ *           type: array
+ *           description: last name of usert
+ *       example:
+ *         id: 1
+ *         question: "who am I"
+ *         destination_mapping: [{ "response": 1, "destination": 12, "weighting": 4 }, { "response": 2, "destination": 6, "weighting": 6 }, { "response": 3, "destination": 4, "weighting": 8 }, { "response": 4, "destination": 9, "weighting": 5 }]
+ */
+
+/**
+* @swagger
+* /questions:
+*   get:
+*     summary: Returns complete question listing
+*     tags: [Questions]
+*     responses:
+*       200:
+*         description: the list of all Questions
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*                 $ref: '#/components/schemas/Question'
+*/
 router.get('/', function (req, res, next) {
     // res.send(questions);
     Question.find().then((result) => {
@@ -99,12 +147,27 @@ router.get('/', function (req, res, next) {
     })
 });
 
-/* GET a single questionin JSON format. */
-router.get('/find', function (req, res, next) {
-    const foundQuestion = questions.find(question => question.id === req.query.id);
-    return res.send(foundQuestion);
-});
-// new find question api by id in path parameter to replace top one
+/**
+* @swagger
+* /questions/:id:
+*   get:
+*     summary: Returns specified question according to provided id
+*     tags: [Questions]
+*     responses:
+*       200:
+*         description: a single question based on a given id
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               items:
+*                 $ref: '#/components/schemas/Question'
+*     parameters:
+*     - name: id
+*       description: questions's id
+*       required: true
+*       type: string
+*/
 router.get('/:id', function (req, res, next) {
     const questionId = req.params.id;
     Question.findById(questionId).then((result) => {
@@ -134,7 +197,45 @@ function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s
     }
     return destinationsScore;
 }
-
+/**
+* @swagger
+* /questions/recommendation:
+*   post:
+*     summary: provide a destination recommendation based on a series of question answers
+*     tags: [Questions]
+*     responses:
+*       200:
+*         description: provides a recommendation (returns id of destination)
+*         content:
+*           application/json:
+*             schema:
+*               type: string
+*     parameters:
+*     - name: question1
+*       required: true
+*       type: integer
+*     - name: question2
+*       required: true
+*       type: integer
+*     - name: question3
+*       required: true
+*       type: integer
+*     - name: question4
+*       required: true
+*       type: integer
+*     - name: question5
+*       required: true
+*       type: integer
+*     - name: question6
+*       required: true
+*       type: integer
+*     - name: question7
+*       required: true
+*       type: integer
+*     - name: question8
+*       required: true
+*       type: integer
+*/
 // provide a destination recommendation based on a series of question answers
 router.post('/recommendation', function (req, res, next) {
     let destinationsScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
