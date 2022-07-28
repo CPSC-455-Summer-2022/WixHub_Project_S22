@@ -1,3 +1,4 @@
+var {generateAccessToken} = require("../util/genToken");
 var express = require('express');
 var router = express.Router();
 var { v4: uuid } = require('uuid');
@@ -45,6 +46,51 @@ const User = require("../models/users");
  *         country: canada
  *         question_responses: [1,1,1,1,1,1,1,1]
  */
+var bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
+
+let users = [
+  {
+    "id": uuid(),
+    "f_name": "Josh",
+    "l_name": "Tillson",
+    "country": "Canada",
+    "destinations": ["1", "5"],
+    "question_responses": [1, 2, 3, 4, 1, 2, 3, 4],
+    "email": "josh@tillson.com",
+    "password": "1234password"
+  },
+  {
+    "id": uuid(),
+    "f_name": "Ronin",
+    "l_name": "Cunningham",
+    "country": "Canada",
+    "destinations": ["2"],
+    "question_responses": [1, 1, 1, 1, 1, 1, 1, 1],
+    "email": "ronin@cunningham.com",
+    "password": "1234password"
+  },
+  {
+    "id": uuid(),
+    "f_name": "Sherman",
+    "l_name": "Lam",
+    "country": "Canada",
+    "destinations": ["1", "2", "3"],
+    "question_responses": [1, 2, 1, 2, 1, 2, 1, 2],
+    "email": "sherman@lam.com",
+    "password": "1234password"
+  },
+  {
+    "id": 123456,
+    "f_name": "Kevin",
+    "l_name": "Zhao",
+    "country": "Canada",
+    "destinations": ["1"],
+    "question_responses": [2, 3, 4, 4, 4, 3, 3, 2],
+    "email": "kevin@zhao.com",
+    "password": "1234password"
+  },
+];
 
 /**
 * @swagger
@@ -134,11 +180,43 @@ router.get('/:id', function (req, res, next) {
 *       required: false
 *       type: array
 */
+// login user
+router.post('/login', async function (req, res, next) {
+  const { email, password } = req.body;
+  const foundUser = users.find(user => user.email === email);
+  if (foundUser) {
+    console.log(password);
+    console.log(foundUser.password);
+    if (password == foundUser.password) {
+      const token = generateAccessToken(email);
+      res.json({
+        foundUser,
+        token: `Bearer ${token}`
+      });
+    } else res.sendStatus(402);
+  } else res.sendStatus(403);
+});
+
+// validate token
+// router.all('*'), function (req, res, next) {
+//   const authHeader = req.headers["authorization"];
+//   const token = authHeader && authHeader.split(" ")[1];
+
+//   if (token == null) return res.sendStatus(401);
+
+//   jwt.verify(token, "thisIsAuthorized", (err, decoded) => {
+//     if (err) return res.sendStatus(403);
+//     req.tokenData = decoded;
+//     next();
+//   });
+// };
+
+/* Post a single user listing in JSON format (adding it to the list) */
 router.post('/', function (req, res, next) {
   const user = {
     f_name: req.body.f_name,
     l_name: req.body.l_name, country: req.body.country, destinations: req.body.destinations,
-    question_responses: req.body.question_responses
+    question_responses: req.body.question_responses, password: req.body.password
   };
   User.create(user).then((result) => {
     res.status(201).send(result);
@@ -243,11 +321,13 @@ router.delete('/', function (req, res) {
 router.put('/edit', function (req, res) {
   const userId = req.body.id;
   const updatedInfo = {
-    "f_name": req.body.f_name,
-    "l_name": req.body.l_name,
-    "country": req.body.country,
-    "destinations": req.body.destinations,
-    "question_responses": req.body.question_responses,
+    "f_name" : req.body.f_name,
+    "l_name" : req.body.l_name,
+    "country" : req.body.country,
+    "destinations" : req.body.destinations,
+    "question_responses" : req.body.question_responses,
+    "email": req.body.email,
+    "password" : req.body.password,
   };
   User.findByIdAndUpdate(userId, updatedInfo).then(() => {
     User.find().then((result) => {
