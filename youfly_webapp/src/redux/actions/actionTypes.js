@@ -10,4 +10,5 @@ export const actionTypes = {
     GENERATE_RECOMMENDATION: 'questions/generateRecommendation',
     GET_DESTINATIONS: 'questions/getDestinations',
     GET_DESTINATION: 'questions/getDestination',
+    LOGIN_USER: 'recipes/loginUser',
 };

@@ -1,36 +1,128 @@
 var express = require('express');
 var router = express.Router();
+const Destination = require("../models/destinations");
 
+/**
+ * @swagger
+ *  tags:
+ *    name: Destinations
+ *    description: destination specific requests
+ */
 
-let destinations = [
-    { "id": 1, "city": "Vancouver", "country": "Canada" },
-    { "id": 2, "city": "London", "country": "England" },
-    { "id": 3, "city": "Amsterdam", "country": "Netherlands" },
-    { "id": 4, "city": "Dubai", "country": "United Arab Emirates" },
-    { "id": 5, "city": "Beijing", "country": "China" },
-    { "id": 6, "city": "Bali", "country": "Indonesia" },
-    { "id": 7, "city": "Crete", "country": "Greece" },
-    { "id": 8, "city": "Cabo San Lucas", "country": "Mexico" },
-    { "id": 9, "city": "Paris", "country": "France" },
-    { "id": 10, "city": "Oslo", "country": "Norway" },
-    { "id": 11, "city": "Rome", "country": "Italy" },
-    { "id": 12, "city": "New York", "country": "United States" },
-    { "id": 13, "city": "Kyushi", "country": "Japan" },
-    { "id": 14, "city": "Singapore", "country": "Singapore" },
-];
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Destination:
+ *       type: object
+ *       required:
+ *         - id
+ *         - city
+ *         - country
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: The Auto-generated id of a post
+ *         city:
+ *           type: string
+ *           description: the name of the city 
+ *         country:
+ *           type: string
+ *           description: the name of the country
+ *       example:
+ *         id: 1
+ *         city: "Toronto"
+ *         country: "Canada"
+ */
 
-/* GET destinations. */
+/**
+* @swagger
+* /destinations:
+*   get:
+*     summary: Returns all destinations in db
+*     tags: [Destinations]
+*     responses:
+*       200:
+*         description: the list of all destinations
+*         content:
+*           application/json:
+*             schema:
+*               type: array
+*               items:
+*                 $ref: '#/components/schemas/Destination'
+*/
 router.get('/', function (req, res, next) {
-    res.send(destinations);
+    //res.send(destinations);
+    Destination.find().then((result) => {
+        res.send(result);
+    });
+
 });
 
-/* GET a single destination listing in JSON format. */
-router.get('/find', function (req, res, next) {
-    const foundDestination = destinations.find(destinations => destinations.id === req.query.id);
-    return res.send(foundDestination);
+/**
+* @swagger
+* /destinations/:id:
+*   get:
+*     summary: Returns specified destination according to provided id
+*     tags: [Destinations]
+*     responses:
+*       200:
+*         description: a single destination based on a given id
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               items:
+*                 $ref: '#/components/schemas/Destination'
+*     parameters:
+*     - name: id
+*       description: destinations's id
+*       required: true
+*       type: string
+*/
+router.get("/:id", function (req, res, next) {
+    const destinationId = req.params.id;
+    Destination.findById(destinationId).then((result) => {
+        if (result) {
+            res.send(result);
+        } else {
+            res.status(404).send();
+        }
+    });
+});
+
+/**
+* @swagger
+* /destinations/destinationID/:id:
+*   get:
+*     summary: Returns specified destination according to provided destinationID
+*     tags: [Destinations]
+*     responses:
+*       200:
+*         description: a single destination based on a given destinationID
+*         content:
+*           application/json:
+*             schema:
+*               type: object
+*               items:
+*                 $ref: '#/components/schemas/Destination'
+*     parameters:
+*     - name: destinationID
+*       description: destinations's id
+*       required: true
+*       type: string
+*/
+router.get("/destinationID/:id", function (req, res, next) {
+    const destinationId = req.params.id;
+    Destination.find({ destinationId: destinationId }).then((result) => {
+        if (result) {
+            res.send(result);
+        } else {
+            res.status(404).send();
+        }
+    });
 });
 
 
 
 module.exports.router = router;
-module.exports.destinations = destinations;

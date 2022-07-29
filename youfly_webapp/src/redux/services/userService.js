@@ -27,9 +27,7 @@ const getUsers = async () => {
 };
 
 const getUser = async (id) => {
-    const response = await fetch('http://localhost:3001/users/find?' + new URLSearchParams({
-        id: id
-    }), {
+    const response = await fetch(`http://localhost:3001/users/${id}`, {
         method: 'GET',
         mode: 'cors'
     });
@@ -74,11 +72,23 @@ const editUser = async (user) => {
     return data;
 };
 
+const loginUser = async (emailPass) => {
+    const response = await fetch(`http://localhost:3001/users/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(emailPass),
+        mode: 'cors'
+    });
+    const data = await response.json();
+    return data;
+};
+
 export default {
     addUser,
     getUsers,
     getUser,
     deleteUser,
     deleteAllUsers,
-    editUser
+    editUser,
+    loginUser
 };
