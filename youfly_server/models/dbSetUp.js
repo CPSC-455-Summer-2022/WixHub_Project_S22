@@ -3,6 +3,7 @@ const User = require("./users");
 const Destination = require("./destinations");
 const Question = require("./questions");
 const { v4: uuid } = require("uuid");
+const router = require("../routes");
 
 const dburl = "mongodb+srv://m001-student:m001-mongodb-basics@cluster0.grgqp0e.mongodb.net/?retryWrites=true&w=majority";
 
@@ -17,9 +18,26 @@ const dbSetUp = async function () {
 };
 
 const initializeDb = async function () {
-    await initializeUsers();
-    await initializeDestinations();
-    await initializeQuestions();
+    if(await User.find().limit(1).count(true) > 0){
+        console.log("Users initialized")
+    }else {
+        console.log("Initializing users...")
+        await initializeUsers();
+    }
+
+    if(await Destination.find().limit(1).count(true) > 0){
+        console.log("Destination initialized")
+    }else {
+        console.log("Initializing destination...")
+        await initializeDestinations();
+    }
+
+    if(await Question.find().limit(1).count(true) > 0){
+        console.log("Question initialized")
+    }else {
+        console.log("Initializing question...")
+        await initializeQuestions();
+    }
     console.log("db is initialized");
 };
 
