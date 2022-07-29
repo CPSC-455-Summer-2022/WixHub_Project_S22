@@ -12,6 +12,9 @@ With just the click of a button, get swept away by the perfect vacation tailored
 **Server:** [WixHub Server Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Server)   
 
 ### Deployments
+**Client:** [WixHub Client Deployed Site](https://wixhub-client.herokuapp.com/)   
+
+**Server:** [WixHub Server Deployed Site](https://wixhub-server.herokuapp.com/)  
 
 ### Project Team
 - Ronin Cunningham - m0c2b 
