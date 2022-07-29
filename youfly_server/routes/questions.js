@@ -1,5 +1,5 @@
-var userRouter = require('./users');
-var destinationRouter = require('./destinations');
+const User = require("../models/users");
+const Destination = require("../models/destinations");
 var express = require('express');
 var router = express.Router();
 var { v4: uuid } = require('uuid');
@@ -183,16 +183,16 @@ function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s
     ;
     switch (parseInt(question)) {
         case 1:
-            destinationsScore[d1] += s1;
+            destinationsScore[d1 - 1] += s1;
             break;
         case 2:
-            destinationsScore[d2] += s2;
+            destinationsScore[d2 - 1] += s2;
             break;
         case 3:
-            destinationsScore[d3] += s3;
+            destinationsScore[d3 - 1] += s3;
             break;
         case 4:
-            destinationsScore[d4] += s4;
+            destinationsScore[d4 - 1] += s4;
             break;
     }
     return destinationsScore;
@@ -211,6 +211,9 @@ function switchHelper(question, destinationsScore, d1, d2, d3, d4, s1, s2, s3, s
 *             schema:
 *               type: string
 *     parameters:
+*     - name: id
+*       required: true
+*       type: string
 *     - name: question1
 *       required: true
 *       type: integer
@@ -241,39 +244,33 @@ router.post('/recommendation', function (req, res, next) {
     let destinationsScore = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     destinationsScore = switchHelper(req.body.question1, destinationsScore, 12, 9, 8, 2, 4, 6, 8, 5);
     destinationsScore = switchHelper(req.body.question2, destinationsScore, 1, 7, 9, 3, 6, 9, 7, 4);
-    destinationsScore = switchHelper(req.body.question3, destinationsScore, 12, 6, 13, 14, 5, 6, 8, 7);
+    destinationsScore = switchHelper(req.body.question3, destinationsScore, 5, 6, 13, 14, 3, 6, 8, 7);
     destinationsScore = switchHelper(req.body.question4, destinationsScore, 2, 11, 6, 8, 5, 8, 4, 8);
     destinationsScore = switchHelper(req.body.question5, destinationsScore, 2, 3, 6, 12, 6, 6, 8, 5);
     destinationsScore = switchHelper(req.body.question6, destinationsScore, 7, 12, 10, 8, 6, 9, 7, 5);
-    destinationsScore = switchHelper(req.body.question6, destinationsScore, 7, 12, 10, 8, 6, 9, 7, 5);
     destinationsScore = switchHelper(req.body.question7, destinationsScore, 13, 9, 1, 8, 6, 6, 8, 5);
     destinationsScore = switchHelper(req.body.question8, destinationsScore, 12, 6, 4, 9, 4, 6, 8, 5);
-
     let maxVal = 0;
     let maxIndex = 0;
     for (let i = 0; i < destinationsScore.length; i++) {
-        console.log(JSON.stringify(destinationsScore[i]));
         if (maxVal < destinationsScore[i]) {
             maxVal = destinationsScore[i];
             maxIndex = i;
         }
     }
     maxIndex = maxIndex + 1;
-
-    for (user in userRouter.users) {
-        if (user.id == req.body.id) {
-            user['destinations'].push(maxIndex);
-        }
-    }
-    let recommendedDestination = {};
-    for (destination in destinationRouter.destinations) {
-        if (destination.id = maxIndex) {
-            recommendedDestination = destination;
-        }
-    }
-    return res
-        .status(201)
-        .send(recommendedDestination);
+    console.log(maxIndex);
+    const userId = req.body.id;
+    const updatedInfo = {
+        "destinations": req.body.destinations
+    };
+    User.findByIdAndUpdate(userId, updatedInfo).then(() => {
+        Destination.find({ destinationId: maxIndex }).then((recommendedDestination) => {
+            return res
+                .status(201)
+                .send(recommendedDestination);
+        });
+    });
 });
 
 module.exports = router;

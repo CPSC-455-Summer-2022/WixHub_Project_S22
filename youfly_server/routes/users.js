@@ -1,4 +1,4 @@
-var {generateAccessToken} = require("../util/genToken");
+var { generateAccessToken } = require("../util/genToken");
 var express = require('express');
 var router = express.Router();
 var { v4: uuid } = require('uuid');
@@ -318,17 +318,9 @@ router.delete('/', function (req, res) {
 *       required: false
 *       type: array
 */
-router.put('/edit', function (req, res) {
-  const userId = req.body.id;
-  const updatedInfo = {
-    "f_name" : req.body.f_name,
-    "l_name" : req.body.l_name,
-    "country" : req.body.country,
-    "destinations" : req.body.destinations,
-    "question_responses" : req.body.question_responses,
-    "email": req.body.email,
-    "password" : req.body.password,
-  };
+router.patch('/edit', function (req, res) {
+  const userId = req.params.id;
+  const updatedInfo = req.body;
   User.findByIdAndUpdate(userId, updatedInfo).then(() => {
     User.find().then((result) => {
       res.status(203).send(result);
