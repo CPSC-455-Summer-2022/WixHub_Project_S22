@@ -7,8 +7,9 @@
 With just the click of a button, get swept away by the perfect vacation tailored just for you . 
 
 ### Repositories
-*Client: * [WixHub Client Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22)
-*Server: * [WixHub Server Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Server)
+**Client:** [WixHub Client Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22)   
+
+**Server:** [WixHub Server Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Server)   
 
 ### Deployments
 
