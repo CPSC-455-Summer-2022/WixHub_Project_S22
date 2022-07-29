@@ -6,6 +6,13 @@
 ### A CPSC 455 Project
 With just the click of a button, get swept away by the perfect vacation tailored just for you . 
 
+### Repositories
+**Client:** [WixHub Client Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22)   
+
+**Server:** [WixHub Server Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Server)   
+
+### Deployments
+
 ### Project Team
 - Ronin Cunningham - m0c2b 
 - Sherman Lam - z2o2b
