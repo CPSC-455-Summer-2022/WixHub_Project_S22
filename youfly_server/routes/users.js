@@ -49,48 +49,6 @@ const User = require("../models/users");
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
-let users = [
-  {
-    "id": uuid(),
-    "f_name": "Josh",
-    "l_name": "Tillson",
-    "country": "Canada",
-    "destinations": ["1", "5"],
-    "question_responses": [1, 2, 3, 4, 1, 2, 3, 4],
-    "email": "josh@tillson.com",
-    "password": "1234password"
-  },
-  {
-    "id": uuid(),
-    "f_name": "Ronin",
-    "l_name": "Cunningham",
-    "country": "Canada",
-    "destinations": ["2"],
-    "question_responses": [1, 1, 1, 1, 1, 1, 1, 1],
-    "email": "ronin@cunningham.com",
-    "password": "1234password"
-  },
-  {
-    "id": uuid(),
-    "f_name": "Sherman",
-    "l_name": "Lam",
-    "country": "Canada",
-    "destinations": ["1", "2", "3"],
-    "question_responses": [1, 2, 1, 2, 1, 2, 1, 2],
-    "email": "sherman@lam.com",
-    "password": "1234password"
-  },
-  {
-    "id": 123456,
-    "f_name": "Kevin",
-    "l_name": "Zhao",
-    "country": "Canada",
-    "destinations": ["1"],
-    "question_responses": [2, 3, 4, 4, 4, 3, 3, 2],
-    "email": "kevin@zhao.com",
-    "password": "1234password"
-  },
-];
 
 /**
 * @swagger
@@ -183,7 +141,7 @@ router.get('/:id', function (req, res, next) {
 // login user
 router.post('/login', async function (req, res, next) {
   const { email, password } = req.body;
-  const foundUser = users.find(user => user.email === email);
+  const foundUser = User.find(user => user.email === email);
   if (foundUser) {
     console.log(password);
     console.log(foundUser.password);
