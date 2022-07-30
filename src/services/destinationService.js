@@ -16,7 +16,9 @@ const getDestination = async (id) => {
     return response.json();
 };
 
-export default {
+const destinationService = {
     getDestination,
     getDestinations
 };
+
+export default destinationService;

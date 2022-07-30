@@ -1,4 +1,3 @@
-
 // input for the recommendation generator is JSON body with params - 'question1', 'question2', ..., 'question8' and 'id'
 const recommendationGenerator = async (input) => {
 
