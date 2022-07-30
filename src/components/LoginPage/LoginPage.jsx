@@ -15,14 +15,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from "../CommonComponents/Copyright";
 import { AuthContext } from '../../context/auth';
 import { loginUserAsync } from '../../redux/thunks/userThunks';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const theme = createTheme();
 
 export default function SignInSide() {
   const dispatch = useDispatch();
   const context = React.useContext(AuthContext);
-  const users = useSelector(state => state.userReducer.list);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -30,10 +29,19 @@ export default function SignInSide() {
     const res = await dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),
+      // email: "josh@tillson.com",
+      // password: "1234password",
     }));
     const userData = res.payload;
     context.login(userData);
-    users.push(userData);
+
+    
+    // console.log(emailPass);
+    // console.log(response)
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
 
   return (
@@ -46,7 +54,7 @@ export default function SignInSide() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80)',
+            backgroundImage: 'url(https://source.unsplash.com/random)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -68,7 +76,7 @@ export default function SignInSide() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Log In
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -101,7 +109,7 @@ export default function SignInSide() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Log In
               </Button>
               <Grid container>
                 <Grid item xs>
