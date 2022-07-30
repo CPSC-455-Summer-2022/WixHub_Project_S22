@@ -4,28 +4,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from "../CommonComponents/Footer";
 import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
-import { useSelector, useDispatch } from 'react-redux';
-import AccountSettings from './AccountSettings';
-import { useEffect, useState } from "react";
-import { getUserAsync } from "../../redux/thunks/userThunks";
-
-// TODO: delete this temporary "logged in" user after sherman sets up login
-const loggedInId = "62d30382d0409585841c1419";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from '../../context/auth';
+import GenerateRecommendationButton from '../HomePage/GenerateRecommendationButton';
 
 const theme = createTheme();
 
-const description = "Find your Suggestion History and Account Settings here"
-
 export default function UserDashboardPage() {
+	const { user } = useContext(AuthContext);
 	const [userDestinations, setUserDestinations] = useState([]);
-	const dispatch = useDispatch();
-	const user = useSelector(state => state.userReducer.list[0]);
-
-	// get user
-	useEffect(() => {
-		dispatch(getUserAsync(loggedInId));
-	}, [dispatch])
-
+	const description = `Hello, ${user}`
+	
 	useEffect(() => {
 		async function getUserDestinations() {
 			// loop through user object's destionations and add them to userDestinations
@@ -48,7 +37,7 @@ export default function UserDashboardPage() {
 			<main>
 				<HeroUnit title={"User Dashboard"} description={description} />
 				<Album destinations={userDestinations} hasActions={true} />
-				<AccountSettings />
+				<GenerateRecommendationButton text={"Generate another recommendation"} />
 			</main>
 			<Footer />
 		</ThemeProvider>

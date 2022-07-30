@@ -1,11 +1,3 @@
-/*
-Ronin and Sherman TODO:
-Rework navigation if required for MUI
-Learn MUI layout/grid mechanics
-Request user data from Josh's endpoints
-Make all buttons clickable (confirm with )
-*/
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -18,10 +10,12 @@ import {
 import { NavBar } from "./components/CommonComponents/NavBar";
 import LandingPage from "./components/HomePage/HomePage";
 import UserDashboardPage from "./components/UserDashboardPage/UserDashboardPage";
-import SignUpPage from "./components/Signup/SignupPage";
+import SignUpPage from "./components/SignupPage/SignupPage";
 import LoginPage from "./components/LoginPage/LoginPage"
 import { AuthProvider } from './context/auth';
 import AuthRoute from './util/AuthRoute';
+import { DestinationRecommendationPage } from "./components/DestinationRecommendationPage/DestinationRecommendationPage";
+import AccountSettingsPage from "./components/AccountSettingsPage/AccountSettingsPage";
 //
 
 // MARK - Redux
@@ -45,6 +39,8 @@ root.render(
             <Route path="SignUpPage" element={<SignUpPage />} />
             <Route element={<AuthRoute />}>
               <Route path="UserDashboardPage" element={<UserDashboardPage />} />
+              <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
+              <Route path="DestinationRecommendationPage" element={<DestinationRecommendationPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
