@@ -4,7 +4,9 @@
  
 # ✈️ YOUFLY - The Perfect Vacation
 ### A CPSC 455 Project
-With just the click of a button, get swept away by the perfect vacation tailored just for you . 
+With just the click of a button, get swept away by the perfect vacation tailored just for you.
+
+Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and the top activities to do at that destination.
 
 ### Repositories
 **Client:** [WixHub Client Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22)   

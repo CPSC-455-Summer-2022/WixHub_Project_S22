@@ -29,19 +29,9 @@ export default function SignInSide() {
     const res = await dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),
-      // email: "josh@tillson.com",
-      // password: "1234password",
     }));
     const userData = res.payload;
     context.login(userData);
-
-    
-    // console.log(emailPass);
-    // console.log(response)
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
   };
 
   return (
