@@ -13,8 +13,8 @@ const theme = createTheme();
 export default function UserDashboardPage() {
 	const { user } = useContext(AuthContext);
 	const [userDestinations, setUserDestinations] = useState([]);
-	const description = `Hello, ${user}`
-	
+	const description = `Hello, ${user.f_name}`
+
 	useEffect(() => {
 		async function getUserDestinations() {
 			// loop through user object's destionations and add them to userDestinations
