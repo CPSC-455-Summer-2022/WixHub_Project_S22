@@ -5,7 +5,7 @@ import Footer from "../CommonComponents/Footer";
 import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
 import { useSelector, useDispatch } from 'react-redux';
-import AccountSettings from './AccountSettings';
+import AccountSettings from '../AccountSettingsPage/AccountSettingsPage';
 import { useEffect, useState } from "react";
 import { getUserAsync } from "../../redux/thunks/userThunks";
 

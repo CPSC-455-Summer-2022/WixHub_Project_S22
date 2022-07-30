@@ -1,7 +1,7 @@
 import React from 'react';
 import Picture from '../../assets/Vancouver_Image.jpg'
 
-export const DestinationMatching = () => {
+export const DestinationSuggestionPage = () => {
     return (
         <div id="destination-matching">
             <h3>

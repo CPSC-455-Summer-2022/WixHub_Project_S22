@@ -18,10 +18,12 @@ import {
 import { NavBar } from "./components/CommonComponents/NavBar";
 import LandingPage from "./components/HomePage/HomePage";
 import UserDashboardPage from "./components/UserDashboardPage/UserDashboardPage";
-import SignUpPage from "./components/Signup/SignupPage";
+import SignUpPage from "./components/SignupPage/SignupPage";
 import LoginPage from "./components/LoginPage/LoginPage"
 import { AuthProvider } from './context/auth';
 import AuthRoute from './util/AuthRoute';
+import { DestinationSuggestionPage } from "./components/DestinationSuggestionPage/DestinationSuggestionPage";
+import AccountSettingsPage from "./components/AccountSettingsPage/AccountSettingsPage";
 //
 
 // MARK - Redux
@@ -45,6 +47,8 @@ root.render(
             <Route path="SignUpPage" element={<SignUpPage />} />
             <Route element={<AuthRoute />}>
               <Route path="UserDashboardPage" element={<UserDashboardPage />} />
+              <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
+              <Route path="DestinationSuggestionPage" element={<DestinationSuggestionPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
