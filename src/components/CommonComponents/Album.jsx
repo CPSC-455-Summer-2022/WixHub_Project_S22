@@ -9,37 +9,37 @@ import VacationActions from './VacationActions';
 
 export default function Album(props) {
   console.log(props.destinations);
-	return (
-		<Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4}>
-            {props.destinations.map((destination) => (
-              <Grid item key={destination} xs={12} sm={6} md={4}>
-                <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      // 16:9
-                      pt: '56.25%',
-                    }}
-                    image="https://source.unsplash.com/random"
-                    alt="random"
-                  />
-                  <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {destination.city}
-                    </Typography>
-                    <Typography>
-                      {/* {destination.description} */}
-                      Temporary description
-                    </Typography>
-                  </CardContent>
-				  {props.hasActions && <VacationActions />}
-                </Card>
-              </Grid>
-            ))}
+  return (
+    <Container sx={{ py: 8 }} maxWidth="md">
+      <Grid container spacing={4}>
+        {props.destinations.map((destination) => (
+          <Grid item key={destination} xs={12} sm={6} md={4}>
+            <Card
+              sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+            >
+              <CardMedia
+                component="img"
+                sx={{
+                  // 16:9
+                  pt: '56.25%',
+                }}
+                image="https://images.unsplash.com/photo-1579724984996-c2d12999e8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+                alt="random"
+              />
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {destination.city}
+                </Typography>
+                <Typography>
+                  {/* {destination.description} */}
+                  Temporary description
+                </Typography>
+              </CardContent>
+              {props.hasActions && <VacationActions />}
+            </Card>
           </Grid>
-        </Container>
-	);
+        ))}
+      </Grid>
+    </Container>
+  );
 }
