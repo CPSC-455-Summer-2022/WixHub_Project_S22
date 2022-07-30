@@ -8,7 +8,6 @@ import Container from '@mui/material/Container';
 import VacationActions from './VacationActions';
 
 export default function Album(props) {
-  console.log(props.destinations);
 	return (
 		<Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
@@ -35,7 +34,7 @@ export default function Album(props) {
                       Temporary description
                     </Typography>
                   </CardContent>
-				  {props.hasActions && <VacationActions />}
+				          {props.hasActions && <VacationActions />}
                 </Card>
               </Grid>
             ))}
