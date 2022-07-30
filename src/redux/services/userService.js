@@ -73,7 +73,7 @@ const editUser = async (user) => {
 };
 
 const loginUser = async (emailPass) => {
-    const response = await fetch(`http://localhost:3001/users/login`, {
+    const response = await fetch(`http://wixhub-server.herokuapp.com/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(emailPass),
