@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from "../CommonComponents/Footer";
 import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
-import GenerateRecommendation from './GenerateRecommendation';
+import GenerateRecommendationButton from './GenerateRecommendationButton';
 
 const destinations = [
   {
@@ -32,8 +32,8 @@ export default function LandingPage() {
       <main>
         <HeroUnit title={"Welcome!"} description={description} />
         <Album destinations={destinations} hasActions={false} />
-        <HeroUnit description={"Curious about our accuracy?"} />
-        <GenerateRecommendation />
+        <HeroUnit description={"Want to find your next vacation?"} />
+        <GenerateRecommendationButton text={"Generate my recommendation now!"}/>
       </main>
       <Footer />
     </ThemeProvider>
