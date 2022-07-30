@@ -1,11 +1,3 @@
-/*
-Ronin and Sherman TODO:
-Rework navigation if required for MUI
-Learn MUI layout/grid mechanics
-Request user data from Josh's endpoints
-Make all buttons clickable (confirm with )
-*/
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
