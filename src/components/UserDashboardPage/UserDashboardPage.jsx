@@ -44,13 +44,13 @@ export default function UserDashboardPage() {
 
 	return (
 		<ThemeProvider theme={theme}>
-		<CssBaseline />
-		<main>
-			<HeroUnit title={"User Dashboard"} description={description} />
-			<Album destinations={userDestinations} hasActions={true} />
-			<AccountSettings />
-		</main>
-		<Footer />
+			<CssBaseline />
+			<main>
+				<HeroUnit title={"User Dashboard"} description={description} />
+				<Album destinations={userDestinations} hasActions={true} />
+				<AccountSettings />
+			</main>
+			<Footer />
 		</ThemeProvider>
 	);
 }

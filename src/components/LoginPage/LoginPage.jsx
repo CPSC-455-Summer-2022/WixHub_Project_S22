@@ -15,13 +15,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from "../CommonComponents/Copyright";
 import { AuthContext } from '../../context/auth';
 import { loginUserAsync } from '../../redux/thunks/userThunks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const theme = createTheme();
 
 export default function SignInSide() {
   const dispatch = useDispatch();
   const context = React.useContext(AuthContext);
+  const users = useSelector(state => state.userReducer.list);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,6 +33,7 @@ export default function SignInSide() {
     }));
     const userData = res.payload;
     context.login(userData);
+    users.push(userData);
   };
 
   return (
