@@ -1,17 +1,14 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import Footer from "../CommonComponents/Footer";
+import React from 'react';
 
-const theme = createTheme();
 
 export default function AccountSettingsPage() {
 	return (
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
+		<React.Fragment>
 			<main>
 				"Account Settings"
 			</main>
 			<Footer />
-		</ThemeProvider>
+		</React.Fragment>
 	);
 }

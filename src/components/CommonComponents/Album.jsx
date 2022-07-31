@@ -8,11 +8,11 @@ import Container from '@mui/material/Container';
 import VacationActions from './VacationActions';
 
 export default function Album(props) {
-  console.log(props.destinations);
+  console.log(props.userDestinations);
   return (
     <Container sx={{ py: 8 }} maxWidth="md">
       <Grid container spacing={4}>
-        {props.destinations.map((destination) => (
+        {props.userDestinations.map((destination) => (
           <Grid item key={destination} xs={12} sm={6} md={4}>
             <Card
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
@@ -31,8 +31,7 @@ export default function Album(props) {
                   {destination.city}
                 </Typography>
                 <Typography>
-                  {/* {destination.description} */}
-                  Temporary description
+                  {destination.country}
                 </Typography>
               </CardContent>
               {props.hasActions && <VacationActions />}
