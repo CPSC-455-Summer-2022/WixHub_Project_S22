@@ -4,7 +4,7 @@ import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from '../../context/auth';
-import GenerateRecommendationButton from '../HomePage/GenerateRecommendationButton';
+import GenerateRecommendationButton from './GenerateRecommendationButton';
 import destinationService from '../../redux/services/destinationService';
 import userService from '../../redux/services/userService';
 
