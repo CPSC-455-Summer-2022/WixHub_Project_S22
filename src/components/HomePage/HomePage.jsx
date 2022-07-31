@@ -5,6 +5,7 @@ import ProductSmokingHero from './ProductSmokingHero';
 import ProductHero from './ProductHero';
 import ProductValues from './ProductValues';
 import ProductHowItWorks from './ProductHowItWorks';
+import Typography from '../CommonComponents/Typography';
 
 const homePageDestinations = [
   {
@@ -29,6 +30,9 @@ export default function LandingPage() {
       <main>
       <ProductHero />
       <ProductValues />
+      <Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
+        For all types of travelers
+      </Typography>
       <Album userDestinations={homePageDestinations} hasActions={false} />
       <ProductHowItWorks />
       <ProductSmokingHero />
