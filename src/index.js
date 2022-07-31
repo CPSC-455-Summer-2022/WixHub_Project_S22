@@ -39,7 +39,8 @@ const theme = createTheme({
       main: blue[500]
     },
     secondary: {
-      main: purple[500]
+      main: purple[500],
+      light: purple[50]
     }
   }
 });

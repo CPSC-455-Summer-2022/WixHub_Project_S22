@@ -11,6 +11,9 @@ export default function Album(props) {
   console.log(props.userDestinations);
   return (
     <Container sx={{ py: 8 }} maxWidth="md">
+      <Typography variant="h3" marked="center" align="center" component="h2" marginBottom={10}>
+      For all types of travelers
+      </Typography>
       <Grid container spacing={4}>
         {props.userDestinations.map((destination) => (
           <Grid item key={destination} xs={12} sm={6} md={4}>
@@ -19,10 +22,6 @@ export default function Album(props) {
             >
               <CardMedia
                 component="img"
-                sx={{
-                  // 16:9
-                  pt: '56.25%',
-                }}
                 image="https://images.unsplash.com/photo-1579724984996-c2d12999e8f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
                 alt="random"
               />
