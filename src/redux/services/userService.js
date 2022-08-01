@@ -83,7 +83,7 @@ const loginUser = async (emailPass) => {
     return data;
 };
 
-export default {
+const functions = {
     addUser,
     getUsers,
     getUser,
@@ -92,3 +92,5 @@ export default {
     editUser,
     loginUser
 };
+
+export default functions;

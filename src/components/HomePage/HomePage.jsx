@@ -1,41 +1,43 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from "../CommonComponents/Footer";
-import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
-import GenerateRecommendationButton from './GenerateRecommendationButton';
+import ProductSmokingHero from './ProductSmokingHero';
+import ProductHero from './ProductHero';
+import ProductValues from './ProductValues';
+import ProductHowItWorks from './ProductHowItWorks';
+import Typography from '../CommonComponents/Typography';
 
-const destinations = [
+const homePageDestinations = [
   {
     city: "Vancouver",
-    description: "a Canadian city in Beautiful British Columbia"
+    country: "Canada"
   },
   {
     city: "London",
-    description: "a cool British city"
+    country: "England"
   },
   {
     city: "Tokyo",
-    description: "a cool Japanese city"
+    country: "Japan"
   }
 ];
 
-const theme = createTheme();
-
-const description = "Youfly is a travel booking website that allows users to create a personalized profile by answering a series of questions. Based on your profile, Youfly will provide optimal travel destination recommendations";
+// const description = "Youfly is a travel booking website that allows users to create a personalized profile by answering a series of questions. Based on your profile, Youfly will provide optimal travel destination recommendations";
 
 export default function LandingPage() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <React.Fragment>
       <main>
-        <HeroUnit title={"Welcome!"} description={description} />
-        <Album destinations={destinations} hasActions={false} />
-        <HeroUnit description={"Want to find your next vacation?"} />
-        <GenerateRecommendationButton text={"Generate my recommendation now!"}/>
+      <ProductHero />
+      <ProductValues />
+      <Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
+        For all types of travelers
+      </Typography>
+      <Album userDestinations={homePageDestinations} hasActions={false} />
+      <ProductHowItWorks />
+      <ProductSmokingHero />
       </main>
       <Footer />
-    </ThemeProvider>
+    </React.Fragment>
   );
 }

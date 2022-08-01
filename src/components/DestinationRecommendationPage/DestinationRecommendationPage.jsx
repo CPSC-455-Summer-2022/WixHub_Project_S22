@@ -1,15 +1,10 @@
 import React from 'react';
 import Picture from '../../assets/Vancouver_Image.jpg'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import Footer from "../CommonComponents/Footer";
-
-const theme = createTheme();
 
 export const DestinationRecommendationPage = () => {
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
+        <React.Fragment>
             <main>
                 <div id="destination-matching">
                     <h3>
@@ -18,7 +13,7 @@ export const DestinationRecommendationPage = () => {
                     <h2>
                         Vancouver, Canada
                     </h2>
-                    <img src={Picture} width='100px'></img>
+                    <img src={Picture} width='100px' alt={"Your recommended destination"}></img>
                     <h4>
                         Vancouver, a bustling west coast seaport in British Columbia, is among Canada’s densest, most ethnically diverse
                         cities. A popular filming location, it’s surrounded by mountains, and also has thriving art, theatre and music scenes.
@@ -28,6 +23,6 @@ export const DestinationRecommendationPage = () => {
                 </div>
             </main>
             <Footer />
-        </ThemeProvider>
+        </React.Fragment>
     );
 }
