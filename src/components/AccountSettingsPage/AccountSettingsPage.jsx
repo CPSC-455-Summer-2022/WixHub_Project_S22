@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { HeroUnit } from '../CommonComponents/HeroUnit';
+import { PasswordSection } from './PasswordSection';
+import { AccountSection } from './AccountSection';
 
 export default function AccountSettingsPage() {
 	const [open, setOpen] = useState(true)
@@ -20,9 +22,14 @@ export default function AccountSettingsPage() {
         		<CircularProgress color="inherit" />
       		</Backdrop>
 			<main>
-				<HeroUnit title="Settings" />
+				<HeroUnit title="Account" />
+				<AccountSection />
+				<PasswordSection />
 			</main>
 			<Footer />
 		</React.Fragment>
 	);
 }
+
+
+

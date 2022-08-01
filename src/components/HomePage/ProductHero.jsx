@@ -41,7 +41,7 @@ export default function ProductHero() {
         to="/DestinationRecommendationPage"
         sx={{ minWidth: 200 }}
       >
-        Register
+        Find Vacation
       </Button>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
         Discover the experience
