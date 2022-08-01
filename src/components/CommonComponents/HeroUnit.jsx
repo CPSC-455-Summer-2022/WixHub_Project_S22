@@ -12,17 +12,17 @@ export function HeroUnit(props) {
 		  pb: 6,
 		}}
 	  >
-		<Container maxWidth="sm">
+		<Container maxWidth="lg">
 		  <Typography
 			component="h1"
 			variant="h2"
-			align="center"
+			align="left"
 			color="text.primary"
 			gutterBottom
 		  >
 			{props.title}
 		  </Typography>
-		  <Typography variant="h5" align="center" color="text.secondary" paragraph>
+		  <Typography variant="h5" align="left" color="text.secondary" paragraph >
 			{props.description}
 		  </Typography>
 		</Container>
