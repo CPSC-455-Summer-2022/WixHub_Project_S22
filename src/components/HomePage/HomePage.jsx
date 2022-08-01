@@ -11,17 +11,17 @@ const homePageDestinations = [
   {
     city: "Vancouver",
     country: "Canada",
-    image: "https://images.unsplash.com/photo-1560813962-ff3d8fcf59ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
+    image: "https://source.unsplash.com/Yc9h5SJdEzI"
   },
   {
     city: "Tokyo",
     country: "Japan",
-    image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
+    image: "https://source.unsplash.com/4HG5hlhmZg8"
   },
   {
     city: "London",
     country: "England",
-    image: "https://images.unsplash.com/photo-1486299267070-83823f5448dd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2342&q=80"
+    image: "https://source.unsplash.com/iXqTqC-f6jI"
   }
 ];
 
