@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -11,13 +10,10 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Copyright from "../CommonComponents/Copyright";
 import { AuthContext } from '../../context/auth';
 import { loginUserAsync } from '../../redux/thunks/userThunks';
 import { useDispatch } from 'react-redux';
-
-const theme = createTheme();
 
 export default function SignInSide() {
   const dispatch = useDispatch();
@@ -26,7 +22,7 @@ export default function SignInSide() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const res = await dispatch(loginUserAsync({
+    const res = dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),
       // email: "josh@tillson.com",
@@ -34,7 +30,7 @@ export default function SignInSide() {
     }));
     const userData = res.payload;
     context.login(userData);
-
+    // !!! TODO: Store userObject into redux store
 
     // console.log(emailPass);
     // console.log(response)
@@ -45,9 +41,8 @@ export default function SignInSide() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <React.Fragment>
       <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
         <Grid
           item
           xs={false}
@@ -128,6 +123,6 @@ export default function SignInSide() {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </React.Fragment>
   );
 }

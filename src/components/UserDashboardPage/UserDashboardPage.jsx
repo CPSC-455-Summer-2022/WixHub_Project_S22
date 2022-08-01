@@ -1,45 +1,56 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from "../CommonComponents/Footer";
 import { HeroUnit } from '../CommonComponents/HeroUnit';
 import Album from '../CommonComponents/Album';
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from '../../context/auth';
-import GenerateRecommendationButton from '../HomePage/GenerateRecommendationButton';
-
-const theme = createTheme();
+import GenerateRecommendationButton from './GenerateRecommendationButton';
+import destinationService from '../../redux/services/destinationService';
+import userService from '../../redux/services/userService';
 
 export default function UserDashboardPage() {
 	const { user } = useContext(AuthContext);
+	const [userObject, setUserObject] = useState({}) // !!!TODO: eventually put the userObject into state once Sherman is done and it should still work
 	const [userDestinations, setUserDestinations] = useState([]);
-	const description = `Hello, ${user.f_name}`
+	const [description, setDescription] = useState("")
 
 	useEffect(() => {
+		let isSubscribed = true // Prevent duplicate calls
+
 		async function getUserDestinations() {
-			// loop through user object's destionations and add them to userDestinations
-			for (const destination of user.destinations) {
-				const response = await fetch(`http://localhost:3001/destinations/destinationId/${destination}`, {
-					method: 'GET',
-					mode: 'cors'
-				});
+			
+			const userJson = await userService.getUser(user)
+			if (isSubscribed) {
+				setUserObject(userJson)
+			}
+			const destinations = userJson.destinations
+
+			// loop through user object's destinations and add them to userDestinations
+			for (const destinationId of destinations) {
 				// set userDestinations
-				const responseJson = await response.json();
-				setUserDestinations(prevState => [...prevState, responseJson[0]])
+				const destinationJson = await destinationService.getDestinationByDestinationID(destinationId)
+				if (isSubscribed) {
+					setUserDestinations(prevState => [...prevState, destinationJson[0]])
+				}
 			}
 		}
 		getUserDestinations();
+
+		return () => isSubscribed = false; 
 	}, [user])
 
+	useEffect(() => {
+		setDescription(`Hello, ${userObject.f_name}`);
+	}, [userObject])
+
 	return (
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
+		<React.Fragment>
 			<main>
 				<HeroUnit title={"User Dashboard"} description={description} />
-				<Album destinations={userDestinations} hasActions={true} />
+				<Album userDestinations={userDestinations} setUserDestinations={setUserDestinations} hasActions={true} />
 				<GenerateRecommendationButton text={"Generate another recommendation"} />
 			</main>
 			<Footer />
-		</ThemeProvider>
+		</React.Fragment>
 	);
 }
