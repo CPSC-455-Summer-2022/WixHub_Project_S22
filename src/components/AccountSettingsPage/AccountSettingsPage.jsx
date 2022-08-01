@@ -6,7 +6,7 @@ export default function AccountSettingsPage() {
 	return (
 		<React.Fragment>
 			<main>
-				"Account Settings"
+				"Account and Settings"
 			</main>
 			<Footer />
 		</React.Fragment>

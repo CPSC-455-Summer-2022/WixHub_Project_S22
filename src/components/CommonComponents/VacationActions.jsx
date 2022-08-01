@@ -7,7 +7,7 @@ export default function VacationActions(props) {
 
 	const deleteCard = () => {
 		props.setUserDestinations(prevState => [...prevState].filter(x => x._id !== props.cardId))
-		// userService.editUser(remove the user's destination id and then setUserDestinations)
+		// !!!TODO: userService.editUser(remove the user's destination id). Just editing the redux store should update the list in the Album component
 	}
 	
 	return (

@@ -10,7 +10,7 @@ import userService from '../../redux/services/userService';
 
 export default function UserDashboardPage() {
 	const { user } = useContext(AuthContext);
-	const [userObject, setUserObject] = useState({})
+	const [userObject, setUserObject] = useState({}) // !!!TODO: eventually put the userObject into state once Sherman is done and it should still work
 	const [userDestinations, setUserDestinations] = useState([]);
 	const [description, setDescription] = useState("")
 

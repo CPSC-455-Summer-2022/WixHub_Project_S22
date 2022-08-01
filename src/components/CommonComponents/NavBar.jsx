@@ -40,7 +40,7 @@ export const NavBar = () => {
 				<Stack direction='row' spacing={2}>
 					<Button component={Link} to="/" color='inherit'>Home</Button>
 					{user ? <Button component={Link} to="UserDashboardPage" color='inherit'>User Dashboard</Button> : null}
-					{user ? <Button component={Link} to="AccountSettingsPage" color='inherit'>Account Settings</Button> : null}
+					{user ? <Button component={Link} to="AccountSettingsPage" color='inherit'>Account</Button> : null}
 					{LogInOrOut}
 					{/* <Button component={Link} to="SignUpPage" sx={{ color: 'white', backgroundColor: '#BBDDEE'}} variant="contained" disableElevation>Sign up</Button> */}
 				</Stack>
