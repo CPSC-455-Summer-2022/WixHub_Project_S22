@@ -8,7 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import { NavBar } from "./components/CommonComponents/NavBar";
-import LandingPage from "./components/HomePage/HomePage";
+import HomePage from "./components/HomePage/HomePage";
 import UserDashboardPage from "./components/UserDashboardPage/UserDashboardPage";
 import SignUpPage from "./components/SignupPage/SignupPage";
 import LoginPage from "./components/LoginPage/LoginPage"
@@ -16,6 +16,7 @@ import { AuthProvider } from './context/auth';
 import AuthRoute from './util/AuthRoute';
 import { DestinationRecommendationPage } from "./components/DestinationRecommendationPage/DestinationRecommendationPage";
 import AccountSettingsPage from "./components/AccountSettingsPage/AccountSettingsPage";
+import { NotFoundPage } from "./components/CommonComponents/NotFoundPage";
 //
 
 // MARK - Redux
@@ -57,7 +58,7 @@ root.render(
             <BrowserRouter>
               <NavBar />
               <Routes>
-                <Route path="/" element={<LandingPage />} />
+                <Route path="/" element={<HomePage />} />
                 <Route path="LoginPage" element={<LoginPage />} />
                 <Route path="SignUpPage" element={<SignUpPage />} />
                 <Route element={<AuthRoute />}>
@@ -65,6 +66,7 @@ root.render(
                   <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
                   <Route path="DestinationRecommendationPage" element={<DestinationRecommendationPage />} />
                 </Route>
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </BrowserRouter>
           </Provider>
