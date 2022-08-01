@@ -3,6 +3,7 @@ import { REQUEST_STATE } from '../utils';
 import { getUserAsync, getUsersAsync, addUserAsync, deleteAllUsersAsync, deleteUserAsync, editUserAsync, loginUserAsync } from '../thunks/userThunks';
 
 const INITIAL_STATE = {
+    currUser: {},
     list: [],
     getUser: REQUEST_STATE.IDLE,
     getUsers: REQUEST_STATE.IDLE,
@@ -98,7 +99,7 @@ const userSlice = createSlice({
             })
             .addCase(loginUserAsync.fulfilled, (state, action) => {
                 state.editUser = REQUEST_STATE.FULFILLED;
-                state.list.push(action.payload);
+                state.currUser = action.payload;
             })
             .addCase(loginUserAsync.rejected, (state, action) => {
                 state.editUser = REQUEST_STATE.REJECTED;
