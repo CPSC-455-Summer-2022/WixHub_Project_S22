@@ -22,7 +22,7 @@ export default function SignInSide() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const res = await dispatch(loginUserAsync({
+    const res = dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),
       // email: "josh@tillson.com",
@@ -30,7 +30,7 @@ export default function SignInSide() {
     }));
     const userData = res.payload;
     context.login(userData);
-
+    // !!! TODO: Store userObject into redux store
 
     // console.log(emailPass);
     // console.log(response)
