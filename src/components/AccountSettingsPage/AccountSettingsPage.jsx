@@ -2,6 +2,7 @@ import Footer from "../CommonComponents/Footer";
 import React, { useState, useEffect } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { HeroUnit } from '../CommonComponents/HeroUnit';
 
 export default function AccountSettingsPage() {
 	const [open, setOpen] = useState(true)
@@ -19,7 +20,7 @@ export default function AccountSettingsPage() {
         		<CircularProgress color="inherit" />
       		</Backdrop>
 			<main>
-				"Account and Settings"
+				<HeroUnit title="Settings" />
 			</main>
 			<Footer />
 		</React.Fragment>

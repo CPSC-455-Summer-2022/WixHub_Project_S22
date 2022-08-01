@@ -15,7 +15,7 @@ export function HeroUnit(props) {
 		<Container maxWidth="lg">
 		  <Typography
 			component="h1"
-			variant="h2"
+			variant="h3"
 			align="left"
 			color="text.primary"
 			gutterBottom
