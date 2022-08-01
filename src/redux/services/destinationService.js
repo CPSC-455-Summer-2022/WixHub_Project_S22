@@ -7,9 +7,7 @@ const getDestinations = async () => {
 };
 
 const getDestinationByDestinationID = async (id) => {
-    const response = await fetch('http://wixhub-server.herokuapp.com/destinations/destinationID/find?' + new URLSearchParams({
-        id: id
-    }), {
+    const response = await fetch(`http://wixhub-server.herokuapp.com/destinations/destinationID/${id}`, {
         method: 'GET',
         mode: 'cors'
     });
