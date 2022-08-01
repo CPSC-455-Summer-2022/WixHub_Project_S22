@@ -5,7 +5,7 @@ import ProductHeroLayout from './ProductHeroLayout';
 import { Link } from "react-router-dom";
 
 const backgroundImage =
-  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400';
+  'https://images.unsplash.com/photo-1551672746-89991811c186?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80';
 
 export default function ProductHero() {
   return (
