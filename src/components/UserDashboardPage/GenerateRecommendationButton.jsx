@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { Link } from "react-router-dom";
 import React from 'react';
+import Typography from '../CommonComponents/Typography';
 
 export default function GenerateRecommendationButton(props) {
 
@@ -12,7 +13,19 @@ export default function GenerateRecommendationButton(props) {
 			spacing={2}
 			justifyContent="center"
 		  >
-      <Button component={Link} to="/DestinationRecommendationPage" variant="contained">{props.text}</Button>
+      <Button component={Link} to="/DestinationRecommendationPage"
+	  sx={{
+		border: '4px solid currentColor',
+		borderRadius: 0,
+		height: 'auto',
+		py: 1,
+		px: 4,
+	  }}
+	  >
+	  <Typography variant="h7" component="span">
+		{props.text}
+        </Typography>
+		</Button>
 		  </Stack>
 	);
 }

@@ -10,15 +10,18 @@ import Typography from '../CommonComponents/Typography';
 const homePageDestinations = [
   {
     city: "Vancouver",
-    country: "Canada"
-  },
-  {
-    city: "London",
-    country: "England"
+    country: "Canada",
+    image: "https://source.unsplash.com/Yc9h5SJdEzI"
   },
   {
     city: "Tokyo",
-    country: "Japan"
+    country: "Japan",
+    image: "https://source.unsplash.com/4HG5hlhmZg8"
+  },
+  {
+    city: "London",
+    country: "England",
+    image: "https://source.unsplash.com/iXqTqC-f6jI"
   }
 ];
 
