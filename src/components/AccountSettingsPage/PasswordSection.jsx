@@ -25,26 +25,26 @@ export const PasswordSection = (props) => {
 				/>
 				<Divider />
 				<CardContent>
-				<TextField
-					fullWidth
-					label="Password"
-					margin="normal"
-					name="password"
-					onChange={handleChange}
-					type="password"
-					value={values.password}
-					variant="outlined"
-				/>
-				<TextField
-					fullWidth
-					label="Confirm password"
-					margin="normal"
-					name="confirm"
-					onChange={handleChange}
-					type="password"
-					value={values.confirm}
-					variant="outlined"
-				/>
+					<TextField
+						fullWidth
+						label="Password"
+						margin="normal"
+						name="password"
+						onChange={handleChange}
+						type="password"
+						value={values.password}
+						variant="outlined"
+					/>
+					<TextField
+						fullWidth
+						label="Confirm password"
+						margin="normal"
+						name="confirm"
+						onChange={handleChange}
+						type="password"
+						value={values.confirm}
+						variant="outlined"
+					/>
 				</CardContent>
 				<Divider />
 				<Box
@@ -58,7 +58,7 @@ export const PasswordSection = (props) => {
 					color="primary"
 					variant="contained"
 				>
-					Update
+					Save
 				</Button>
 				</Box>
 			</Card>

@@ -183,7 +183,7 @@ export const AccountSection = (props) => {
 				color="primary"
 				variant="contained"
 			>
-				Update
+				Save
 			</Button>
 			</Box>
 		</Card>
