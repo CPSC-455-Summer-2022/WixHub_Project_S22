@@ -5,6 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { HeroUnit } from '../CommonComponents/HeroUnit';
 import { PasswordSection } from './PasswordSection';
 import { AccountSection } from './AccountSection';
+import { QuestionnaireSection } from './QuestionnaireSection';
 
 export default function AccountSettingsPage() {
 	const [open, setOpen] = useState(true)
@@ -25,6 +26,7 @@ export default function AccountSettingsPage() {
 				<HeroUnit title="Account" />
 				<AccountSection />
 				<PasswordSection />
+				<QuestionnaireSection />
 			</main>
 			<Footer />
 		</React.Fragment>

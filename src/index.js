@@ -32,6 +32,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import blue from '@mui/material/colors/blue';
 import purple from '@mui/material/colors/purple';
+import { QuestionnairePage } from './components/QuestionnairePage/QuestionnairePage';
 //
 
 const theme = createTheme({
@@ -65,6 +66,7 @@ root.render(
                   <Route path="UserDashboardPage" element={<UserDashboardPage />} />
                   <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
                   <Route path="DestinationRecommendationPage" element={<DestinationRecommendationPage />} />
+                  <Route path="QuestionnairePage" element={<QuestionnairePage />} />
                 </Route>
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
@@ -74,3 +76,5 @@ root.render(
     </ThemeProvider>
   </React.StrictMode>
 );
+// !!!TODO: Sherman to figure out how to re-route if manually entering a url
+// and not logged in (because right now if I go to Account url when not logged in, it lets me)
