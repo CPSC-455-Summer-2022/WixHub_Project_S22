@@ -22,7 +22,7 @@ export default function GenerateRecommendationButton(props) {
 		px: 4,
 	  }}
 	  >
-	  <Typography variant="h7" component="span">
+	  <Typography component="span">
 		{props.text}
         </Typography>
 		</Button>
