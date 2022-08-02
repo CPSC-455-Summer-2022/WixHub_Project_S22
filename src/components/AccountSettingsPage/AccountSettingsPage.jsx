@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { HeroUnit } from '../CommonComponents/HeroUnit';
 import { PasswordSection } from './PasswordSection';
 import { AccountSection } from './AccountSection';
-import { QuestionnaireSection } from './QuestionnaireSection';
+import { QuestionnairePage } from '../QuestionnairePage/QuestionnairePage';
 
 export default function AccountSettingsPage() {
 	const [open, setOpen] = useState(true)
@@ -26,7 +26,8 @@ export default function AccountSettingsPage() {
 				<HeroUnit title="Account" />
 				<AccountSection />
 				<PasswordSection />
-				<QuestionnaireSection />
+				<QuestionnairePage /> 
+				{/* !!!TODO: Pass in current userObject's answers as props and pre-load the answers for the AccountSettingsPage */}
 			</main>
 			<Footer />
 		</React.Fragment>
