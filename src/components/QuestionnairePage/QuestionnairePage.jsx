@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -9,30 +9,13 @@ import {
   Container
 } from '@mui/material';
 import { Question} from "./Question";
-import { AuthContext } from '../../context/auth';
 import questionService from '../../redux/services/questionService';
-
-
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
-
-// http://wixhub-server.herokuapp.com/questions
 
 export const QuestionnairePage = (props) => {
 	const [questions, setQuestions] = useState([]);
-
+	const [values, setValues] = useState({});
+	const [disabled, setDisabled] = useState(true);
+	
 	useEffect(() => {
 		let isSubscribed = true // Prevent duplicate calls
 
@@ -40,38 +23,42 @@ export const QuestionnairePage = (props) => {
 			const questionJson = await questionService.getQuestions()
 			if (isSubscribed) {
 				setQuestions(questionJson)
+				const values = Object.fromEntries(questionJson.map(obj => [obj.question, null]));
+				setValues(values)
 			}
-			console.log(questionJson)
 		}
 		getQuestions();
 
 		return () => isSubscribed = false; 
-	})
+	}, [])
 
-	const [values, setValues] = useState({
-		firstName: 'Ronin',
-		lastName: 'Cunningham',
-		email: 'ronin@gmail.com',
-		phone: '',
-		state: 'Alabama',
-		country: 'Canada'
-	});
+	useEffect(() => {
+		let disabled = false
+		for (const val of Object.values(values)) {
+			if (val === null) {
+				disabled=true
+			}
+		}
+		setDisabled(disabled)
+	}, [values])
 
-	const handleChange = (event) => {
+	const handleSelection = (question, option) => {
 		setValues({
-		...values,
-		[event.target.name]: event.target.value
-		});
-	};
+			...values,
+			[question]: {
+				response: option.response,
+				responseNumber: option.responseNumber
+		}});
+	}
 
-	return (
-		<Container maxWidth="lg">
-			<Box marginBottom={5} sx={{ pt: 3 }}>
-			<form
-			autoComplete="off"
-			noValidate
-			{...props}
-			>
+	const save = () => {
+		// update the userObject in state
+		// patch the userObject in the db
+	}
+
+return (
+	<Container maxWidth="lg">
+		<Box marginY={5} sx={{ pt: 3 }}>
 			<Card raised>
 				<CardHeader
 				subheader="Questions for personalized reccommendations"
@@ -79,9 +66,8 @@ export const QuestionnairePage = (props) => {
 				/>
 				<Divider />
 				<CardContent>
-				{questions.map((question) => (
-					<Question key={question._id} questionId={question._id} question={question} handleChange={handleChange} />
-					))}
+					{questions.map((question) => (
+					<Question key={question._id} question={question} handleSelection={handleSelection} values={values} />))}
 				</CardContent>
 				<Divider />
 				<Box
@@ -91,16 +77,22 @@ export const QuestionnairePage = (props) => {
 					p: 2
 				}}
 				>
-				<Button
-					color="primary"
-					variant="contained"
-				>
-					Save
-				</Button>
+					<Button
+						onClick={() => save()}
+						disabled={disabled}
+						color="primary"
+						variant="contained"
+					>
+						Save
+					</Button>
 				</Box>
 			</Card>
-			</form>
 		</Box>
 	</Container>
 	);
-};
+}
+
+
+
+
+
