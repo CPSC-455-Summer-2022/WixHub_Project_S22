@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Picture from '../../assets/Vancouver_Image.jpg'
 import Footer from "../CommonComponents/Footer";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const DestinationRecommendationPage = () => {
+	const [open, setOpen] = useState(true)
+
+    useEffect(() => {
+		setTimeout(() => {  
+            setOpen(false);
+            // !!!TODO: Call recommendation endpoint here
+        }, 2000);
+	}, [])
+
+
     return (
         <React.Fragment>
+            <Backdrop
+				sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+				open={open}
+      		>
+        		<CircularProgress color="inherit" />
+      		</Backdrop>
             <main>
                 <div id="destination-matching">
                     <h3>
