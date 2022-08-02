@@ -6,10 +6,8 @@ import VacationActions from './VacationActions';
 import Grid from '@mui/material/Grid';
 
 export const DestinationCard = (props) => {
-	const cardID = props.destination._id
-
 	return (
-		<Grid key={cardID} item xs={12} sm={6} md={4}>
+		<Grid item xs={12} sm={6} md={4}>
             <Card
               sx={{ display: 'flex', flexDirection: 'column' }}
             >
@@ -26,7 +24,7 @@ export const DestinationCard = (props) => {
                   {props.destination.country}
                 </Typography>
               </CardContent>
-              {props.hasActions && <VacationActions cardId={cardID} setUserDestinations={props.setUserDestinations} />}
+              {props.hasActions && <VacationActions cardId={props.cardId} setUserDestinations={props.setUserDestinations} />}
             </Card>
           </Grid>
 	);
