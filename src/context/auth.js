@@ -3,10 +3,10 @@ import jwtDecode from 'jwt-decode';
 
 const initialState = {
   //  // Uncomment this for production!!!
-  // user: null
+  user: null
 
   // Uncomment this for debugging!!!
-  user: "62eac685b3af24e5f1d0cc48"
+  // user: "62e58d135c308f0fa395ba11"
 };
 
 if (localStorage.getItem('jwtToken')) {
@@ -46,7 +46,6 @@ function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   function login(userData) {
-    console.log("here")
     localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
