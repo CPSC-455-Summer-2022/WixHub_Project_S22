@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { DestinationCard } from './DestinationCard';
 
+// !!!TODO: guard against empty user destinations
 export default function Album(props) {
   return (
     <Container sx={{ py: 8 }} maxWidth="lg">
