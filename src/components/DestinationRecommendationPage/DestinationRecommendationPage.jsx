@@ -1,19 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import Picture from '../../assets/Vancouver_Image.jpg'
 import Footer from "../CommonComponents/Footer";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { ImageHeroUnit } from '../CommonComponents/ImageHeroUnit';
+import questionService from "../../redux/services/questionService";
+import destinationService from "../../redux/services/destinationService";
 
 export const DestinationRecommendationPage = () => {
 	const [open, setOpen] = useState(true)
+    const [recommendedDestination, setRecommendedDestination] = useState({})
+
+    // !!!TODO: Make this pull from redux userObject instead of hardcoded
+    const temporaryQuestionAndAnswersObject = {
+
+    }
 
     useEffect(() => {
-		setTimeout(() => {  
-            setOpen(false);
-            // !!!TODO: Call recommendation endpoint here
-        }, 2000);
-	}, [])
+        let isSubscribed = true // Prevent duplicate calls
 
+        async function setupDestinationRecommendationPage() {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            const idResponseJson = await questionService.recommendationGenerator();
+            const destinationJsonResponse = await destinationService.getDestinationByDestinationID(idResponseJson);
+            
+            if (isSubscribed) {
+                setRecommendedDestination(destinationJsonResponse);
+            }
+            
+            setOpen(false);
+        }
+        setupDestinationRecommendationPage();
+
+        return () => isSubscribed = false; 
+	}, [])
 
     return (
         <React.Fragment>
@@ -24,21 +43,16 @@ export const DestinationRecommendationPage = () => {
         		<CircularProgress color="inherit" />
       		</Backdrop>
             <main>
-                <div id="destination-matching">
-                    <h3>
-                        Congratulations! You've been matched to:
-                    </h3>
-                    <h2>
-                        Vancouver, Canada
-                    </h2>
-                    <img src={Picture} width='100px' alt={"Your recommended destination"}></img>
-                    <h4>
-                        Vancouver, a bustling west coast seaport in British Columbia, is among Canada’s densest, most ethnically diverse
-                        cities. A popular filming location, it’s surrounded by mountains, and also has thriving art, theatre and music scenes.
-                        Vancouver Art Gallery is known for its works by regional artists, while the Museum of Anthropology houses preeminent First Nations collections.
-                        Retrieved from Google
-                    </h4>
-                </div>
+                <ImageHeroUnit
+                // !!!TODO: Make sure to de-reference the correct properties after Kevin is done adding to db model
+                    backgroundImage={recommendedDestination.image}
+                    header={recommendedDestination.country}
+                    description={recommendedDestination.description}
+                    hasStartIcon
+                    linkTo="/UserDashboardPage"
+                    buttonDescription="Back to Dashboard"
+                    smallText=""
+                />
             </main>
             <Footer />
         </React.Fragment>

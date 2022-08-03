@@ -1,3 +1,20 @@
+const getQuestions = async () => {
+    const response = await fetch('https://wixhub-server.herokuapp.com/questions', {
+        method: 'GET',
+        mode: 'cors'
+    });
+    return response.json();
+};
+
+const getQuestion = async (id) => {
+    const response = await fetch('https://wixhub-server.herokuapp.com/questions/find?' + new URLSearchParams({
+        id: id
+    }), {
+        method: 'GET',
+        mode: 'cors'
+    });
+    return response.json();
+};
 
 // input for the recommendation generator is JSON body with params - 'question1', 'question2', ..., 'question8' and 'id'
 const recommendationGenerator = async (input) => {
@@ -20,28 +37,10 @@ const recommendationGenerator = async (input) => {
     return data;
 };
 
-const getQuestions = async () => {
-    const response = await fetch('https://wixhub-server.herokuapp.com/questions', {
-        method: 'GET',
-        mode: 'cors'
-    });
-    return response.json();
-};
-
-const getQuestion = async (id) => {
-    const response = await fetch('https://wixhub-server.herokuapp.com/questions/find?' + new URLSearchParams({
-        id: id
-    }), {
-        method: 'GET',
-        mode: 'cors'
-    });
-    return response.json();
-};
-
 const questionService = {
-    recommendationGenerator,
     getQuestion,
-    getQuestions
+    getQuestions,
+    recommendationGenerator
 };
 
 export default questionService;
