@@ -1,5 +1,5 @@
 const getDestinations = async () => {
-    const response = await fetch('http://wixhub-server.herokuapp.com/destinations', {
+    const response = await fetch('https://wixhub-server.herokuapp.com/destinations', {
         method: 'GET',
         mode: 'cors'
     });
@@ -7,7 +7,7 @@ const getDestinations = async () => {
 };
 
 const getDestinationByDestinationID = async (id) => {
-    const response = await fetch(`http://wixhub-server.herokuapp.com/destinations/destinationID/${id}`, {
+    const response = await fetch(`https://wixhub-server.herokuapp.com/destinations/destinationID/${id}`, {
         method: 'GET',
         mode: 'cors'
     });

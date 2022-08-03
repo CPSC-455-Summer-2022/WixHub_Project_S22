@@ -1,6 +1,6 @@
 const addUser = async (user) => {
 
-    const response = await fetch('http://wixhub-server.herokuapp.com/users', {
+    const response = await fetch('https://wixhub-server.herokuapp.com/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ const addUser = async (user) => {
 };
 
 const getUsers = async () => {
-    const response = await fetch('http://wixhub-server.herokuapp.com/users', {
+    const response = await fetch('https://wixhub-server.herokuapp.com/users', {
         method: 'GET',
         mode: 'cors'
     });
@@ -27,7 +27,7 @@ const getUsers = async () => {
 };
 
 const getUser = async (id) => {
-    const response = await fetch(`http://wixhub-server.herokuapp.com/users/${id}`, {
+    const response = await fetch(`https://wixhub-server.herokuapp.com/users/${id}`, {
         method: 'GET',
         mode: 'cors'
     });
@@ -35,7 +35,7 @@ const getUser = async (id) => {
 };
 
 const deleteUser = async (id) => {
-    const response = await fetch('http://wixhub-server.herokuapp.com/users/delete?' + new URLSearchParams({
+    const response = await fetch('https://wixhub-server.herokuapp.com/users/delete?' + new URLSearchParams({
         id: id
     }), {
         method: 'DELETE',
@@ -45,7 +45,7 @@ const deleteUser = async (id) => {
 };
 
 const deleteAllUsers = async () => {
-    const response = await fetch('http://wixhub-server.herokuapp.com/users/deleteAll', {
+    const response = await fetch('https://wixhub-server.herokuapp.com/users/deleteAll', {
         method: 'DELETE',
         mode: 'cors'
     });
@@ -54,7 +54,7 @@ const deleteAllUsers = async () => {
 
 const editUser = async (user) => {
 
-    const response = await fetch('http://wixhub-server.herokuapp.com/users/edit', {
+    const response = await fetch('https://wixhub-server.herokuapp.com/users/edit', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ const editUser = async (user) => {
 };
 
 const loginUser = async (emailPass) => {
-    const response = await fetch(`http://wixhub-server.herokuapp.com/users/login`, {
+    const response = await fetch(`https://wixhub-server.herokuapp.com/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(emailPass),
