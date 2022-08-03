@@ -2,14 +2,15 @@ import React, { useEffect, useState, useContext } from 'react';
 import Footer from "../CommonComponents/Footer";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { ImageHeroUnit } from '../CommonComponents/ImageHeroUnit';
 import { AuthContext } from '../../context/auth';
 import questionService from "../../redux/services/questionService";
+import { useNavigate } from "react-router-dom";
 
 export const DestinationRecommendationPage = () => {
 	const [open, setOpen] = useState(true)
     const [recommendedDestination, setRecommendedDestination] = useState({})
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         let isSubscribed = true // Prevent duplicate calls
@@ -42,6 +43,14 @@ export const DestinationRecommendationPage = () => {
 
         return () => isSubscribed = false; 
 	}, [user])
+    
+    useEffect(() => {
+        if (!open) {
+            navigate("/DestinationPage", {state: {
+                destination: recommendedDestination
+            }})
+        }
+    }, [open, navigate, recommendedDestination])
 
     return (
         <React.Fragment>
@@ -52,16 +61,7 @@ export const DestinationRecommendationPage = () => {
         		<CircularProgress color="inherit" />
       		</Backdrop>
             <main>
-                <ImageHeroUnit
-                // !!!TODO: Make sure to de-reference the correct properties after Kevin is done adding to db model
-                    backgroundImage={recommendedDestination.image}
-                    header={`${recommendedDestination.city}, ${recommendedDestination.country}`}
-                    description={recommendedDestination.description}
-                    hasStartIcon
-                    linkTo="/UserDashboardPage"
-                    buttonDescription="Back to Dashboard"
-                    smallText=""
-                />
+                Sit tight just a moment
             </main>
             <Footer />
         </React.Fragment>
