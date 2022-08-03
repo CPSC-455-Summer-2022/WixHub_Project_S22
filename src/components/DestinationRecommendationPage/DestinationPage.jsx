@@ -21,7 +21,7 @@ export const DestinationPage = () => {
 				smallText=""
 			/>
 			<Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
-        		For all types of travelers
+        		Activities in {passedInState.destination.city}
       		</Typography>
       		<ActivityAlbum activities={passedInState.destination.activityRecommendations} />
 		</React.Fragment>
