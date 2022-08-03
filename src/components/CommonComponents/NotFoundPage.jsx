@@ -27,7 +27,7 @@ export const NotFoundPage = () => (
             color="textPrimary"
             variant="h1"
           >
-            404: The page you are looking for isn’t here
+            404: The page you are looking for isn't here
           </Typography>
             <Button
               startIcon={(<ArrowBackIcon fontSize="small" />)}

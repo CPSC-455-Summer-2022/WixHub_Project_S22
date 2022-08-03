@@ -1,25 +1,3 @@
-
-// input for the recommendation generator is JSON body with params - 'question1', 'question2', ..., 'question8' and 'id'
-const recommendationGenerator = async (input) => {
-
-    const response = await fetch('https://wixhub-server.herokuapp.com/questions/recommendation', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(input),
-        mode: 'cors'
-    });
-
-    const data = await response.json();
-    if (!response.ok) {
-        const errorMsg = data?.message;
-        throw new Error(errorMsg)
-    }
-
-    return data;
-};
-
 const getQuestions = async () => {
     const response = await fetch('https://wixhub-server.herokuapp.com/questions', {
         method: 'GET',
@@ -38,10 +16,31 @@ const getQuestion = async (id) => {
     return response.json();
 };
 
+// input for the recommendation generator is JSON body with params - 'question1', 'question2', ..., 'question8' and 'id'
+const recommendationGenerator = async (input) => {
+
+    const response = await fetch('https://wixhub-server.herokuapp.com/questions/recommendation', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(input),
+        mode: 'cors'
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        const errorMsg = data?.message;
+        throw new Error(errorMsg)
+    }
+
+    return data;
+};
+
 const questionService = {
-    recommendationGenerator,
     getQuestion,
-    getQuestions
+    getQuestions,
+    recommendationGenerator
 };
 
 export default questionService;

@@ -1,17 +1,15 @@
 import * as React from 'react';
-import Button from '../CommonComponents/Button';
-import Typography from '../CommonComponents/Typography';
-import ProductHeroLayout from './ProductHeroLayout';
+import Button from './Button';
+import Typography from './Typography';
+import ImageHeroUnitLayout from './ImageHeroUnitLayout';
 import { Link } from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const backgroundImage =
-  'https://source.unsplash.com/GA2sc8nIOsk';
-
-export default function ProductHero() {
+export function ImageHeroUnit(props) {
   return (
-    <ProductHeroLayout
+    <ImageHeroUnitLayout
       sxBackground={{
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${props.backgroundImage})`,
         backgroundColor: '#7fc7d9', // Average color of the background image.
         backgroundPosition: 'center',
       }}
@@ -19,11 +17,11 @@ export default function ProductHero() {
       {/* Increase the network loading priority of the background image. */}
       <img
         style={{ display: 'none' }}
-        src={backgroundImage}
+        src={props.backgroundImage}
         alt="increase priority"
       />
       <Typography color="inherit" align="center" variant="h2" marked="center">
-        Youfly
+        {props.header}
       </Typography>
       <Typography
         color="inherit"
@@ -31,21 +29,22 @@ export default function ProductHero() {
         variant="h5"
         sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
       >
-        Find your next vacation using our personalized recommendation algorithm
+        {props.description}
       </Typography>
       <Button
+        startIcon={props.hasStartIcon ? (<ArrowBackIcon fontSize="small" />) : null}
         color="secondary"
         variant="contained"
         size="large"
         component={Link}
-        to="/DestinationRecommendationPage"
+        to={props.linkTo}
         sx={{ minWidth: 200 }}
       >
-        Find Vacation
+        {props.buttonDescription}
       </Button>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-        Discover the experience
+        {props.smallText}
       </Typography>
-    </ProductHeroLayout>
+    </ImageHeroUnitLayout>
   );
 }
