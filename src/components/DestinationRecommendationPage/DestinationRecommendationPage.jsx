@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Footer from "../CommonComponents/Footer";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { AuthContext } from '../../context/auth';
 import questionService from "../../redux/services/questionService";
 import { useNavigate } from "react-router-dom";
+import { Box, Container, Typography } from '@mui/material';
 
 export const DestinationRecommendationPage = () => {
 	const [open, setOpen] = useState(true)
@@ -58,12 +58,35 @@ export const DestinationRecommendationPage = () => {
 				sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
 				open={open}
       		>
-        		<CircularProgress color="inherit" />
+                <Box
+            component="main"
+            sx={{
+                alignItems: 'center',
+                display: 'flex',
+                flexGrow: 1,
+                minHeight: '100%',
+            }}
+            >
+                <Container maxWidth="lg">
+                    <Box
+                    sx={{
+                        alignItems: 'center',
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}
+                    >
+                    <Typography
+                        align="center"
+                        color="textPrimary"
+                        variant="h1"
+                    >
+                        Sit tight just a minute
+                    </Typography>
+                    <CircularProgress color="inherit" />
+                    </Box>
+                </Container>
+            </Box>
       		</Backdrop>
-            <main>
-                Sit tight just a moment
-            </main>
-            <Footer />
         </React.Fragment>
     );
 }
