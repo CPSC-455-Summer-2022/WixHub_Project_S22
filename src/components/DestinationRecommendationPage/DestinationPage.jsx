@@ -11,6 +11,7 @@ export const DestinationPage = () => {
 	return (
 		<React.Fragment>
 			<ImageHeroUnit
+			// !!!TODO: Make this not overlap with Navbar when on smaller screens
 			// !!!TODO: Make sure to de-reference the correct properties after Kevin is done adding to db model
 				backgroundImage={passedInState.destination.image}
 				header={`${passedInState.destination.city}, ${passedInState.destination.country}`}
