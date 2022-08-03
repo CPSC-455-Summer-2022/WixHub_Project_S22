@@ -2,7 +2,7 @@ import * as React from 'react';
 import Footer from "../CommonComponents/Footer";
 import Album from '../CommonComponents/Album';
 import ProductSmokingHero from './ProductSmokingHero';
-import ProductHero from './ProductHero';
+import { ImageHeroUnit } from '../CommonComponents/ImageHeroUnit';
 import ProductValues from './ProductValues';
 import ProductHowItWorks from './ProductHowItWorks';
 import Typography from '../CommonComponents/Typography';
@@ -28,13 +28,21 @@ const homePageDestinations = [
   }
 ];
 
-// const description = "Youfly is a travel booking website that allows users to create a personalized profile by answering a series of questions. Based on your profile, Youfly will provide optimal travel destination recommendations";
+const backgroundImage =
+  'https://source.unsplash.com/GA2sc8nIOsk';
 
 export default function LandingPage() {
   return (
     <React.Fragment>
       <main>
-      <ProductHero />
+      <ImageHeroUnit 
+        backgroundImage={backgroundImage}
+        header="Youfly"
+        description="Find your next vacation using our personalized recommendation algorithm"
+        buttonDescription="Find Vacation"
+        linkTo="/DestinationRecommendationPage"
+        smallText="Discover the experience"
+      />
       <ProductValues />
       <Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
         For all types of travelers

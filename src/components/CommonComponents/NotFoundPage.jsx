@@ -3,7 +3,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from "react-router-dom";
 
 export const NotFoundPage = () => (
-  <>
     <Box
       component="main"
       sx={{
@@ -27,7 +26,7 @@ export const NotFoundPage = () => (
             color="textPrimary"
             variant="h1"
           >
-            404: The page you are looking for isn’t here
+            404: The page you are looking for isn't here
           </Typography>
             <Button
               startIcon={(<ArrowBackIcon fontSize="small" />)}
@@ -41,5 +40,4 @@ export const NotFoundPage = () => (
         </Box>
       </Container>
     </Box>
-  </>
 );
