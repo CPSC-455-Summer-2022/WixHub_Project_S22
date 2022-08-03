@@ -33,7 +33,7 @@ export default function UserDashboardPage() {
 				// set userDestinations
 				const destinationJson = await destinationService.getDestinationByDestinationID(destinationId)
 				if (isSubscribed) {
-					setUserDestinations(prevState => [...prevState, destinationJson[0]])
+					setUserDestinations(prevState => [...prevState, destinationJson])
 				}
 			}
 		}

@@ -6,7 +6,7 @@ const initialState = {
   // user: null
 
   // Uncomment this for debugging!!!
-  user: "62e58d135c308f0fa395ba11"
+  user: "62eac685b3af24e5f1d0cc48"
 };
 
 if (localStorage.getItem('jwtToken')) {
