@@ -20,7 +20,7 @@ const getQuestion = async (id) => {
 const recommendationGenerator = async (input) => {
 
     const response = await fetch('https://wixhub-server.herokuapp.com/questions/recommendation', {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
