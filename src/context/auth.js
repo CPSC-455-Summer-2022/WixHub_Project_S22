@@ -3,10 +3,10 @@ import jwtDecode from 'jwt-decode';
 
 const initialState = {
   //  // Uncomment this for production!!!
-  user: null
+  // user: null
 
   // Uncomment this for debugging!!!
-  // user: "62e58d135c308f0fa395ba11"
+  user: "62e58d135c308f0fa395ba11"
 };
 
 if (localStorage.getItem('jwtToken')) {
@@ -17,12 +17,12 @@ if (localStorage.getItem('jwtToken')) {
   } else {
     initialState.user = decodedToken;
   }
-}else console.log('No token found')
+} else console.log('No token found')
 
 const AuthContext = createContext({
   user: null,
-  login: (userData) => {},
-  logout: () => {}
+  login: (userData) => { },
+  logout: () => { }
 });
 
 function authReducer(state, action) {
