@@ -74,17 +74,11 @@ Below are an evolving list of project requirements to develop a prototype versio
     - Python script for webscraping data from vacation destination wikipedia pages
     - Storing vacation destinations with large text scraped from wikipedia page for sentiment analysis (setting up MongoDB and the necessary queries)
 
-### Initial Welcome Page Mockup
+### Mockups Rendered and Designed in [Figma](https://www.figma.com/file/e95iL2v2cbitVYxDk2pyFE/YouFly---CPSC455?node-id=0%3A1)
 <p align="center">
-<img src="/assets/Welcome page.png" width="700px"/>
+<img src="/assets/figma_mockup1.png" width="700px"/>
   </p>
-
-### Initial Destination Matching Page Mockup
 <p align="center">
-<img src="/assets/A9C62B29-404C-45D5-A259-EA57235EACCB.jpeg" width="700px"/>
+<img src="/assets/figma_mockup2.png" width="700px"/>
   </p>
-
-### Initial Sign Up Page Mockup
-<p align="center">
-<img src="/assets/sign up.jpg" width="700px"/>
-  </p>
+  
