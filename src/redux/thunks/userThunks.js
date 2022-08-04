@@ -25,8 +25,8 @@ export const addUserAsync = createAsyncThunk(
 
 export const editUserAsync = createAsyncThunk(
     actionTypes.EDIT_USER,
-    async (user) => {
-        return await UserService.editUser(user);
+    async (id, toBeUpdated) => {
+        return await UserService.editUser(id, toBeUpdated);
     }
 );
 
