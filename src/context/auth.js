@@ -17,12 +17,12 @@ if (localStorage.getItem('jwtToken')) {
   } else {
     initialState.user = decodedToken;
   }
-}else console.log('No token found')
+} else console.log('No token found')
 
 const AuthContext = createContext({
   user: null,
-  login: (userData) => {},
-  logout: () => {}
+  login: (userData) => { },
+  logout: () => { }
 });
 
 function authReducer(state, action) {
@@ -46,7 +46,6 @@ function AuthProvider(props) {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   function login(userData) {
-    console.log("here")
     localStorage.setItem('jwtToken', userData.token);
     dispatch({
       type: 'LOGIN',
