@@ -74,6 +74,33 @@ Below are an evolving list of project requirements to develop a prototype versio
     - Python script for webscraping data from vacation destination wikipedia pages
     - Storing vacation destinations with large text scraped from wikipedia page for sentiment analysis (setting up MongoDB and the necessary queries)
 
+## Technical Architecture
+Description on how tech from Units 1-5 are implemented within our application.
+
+## Functionality and Feature Set
+
+### Basic User Flows
+
+### Above and Beyond Functionality 
+Mention SwaggerUI documentation
+
+## Next Steps
+
+## Team Contributions
+
+### Josh Tillson - i4i2b
+
+
+### Ronin Cunningham - m0c2b 
+
+
+### Sherman Lam - z2o2b
+
+
+### Weichong Zhao - x4x2b 
+
+## Miscellaneous
+
 ### Mockups Rendered and Designed in [Figma](https://www.figma.com/file/e95iL2v2cbitVYxDk2pyFE/YouFly---CPSC455?node-id=0%3A1)
 <p align="center">
 <img src="/assets/figma_mockup1.png" width="700px"/>
