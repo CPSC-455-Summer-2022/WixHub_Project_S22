@@ -4,28 +4,19 @@ import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/auth';
-
-/*
-function LogoIcon(props) {
-	return (
-		<SvgIcon {...props}>
-			<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-			width="104.000000pt" height="104.000000pt" viewBox="0 0 104.000000 104.000000"
-			preserveAspectRatio="xMidYMid meet">
-
-			<g transform="translate(0.000000,104.000000) scale(0.100000,-0.100000)"
-			fill="#000000" stroke="none">
-			</g>
-			</svg>
-		</SvgIcon>
-	)
-}
-*/
+import { useDispatch } from "react-redux";
+import { logoutUserAsync } from "../../redux/thunks/userThunks";
 
 export const NavBar = () => {
 	const { user, logout } = useContext(AuthContext);
-	
-	const LogInOrOut = user ? <Button onClick={logout} sx={{ color: 'white', backgroundColor: '#BBDDEE'}} variant="contained" disableElevation>Log Out</Button> : <Button component={Link} to="LoginPage" sx={{ color: 'white', backgroundColor: '#BBDDEE'}} variant="contained" disableElevation>Log In</Button>
+	const dispatch = useDispatch();
+
+	function logOutProcess() {
+		logout();
+		dispatch(logoutUserAsync());
+	};
+
+	const LogInOrOut = user ? <Button onClick={logOutProcess} sx={{ color: 'white', backgroundColor: '#BBDDEE'}} variant="contained" disableElevation>Log Out</Button> : <Button component={Link} to="LoginPage" sx={{ color: 'white', backgroundColor: '#BBDDEE'}} variant="contained" disableElevation>Log In</Button>
 
 	return (
 		<AppBar position="relative" sx={{ bgcolor: "#a2d2ff" }}>
