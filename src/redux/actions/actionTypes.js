@@ -11,4 +11,5 @@ export const actionTypes = {
     GET_DESTINATIONS: 'questions/getDestinations',
     GET_DESTINATION: 'questions/getDestination',
     LOGIN_USER: 'recipes/loginUser',
+    LOGOUT_USER: 'recipes/logoutUser',
 };

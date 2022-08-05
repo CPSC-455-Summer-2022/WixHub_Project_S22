@@ -50,3 +50,10 @@ export const loginUserAsync = createAsyncThunk(
         return await UserService.loginUser(emailPass);
     }
 )
+
+export const logoutUserAsync = createAsyncThunk(
+    actionTypes.LOGOUT_USER,
+    async () => {
+        return await UserService.logoutUser();
+    }
+)

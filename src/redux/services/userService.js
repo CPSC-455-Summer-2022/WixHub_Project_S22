@@ -83,6 +83,10 @@ const loginUser = async (emailPass) => {
     return data;
 };
 
+const logoutUser = async () => {
+    console.log("logged out and cleared object")
+};
+
 const functions = {
     addUser,
     getUsers,
@@ -90,7 +94,8 @@ const functions = {
     deleteUser,
     deleteAllUsers,
     editUser,
-    loginUser
+    loginUser,
+    logoutUser
 };
 
 export default functions;
