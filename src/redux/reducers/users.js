@@ -94,15 +94,15 @@ const userSlice = createSlice({
                 state.error = action.error;
             })
             .addCase(loginUserAsync.pending, (state) => {
-                state.editUser = REQUEST_STATE.PENDING;
+                state.loginUser = REQUEST_STATE.PENDING;
                 state.error = null;
             })
             .addCase(loginUserAsync.fulfilled, (state, action) => {
-                state.editUser = REQUEST_STATE.FULFILLED;
-                state.currUser = action.payload;
+                state.loginUser = REQUEST_STATE.FULFILLED;
+                state.currUser = action.payload.foundUser;
             })
             .addCase(loginUserAsync.rejected, (state, action) => {
-                state.editUser = REQUEST_STATE.REJECTED;
+                state.loginUser = REQUEST_STATE.REJECTED;
                 state.error = action.error;
             });
     }

@@ -14,30 +14,24 @@ import Copyright from "../CommonComponents/Copyright";
 import { AuthContext } from '../../context/auth';
 import { loginUserAsync } from '../../redux/thunks/userThunks';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignInSide() {
   const dispatch = useDispatch();
   const context = React.useContext(AuthContext);
+  const nav = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const res = dispatch(loginUserAsync({
+    const res = await dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),
-      // email: "josh@tillson.com",
-      // password: "1234password",
     }));
     const userData = res.payload;
     context.login(userData);
+    nav("/UserDashboardPage");
     // !!! TODO: Store userObject into redux store
-
-    // console.log(emailPass);
-    // console.log(response)
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
   };
 
   return (
