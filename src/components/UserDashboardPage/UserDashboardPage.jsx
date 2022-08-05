@@ -9,9 +9,12 @@ import destinationService from '../../redux/services/destinationService';
 import userService from '../../redux/services/userService';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useSelector } from 'react-redux';
 
 export default function UserDashboardPage() {
-	const { user } = useContext(AuthContext);
+	// const { user } = useContext(AuthContext);
+	const user = useSelector((state) => state.userReducer.currUser[0]._id);
+	console.log(user);
 	const [userObject, setUserObject] = useState({}) // !!!TODO: eventually put the userObject into state once Sherman is done and it should still work
 	const [userDestinations, setUserDestinations] = useState([]);
 	const [description, setDescription] = useState("")
@@ -21,7 +24,7 @@ export default function UserDashboardPage() {
 		let isSubscribed = true // Prevent duplicate calls
 
 		async function getUserDestinations() {
-			
+
 			const userJson = await userService.getUser(user)
 			if (isSubscribed) {
 				setUserObject(userJson)
@@ -39,7 +42,7 @@ export default function UserDashboardPage() {
 		}
 		getUserDestinations();
 
-		return () => isSubscribed = false; 
+		return () => isSubscribed = false;
 	}, [user])
 
 	useEffect(() => {
@@ -47,7 +50,7 @@ export default function UserDashboardPage() {
 	}, [userObject])
 
 	useEffect(() => {
-		setTimeout(() => {  setOpen(false); }, 500);
+		setTimeout(() => { setOpen(false); }, 500);
 	}, [])
 
 	return (
@@ -55,9 +58,9 @@ export default function UserDashboardPage() {
 			<Backdrop
 				sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
 				open={open}
-      		>
-        		<CircularProgress color="inherit" />
-      		</Backdrop>
+			>
+				<CircularProgress color="inherit" />
+			</Backdrop>
 			<main>
 				<HeroUnit title={"User Dashboard"} description={description} />
 				<GenerateRecommendationButton text={"Generate another recommendation"} />
