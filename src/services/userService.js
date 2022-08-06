@@ -1,5 +1,4 @@
 const addUser = async (user) => {
-
     const response = await fetch('https://wixhub-server.herokuapp.com/users', {
         method: 'POST',
         headers: {
@@ -55,7 +54,7 @@ const deleteAllUsers = async () => {
 const editUser = async (id, toBeUpdated) => {
 
     const response = await fetch(`https://wixhub-server.herokuapp.com/users/edit/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -72,7 +71,7 @@ const editUser = async (id, toBeUpdated) => {
     return data;
 };
 
-const loginUser = async (emailPass) => {
+const loginUser = async (emailPass) => { ///!!!TODOREDFLAG
     const response = await fetch(`https://wixhub-server.herokuapp.com/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

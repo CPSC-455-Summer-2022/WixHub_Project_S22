@@ -2,11 +2,7 @@ import React, { useReducer, createContext } from 'react';
 import jwtDecode from 'jwt-decode';
 
 const initialState = {
-  //  // Uncomment this for production!!!
-  // user: null
-
-  // Uncomment this for debugging!!!
-  user: "62eac685b3af24e5f1d0cc48"
+  user: null
 };
 
 if (localStorage.getItem('jwtToken')) {

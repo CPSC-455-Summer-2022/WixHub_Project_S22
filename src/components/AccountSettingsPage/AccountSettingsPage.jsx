@@ -26,8 +26,7 @@ export default function AccountSettingsPage() {
 				<HeroUnit title="Account" />
 				<AccountSection />
 				<PasswordSection />
-				<QuestionnairePage /> 
-				{/* !!!TODO: Pass in current userObject's answers as props and pre-load the answers for the AccountSettingsPage */}
+				<QuestionnairePage />
 			</main>
 			<Footer />
 		</React.Fragment>
