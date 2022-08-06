@@ -89,10 +89,6 @@ const logoutUser = async () => {
 
 const functions = {
     addUser,
-    getUsers,
-    getUser,
-    deleteUser,
-    deleteAllUsers,
     editUser,
     loginUser,
     logoutUser
