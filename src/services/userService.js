@@ -54,7 +54,7 @@ const deleteAllUsers = async () => {
 const editUser = async (id, toBeUpdated) => {
 
     const response = await fetch(`https://wixhub-server.herokuapp.com/users/edit/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
