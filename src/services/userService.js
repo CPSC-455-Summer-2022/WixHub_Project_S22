@@ -51,8 +51,9 @@ const deleteAllUsers = async () => {
     return response.json();
 };
 
-const editUser = async (id, toBeUpdated) => {
-
+const editUser = async (arg) => {
+    const { id, toBeUpdated } = arg // createAsyncThunk only accepts one argument,
+                                    // therefore must send and destructure an object of the multiple arguments
     const response = await fetch(`https://wixhub-server.herokuapp.com/users/edit/${id}`, {
         method: 'PATCH',
         headers: {
