@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { ActivityCard } from './ActivityCard';
 
-// !!!TODO: guard against empty activities
 export function ActivityAlbum(props) {
   return (
     <Container sx={{ py: 8 }} maxWidth="lg">

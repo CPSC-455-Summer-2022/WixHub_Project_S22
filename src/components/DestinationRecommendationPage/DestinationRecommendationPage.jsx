@@ -1,37 +1,32 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { AuthContext } from '../../context/auth';
 import questionService from "../../services/questionService";
 import { useNavigate } from "react-router-dom";
 import { Box, Container, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 export const DestinationRecommendationPage = () => {
 	const [open, setOpen] = useState(true)
     const [recommendedDestination, setRecommendedDestination] = useState({})
-    const { user } = useContext(AuthContext);
+    const userObject = useSelector(state => state.userReducer.currUser)
     const navigate = useNavigate();
 
     useEffect(() => {
         let isSubscribed = true // Prevent duplicate calls
 
         async function setupDestinationRecommendationPage() {
-            // !!!TODO: Make this pull from redux userObject instead of hardcoded
-            const temporaryQuestionAndAnswersObject = 
+            const questionsAndAnswers = 
             {
-                id: user,
-                question1: "1",
-                question2: "1",
-                question3: "1",
-                question4: "1",
-                question5: "1",
-                question6: "1",
-                question7: "1",
-                question8: "1",
+                id: userObject._id
+            }
+            
+            for (const [key, value] of Object.entries(userObject.question_responses)) {
+                questionsAndAnswers[key] = value
             }
 
             await new Promise(resolve => setTimeout(resolve, 2000));
-            const destinationJsonResponse = await questionService.recommendationGenerator(temporaryQuestionAndAnswersObject); //!!!TODO: See const definition
+            const destinationJsonResponse = await questionService.recommendationGenerator(questionsAndAnswers);
 
             if (isSubscribed) {
                 setRecommendedDestination(destinationJsonResponse);
@@ -42,7 +37,7 @@ export const DestinationRecommendationPage = () => {
         setupDestinationRecommendationPage();
 
         return () => isSubscribed = false; 
-	}, [user])
+	}, [userObject])
     
     useEffect(() => {
         if (!open) {
