@@ -27,11 +27,9 @@ export default function AccountSettingsPage() {
 				<AccountSection />
 				<PasswordSection />
 				<QuestionnairePage />
+				{/* !!!TODO: useSelector of the currentUser in these sections to pre-populate data */}
 			</main>
 			<Footer />
 		</React.Fragment>
 	);
 }
-
-
-
