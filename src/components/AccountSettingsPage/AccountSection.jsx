@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -16,20 +16,11 @@ export const AccountSection = (props) => {
   const userObject = useSelector((state) => state.userReducer.currUser);	
 
   const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    country: ""
+	firstName: userObject.f_name,
+	lastName: userObject.l_name,
+	email: userObject.email,
+	country: userObject.country
   }, [userObject]);
-
-  useEffect(() => {
-	setValues({
-		firstName: userObject.f_name,
-		lastName: userObject.l_name,
-		email: userObject.email,
-		country: userObject.country
-	})
-  }, [userObject])
 
   const handleChange = (event) => {
     setValues({

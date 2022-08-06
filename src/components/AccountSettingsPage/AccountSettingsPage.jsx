@@ -7,6 +7,7 @@ import { PasswordSection } from './PasswordSection';
 import { AccountSection } from './AccountSection';
 import { QuestionnairePage } from '../QuestionnairePage/QuestionnairePage';
 
+// !!!TODO: Make all Save buttons work
 export default function AccountSettingsPage() {
 	const [open, setOpen] = useState(true)
 
@@ -27,7 +28,6 @@ export default function AccountSettingsPage() {
 				<AccountSection />
 				<PasswordSection />
 				<QuestionnairePage />
-				{/* !!!TODO: useSelector of the currentUser in these sections to pre-populate data */}
 			</main>
 			<Footer />
 		</React.Fragment>
