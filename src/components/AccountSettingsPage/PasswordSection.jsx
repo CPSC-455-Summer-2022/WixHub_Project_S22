@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Box, Button, Card, CardContent, CardHeader, Divider, TextField, Container } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 export const PasswordSection = (props) => {
+
   const [values, setValues] = useState({
     password: '',
     confirm: ''

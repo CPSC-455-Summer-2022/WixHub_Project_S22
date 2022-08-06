@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { AuthContext } from '../../context/auth';
-import questionService from "../../redux/services/questionService";
+import questionService from "../../services/questionService";
 import { useNavigate } from "react-router-dom";
 import { Box, Container, Typography } from '@mui/material';
 

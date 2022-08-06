@@ -17,7 +17,7 @@ const INITIAL_STATE = {
 };
 
 const userSlice = createSlice({
-    name: 'users',
+    name: 'user',
     initialState: INITIAL_STATE,
     reducers: {},
     extraReducers: (builder) => {
@@ -40,7 +40,7 @@ const userSlice = createSlice({
             })
             .addCase(addUserAsync.fulfilled, (state, action) => {
                 state.addUser = REQUEST_STATE.FULFILLED;
-                state.list.push(action.payload);
+                state.currUser = action.payload;
             })
             .addCase(addUserAsync.rejected, (state, action) => {
                 state.addUser = REQUEST_STATE.REJECTED;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -10,31 +10,28 @@ import {
   TextField,
   Container
 } from '@mui/material';
-
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
+import { useSelector } from 'react-redux';
 
 export const AccountSection = (props) => {
+  const userObject = useSelector((state) => state.userReducer.currUser);	
+
   const [values, setValues] = useState({
-    firstName: 'Ronin',
-    lastName: 'Cunningham',
-    email: 'ronin@gmail.com',
-    phone: '',
-    state: 'Alabama',
-    country: 'Canada'
-  });
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: '', //!!!TODO: Should we remove phone number from the site?
+    country: ""
+  }, [userObject]);
+
+  useEffect(() => {
+	setValues({
+		firstName: userObject.f_name,
+		lastName: userObject.l_name,
+		email: userObject.email,
+		phone: '', //!!!TODO: Should we remove phone number from the site?
+		country: userObject.country
+	})
+  }, [userObject])
 
   const handleChange = (event) => {
     setValues({
@@ -123,7 +120,7 @@ export const AccountSection = (props) => {
 					label="Phone Number"
 					name="phone"
 					onChange={handleChange}
-					type="number"
+					type="tel"
 					value={values.phone}
 					variant="outlined"
 				/>
@@ -142,32 +139,6 @@ export const AccountSection = (props) => {
 					value={values.country}
 					variant="outlined"
 				/>
-				</Grid>
-				<Grid
-				item
-				md={6}
-				xs={12}
-				>
-				<TextField
-					fullWidth
-					label="Select State"
-					name="state"
-					onChange={handleChange}
-					required
-					select
-					SelectProps={{ native: true }}
-					value={values.state}
-					variant="outlined"
-				>
-					{states.map((option) => (
-					<option
-						key={option.value}
-						value={option.value}
-					>
-						{option.label}
-					</option>
-					))}
-				</TextField>
 				</Grid>
 			</Grid>
 			</CardContent>

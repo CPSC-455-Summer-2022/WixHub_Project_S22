@@ -9,12 +9,14 @@ import {
   Container
 } from '@mui/material';
 import { Question} from "./Question";
-import questionService from '../../redux/services/questionService';
+import questionService from '../../services/questionService';
+import { useSelector } from 'react-redux';
 
 export const QuestionnairePage = (props) => {
 	const [questions, setQuestions] = useState([]);
 	const [values, setValues] = useState({});
 	const [disabled, setDisabled] = useState(true);
+	const userObject = useSelector((state) => state.userReducer.currUser);
 	
 	useEffect(() => {
 		let isSubscribed = true // Prevent duplicate calls

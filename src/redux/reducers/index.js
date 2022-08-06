@@ -1,16 +1,8 @@
 import { combineReducers } from 'redux';
-import { cards } from "./cards";
-import userReducer from "./users";
-import destinationReducer from "./destinations";
-import questionReducer from "./questions";
-
+import userReducer from "./user";
 
 const rootReducer = combineReducers({
-	cards,
-	userReducer,
-	destinationReducer,
-	questionReducer
-
+	userReducer
 });
 
 export default rootReducer;
