@@ -18,6 +18,8 @@ Youfly is a **travel booking web application** that allows users to create a per
 
 **Server:** [WixHub Server Deployed Site](https://wixhub-server.herokuapp.com/)  
 
+**Documentation:** [WixHub Server Swagger](https://wixhub-server.herokuapp.com/api-docs)  
+
 ### Project Team
 - Ronin Cunningham - m0c2b 
 - Sherman Lam - z2o2b
@@ -25,6 +27,10 @@ Youfly is a **travel booking web application** that allows users to create a per
 - Josh Tillson - i4i2b
 
 ## Project Description
+
+<p align="center">
+<img src="/assets/youflyIntro.png" width="700px"/>
+  </p>
 
 Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and the top activities to do at that destination. Youfly is geared towards those **eager travellers who have been going stir crazy** over the course of the pandemic and are **ready to travel** with the reduced restrictions but **don't know where to go** first. Youfly makes the decision for our users by finding the optimal destination for each and every traveller. 
 
@@ -77,10 +83,18 @@ Below are an evolving list of project requirements to develop a prototype versio
 ## Technical Architecture
 Description on how tech from Units 1-5 are implemented within our application.
 
+<p align="center">
+<img src="/assets/techStack.png" width="1000px"/>
+  </p>
+
 ## Functionality and Feature Set
 
 ### Basic User Flows
 
+<p align="center">
+<img src="/assets/questionFlow.png" width="700px"/>
+  </p>
+  
 ### Above and Beyond Functionality 
 Mention SwaggerUI documentation
 
