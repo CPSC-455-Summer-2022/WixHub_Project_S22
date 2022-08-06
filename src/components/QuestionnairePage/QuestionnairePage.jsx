@@ -25,14 +25,14 @@ export const QuestionnairePage = (props) => {
 			const questionJson = await questionService.getQuestions()
 			if (isSubscribed) {
 				setQuestions(questionJson)
-				const values = Object.fromEntries(questionJson.map(obj => [obj.question, null]));
+				const values = Object.fromEntries(questionJson.map(obj => [obj.question, userObject.question_responses[obj.question]]));
 				setValues(values)
 			}
 		}
 		getQuestions();
 
 		return () => isSubscribed = false; 
-	}, [])
+	}, [userObject])
 
 	useEffect(() => {
 		let disabled = false
