@@ -1,5 +1,4 @@
 const addUser = async (user) => {
-
     const response = await fetch('https://wixhub-server.herokuapp.com/users', {
         method: 'POST',
         headers: {
@@ -52,10 +51,11 @@ const deleteAllUsers = async () => {
     return response.json();
 };
 
-const editUser = async (id, toBeUpdated) => {
-
+const editUser = async (arg) => {
+    const { id, toBeUpdated } = arg // createAsyncThunk only accepts one argument,
+                                    // therefore must send and destructure an object of the multiple arguments
     const response = await fetch(`https://wixhub-server.herokuapp.com/users/edit/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -72,7 +72,7 @@ const editUser = async (id, toBeUpdated) => {
     return data;
 };
 
-const loginUser = async (emailPass) => {
+const loginUser = async (emailPass) => { ///!!!TODOREDFLAG
     const response = await fetch(`https://wixhub-server.herokuapp.com/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -83,6 +83,10 @@ const loginUser = async (emailPass) => {
     return data;
 };
 
+const logoutUser = async () => {
+    console.log("logged out and cleared object")
+};
+
 const functions = {
     addUser,
     getUsers,
@@ -90,7 +94,8 @@ const functions = {
     deleteUser,
     deleteAllUsers,
     editUser,
-    loginUser
+    loginUser,
+    logoutUser
 };
 
 export default functions;

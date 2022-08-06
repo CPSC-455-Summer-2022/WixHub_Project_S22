@@ -24,9 +24,9 @@ export const Question = (props) => {
 				name={question}
 				value={props.values[question] ? props.values[question].response : ""}
 			>	
-				{props.question.destinationMapping.map((option) => (
+				{props.question ? props.question.destinationMapping.map((option) => (
 					<MenuItem onClick={() => props.handleSelection(question, option)} key={option.responseNumber} value={option.response}>{option.response}</MenuItem>
-				))}
+				)) : null}
 			</Select>
 		</FormControl>
 	);

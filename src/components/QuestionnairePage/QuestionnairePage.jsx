@@ -9,12 +9,16 @@ import {
   Container
 } from '@mui/material';
 import { Question} from "./Question";
-import questionService from '../../redux/services/questionService';
+import questionService from '../../services/questionService';
+import { useSelector, useDispatch } from 'react-redux';
+import { editUserAsync } from '../../redux/thunks/userThunks';
 
 export const QuestionnairePage = (props) => {
 	const [questions, setQuestions] = useState([]);
 	const [values, setValues] = useState({});
 	const [disabled, setDisabled] = useState(true);
+	const userObject = useSelector((state) => state.userReducer.currUser);
+	const dispatch = useDispatch();
 	
 	useEffect(() => {
 		let isSubscribed = true // Prevent duplicate calls
@@ -23,14 +27,20 @@ export const QuestionnairePage = (props) => {
 			const questionJson = await questionService.getQuestions()
 			if (isSubscribed) {
 				setQuestions(questionJson)
-				const values = Object.fromEntries(questionJson.map(obj => [obj.question, null]));
+				const values = Object.fromEntries(questionJson.map(obj => {
+					const currQuestion = obj.question 
+					return [currQuestion, {
+						response: userObject.question_responses[currQuestion].response,
+						responseNumber: userObject.question_responses[currQuestion].responseNumber
+					}]
+				}));
 				setValues(values)
 			}
 		}
 		getQuestions();
 
 		return () => isSubscribed = false; 
-	}, [])
+	}, [userObject])
 
 	useEffect(() => {
 		let disabled = false
@@ -42,18 +52,26 @@ export const QuestionnairePage = (props) => {
 		setDisabled(disabled)
 	}, [values])
 
-	const handleSelection = (question, option) => {
+	const handleSelection = (currQuestion, option) => {
 		setValues({
 			...values,
-			[question]: {
+			[currQuestion]: {
 				response: option.response,
 				responseNumber: option.responseNumber
 		}});
 	}
 
 	const save = () => {
-		// update the userObject in state
-		// patch the userObject in the db
+		const updatedObject = {
+			question_responses: {}
+		}
+
+		for (const [key, value] of Object.entries(values)) {
+			updatedObject.question_responses[key] = value
+		}
+
+		dispatch(editUserAsync({id: userObject._id, toBeUpdated: updatedObject}))
+		props.setSnackbarOpen(true)
 	}
 
 return (

@@ -23,7 +23,7 @@ export const DestinationCard = (props) => {
                 }}}>
                 <CardMedia
                   component="img"
-                  image={props.destination.image} // !!!TODO: Change this to match the destination db model after Kevin changes it
+                  image={props.destination.image}
                   alt="destination"
                 />
                 <CardContent sx={{ flexGrow: 1 }}>

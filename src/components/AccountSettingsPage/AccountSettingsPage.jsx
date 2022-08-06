@@ -6,19 +6,22 @@ import { HeroUnit } from '../CommonComponents/HeroUnit';
 import { PasswordSection } from './PasswordSection';
 import { AccountSection } from './AccountSection';
 import { QuestionnairePage } from '../QuestionnairePage/QuestionnairePage';
+import CustomizedSnackbar from "../CommonComponents/CustomizedSnackbar";
 
+// !!!TODO: Make all Save buttons work
 export default function AccountSettingsPage() {
-	const [open, setOpen] = useState(true)
+	const [backdropOpen, setBackdropOpen] = useState(true)
+	const [snackbarOpen, setSnackbarOpen] = React.useState(false);
 
 	useEffect(() => {
-		setTimeout(() => {  setOpen(false); }, 500);
+		setTimeout(() => {  setBackdropOpen(false); }, 500);
 	}, [])
 
 	return (
 		<React.Fragment>
 			<Backdrop
 				sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-				open={open}
+				open={backdropOpen}
       		>
         		<CircularProgress color="inherit" />
       		</Backdrop>
@@ -26,13 +29,10 @@ export default function AccountSettingsPage() {
 				<HeroUnit title="Account" />
 				<AccountSection />
 				<PasswordSection />
-				<QuestionnairePage /> 
-				{/* !!!TODO: Pass in current userObject's answers as props and pre-load the answers for the AccountSettingsPage */}
+				<QuestionnairePage setSnackbarOpen={setSnackbarOpen} />
 			</main>
 			<Footer />
+			<CustomizedSnackbar open={snackbarOpen} setOpen={setSnackbarOpen} />
 		</React.Fragment>
 	);
 }
-
-
-

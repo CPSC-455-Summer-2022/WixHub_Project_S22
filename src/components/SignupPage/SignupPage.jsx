@@ -9,7 +9,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useDispatch } from 'react-redux';
-import { addUserAsync } from '../../redux/thunks/userThunks';
+import { addUserAsync, loginUserAsync } from '../../redux/thunks/userThunks';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/auth';
 
 function Copyright(props) {
   return (
@@ -26,18 +28,26 @@ function Copyright(props) {
 
 export default function SignUp() {
   const dispatch = useDispatch();
+  const nav = useNavigate();
+  const context = React.useContext(AuthContext);
   
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
     dispatch(addUserAsync({
+      f_name: data.get('firstName'),
+      l_name: data.get('lastName'),
+      country: data.get('country'),
       email: data.get('email'),
       password: data.get('password'),
     }));
-    event.preventDefault();
+    const res = await dispatch(loginUserAsync({
+      email: data.get('email'),
+      password: data.get('password'),
+    }));
+    const userData = res.payload;
+    context.login(userData);
+    nav("/QuestionnairePage");
   };
 
   return (
@@ -77,6 +87,16 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="country"
+                  label="Country"
+                  name="country"
+                  autoComplete="country"
                 />
               </Grid>
               <Grid item xs={12}>

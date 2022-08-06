@@ -6,16 +6,15 @@ import Grid from '@mui/material/Grid';
 import { CardActionArea } from '@mui/material';
 
 export const ActivityCard = (props) => {
-	// !!!TODO: hyperlink props.activity.activityLink
 	return (
 		<Grid item xs={12} sm={6} md={4}>
             <Card
               sx={{ display: 'flex', flexDirection: 'column' }}
             >
-				<CardActionArea href={props.activity.activityLink}>
+				<CardActionArea href={props.activity.activityLink} target="_blank">
 					<CardMedia
 						component="img"
-						image={props.activity.activityImage} // !!!TODO: Change this to match the destination db model after Josh changes it
+						image={props.activity.activityImage}
 						alt="destination"
 					/>
 					<CardContent sx={{ flexGrow: 1 }}>
