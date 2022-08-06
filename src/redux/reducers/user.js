@@ -1,10 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
-import { getUserAsync, getUsersAsync, addUserAsync, deleteAllUsersAsync, deleteUserAsync, editUserAsync, loginUserAsync, logoutUserAsync } from '../thunks/userThunks';
+import { addUserAsync, editUserAsync, loginUserAsync, logoutUserAsync } from '../thunks/userThunks';
 
 const INITIAL_STATE = {
     currUser: {},
-    list: [],
     addUser: REQUEST_STATE.IDLE,
     editUser: REQUEST_STATE.IDLE,
     loginUser: REQUEST_STATE.IDLE,
@@ -36,7 +35,7 @@ const userSlice = createSlice({
             })
             .addCase(editUserAsync.fulfilled, (state, action) => {
                 state.editUser = REQUEST_STATE.FULFILLED;
-                state.list.push(action.payload);
+                state.currUser = action.payload;
             })
             .addCase(editUserAsync.rejected, (state, action) => {
                 state.editUser = REQUEST_STATE.REJECTED;
@@ -48,7 +47,7 @@ const userSlice = createSlice({
             })
             .addCase(loginUserAsync.fulfilled, (state, action) => {
                 state.loginUser = REQUEST_STATE.FULFILLED;
-                state.currUser = action.payload.foundUser;
+                state.currUser = action.payload.foundUser; ///!!!TODOREDFLAG
             })
             .addCase(loginUserAsync.rejected, (state, action) => {
                 state.loginUser = REQUEST_STATE.REJECTED;
