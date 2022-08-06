@@ -33,7 +33,7 @@ export const QuestionnairePage = (props) => {
 						response: userObject.question_responses[currQuestion].response,
 						responseNumber: userObject.question_responses[currQuestion].responseNumber
 					}]
-				})); //!!!TODO Check back once josh pushes changes to db model
+				}));
 				setValues(values)
 			}
 		}
@@ -71,7 +71,6 @@ export const QuestionnairePage = (props) => {
 		}
 
 		dispatch(editUserAsync({id: userObject._id, toBeUpdated: updatedObject}))
-		// !!!TODO: show changes saved modal by calling setShow function from props
 		props.setSnackbarOpen(true)
 	}
 

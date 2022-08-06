@@ -20,7 +20,7 @@ export const DestinationRecommendationPage = () => {
             {
                 id: userObject._id
             }
-            // !!!TODO: Remove at least one of these ids
+            
             for (const [key, value] of Object.entries(userObject.question_responses)) {
                 questionsAndAnswers[key] = value
             }
