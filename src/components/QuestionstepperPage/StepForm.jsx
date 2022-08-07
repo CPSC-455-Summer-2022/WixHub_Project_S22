@@ -40,11 +40,21 @@ function Success() {
 }
 
 function FirstStep({ handleNext, handleBack, question, steps }) {
+    if (question == undefined) {
+        question = {
+            question: "What type of traveller are you?",
+            image: "https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=564&q=80",
+            response1: "I like to go with the flow",
+            response2: "I plan everything",
+            response3: "I just want to relax",
+            response4: "I want to do everything"
+        };
+    }
     return (
         <div>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <img style={{ display: "block", marginLeft: 'auto', marginRight: 'auto', width: '50%' }} src={question.image} />
+                    <img style={{ display: "block", marginLeft: 'auto', marginRight: 'auto', width: '50%', }} src={question.image} />
                 </Grid>
             </Grid>
 
