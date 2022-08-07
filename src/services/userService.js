@@ -63,12 +63,12 @@ const editUser = async (arg) => {
         mode: 'cors'
     });
 
-    const data = await response.json();
     if (!response.ok) {
-        const errorMsg = data?.message;
+        const errorMsg = await response.text()
         throw new Error(errorMsg)
     }
 
+    const data = await response.json();
     return data;
 };
 

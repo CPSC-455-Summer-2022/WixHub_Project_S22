@@ -42,8 +42,7 @@ export const AccountSection = (props) => {
 		country: values.country
 	}
 
-	dispatch(editUserAsync({id: userObject._id, toBeUpdated: updatedObject}))
-	props.setSnackbarOpen(true)
+	props.save(userObject._id, updatedObject, "account info updated!")
 }
 
   return (
