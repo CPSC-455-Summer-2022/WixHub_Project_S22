@@ -58,7 +58,7 @@ export default function UserDashboardPage() {
 			<main>
 				<HeroUnit title={"User Dashboard"} description={description} />
 				<GenerateRecommendationButton text={"Generate another recommendation"} />
-				{userDestinations.length > 0 ? <Album userDestinations={userDestinations} setUserDestinations={setUserDestinations} hasActions={true} /> : null}
+				<Album userDestinations={userDestinations} setUserDestinations={setUserDestinations} hasActions={true} />
 			</main>
 			<Footer />
 		</React.Fragment>
