@@ -10,11 +10,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addUserAsync, loginUserAsync } from '../../redux/thunks/userThunks';
+import { loginUserAsync } from '../../redux/thunks/userThunks';
 
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/auth';
 import userService from '../../services/userService'
+
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 function Copyright(props) {
   return (
@@ -34,11 +37,13 @@ export default function SignUp() {
   const userObject = useSelector(state => state.userReducer.currUser);
   const nav = useNavigate();
   const dispatch = useDispatch();
+  const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
     if (userObject._id !== undefined) {
       nav("/UserDashboardPage");
     };
+// eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (event) => {
@@ -55,9 +60,24 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     }));
+    if (res.error) {
+      setError(true);
+    } else {
     const userData = res.payload;
     context.login(userData);
     nav("/QuestionnairePage");
+    }
+  };
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setError(false);
   };
 
   return (
@@ -146,6 +166,11 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+            <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                  Email already in use! Please try logging in or use a different email.
+                </Alert>
+              </Snackbar>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

@@ -15,17 +15,22 @@ import { AuthContext } from '../../context/auth';
 import { loginUserAsync } from '../../redux/thunks/userThunks';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 export default function SignInSide() {
   const dispatch = useDispatch();
   const context = React.useContext(AuthContext);
   const nav = useNavigate();
   const userObject = useSelector(state => state.userReducer.currUser);
+  const [error, setError] = React.useState(false);
+  const [rememberMe, setRememberMe] = React.useState(true);
 
   React.useEffect(() => {
     if (userObject._id !== undefined) {
       nav("/UserDashboardPage");
     };
+// eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (event) => {
@@ -35,10 +40,33 @@ export default function SignInSide() {
       email: data.get('email'),
       password: data.get('password'),
     }));
+    if (res.error) {
+      setError(true);
+    } else {
     const userData = res.payload;
     context.login(userData);
     nav("/UserDashboardPage");
+    };
   };
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setError(false);
+  };
+
+  function persistRemember() {
+    setRememberMe(!rememberMe);
+  }
+
+  React.useEffect(() => {
+    localStorage.setItem('persistLogin', rememberMe);
+  }, [rememberMe]);
 
   return (
     <React.Fragment>
@@ -95,7 +123,7 @@ export default function SignInSide() {
                 autoComplete="current-password"
               />
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={<Checkbox value="false" color="primary" onClick={persistRemember} defaultChecked/>}
                 label="Remember me"
               />
               <Button
@@ -118,6 +146,11 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
               </Grid>
+              <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                  Email/Password Incorrect! Please check your credentials or create account.
+                </Alert>
+              </Snackbar>
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
