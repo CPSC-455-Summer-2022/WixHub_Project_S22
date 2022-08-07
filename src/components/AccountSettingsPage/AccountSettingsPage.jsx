@@ -8,7 +8,6 @@ import { AccountSection } from './AccountSection';
 import { QuestionnairePage } from '../QuestionnairePage/QuestionnairePage';
 import CustomizedSnackbar from "../CommonComponents/CustomizedSnackbar";
 
-// !!!TODO: Make all Save buttons work
 export default function AccountSettingsPage() {
 	const [backdropOpen, setBackdropOpen] = useState(true)
 	const [snackbarOpen, setSnackbarOpen] = React.useState(false);
