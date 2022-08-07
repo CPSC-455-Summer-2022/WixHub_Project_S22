@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addUserAsync, loginUserAsync } from '../../redux/thunks/userThunks';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/auth';
@@ -27,10 +27,17 @@ function Copyright(props) {
 }
 
 export default function SignUp() {
-  const dispatch = useDispatch();
-  const nav = useNavigate();
   const context = React.useContext(AuthContext);
-  
+  const userObject = useSelector(state => state.userReducer.currUser);
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (userObject !== {}) {
+      nav("/UserDashboardPage");
+    };
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
