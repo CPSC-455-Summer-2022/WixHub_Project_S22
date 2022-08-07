@@ -31,7 +31,6 @@ export default function SignInSide() {
     const userData = res.payload;
     context.login(userData);
     nav("/UserDashboardPage");
-    // !!! TODO: Store userObject into redux store
   };
 
   return (
