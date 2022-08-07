@@ -45,6 +45,7 @@ import blue from '@mui/material/colors/blue';
 import purple from '@mui/material/colors/purple';
 import { QuestionnairePage } from './components/QuestionnairePage/QuestionnairePage';
 import { DestinationPage } from './components/DestinationRecommendationPage/DestinationPage';
+import StepForm from "./components/QuestionstepperPage/StepForm";
 //
 
 const persistConfig = {
@@ -93,6 +94,7 @@ root.render(
                   <Route path="/" element={<HomePage />} />
                   <Route path="LoginPage" element={<LoginPage />} />
                   <Route path="SignUpPage" element={<SignUpPage />} />
+                  <Route path="QuestionsStepperPage" element={<StepForm />}/>
                   <Route element={<AuthRoute />}>
                     <Route path="UserDashboardPage" element={<UserDashboardPage />} />
                     <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
