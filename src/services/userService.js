@@ -84,7 +84,8 @@ const loginUser = async (emailPass) => { ///!!!TODOREDFLAG
 };
 
 const logoutUser = async () => {
-    console.log("logged out and cleared object")
+    localStorage.removeItem('persistLogin');
+    console.log("logged out and cleared object");
 };
 
 const deleteUserDestination = async (arg) => {

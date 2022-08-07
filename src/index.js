@@ -23,7 +23,18 @@ import { NotFoundPage } from "./components/CommonComponents/NotFoundPage";
 import rootReducer from "./redux/reducers";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
 
 //
 
@@ -35,6 +46,14 @@ import purple from '@mui/material/colors/purple';
 import { QuestionnairePage } from './components/QuestionnairePage/QuestionnairePage';
 import { DestinationPage } from './components/DestinationRecommendationPage/DestinationPage';
 //
+
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const theme = createTheme({
   palette: {
@@ -48,7 +67,17 @@ const theme = createTheme({
   }
 });
 
-const store = configureStore({ reducer: rootReducer });
+const store = configureStore({ 
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+let persistor = persistStore(store)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -57,22 +86,24 @@ root.render(
       <CssBaseline />
         <AuthProvider>
           <Provider store={store}>
-            <BrowserRouter>
-              <NavBar />
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="LoginPage" element={<LoginPage />} />
-                <Route path="SignUpPage" element={<SignUpPage />} />
-                <Route element={<AuthRoute />}>
-                  <Route path="UserDashboardPage" element={<UserDashboardPage />} />
-                  <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
-                  <Route path="DestinationRecommendationPage" element={<DestinationRecommendationPage />} />
-                  <Route path="QuestionnairePage" element={<QuestionnairePage />} />
-                  <Route path="DestinationPage" element={<DestinationPage />} />
-                </Route>
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            </BrowserRouter>
+          <PersistGate loading={null} persistor={persistor}>
+              <BrowserRouter>
+                <NavBar />
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="LoginPage" element={<LoginPage />} />
+                  <Route path="SignUpPage" element={<SignUpPage />} />
+                  <Route element={<AuthRoute />}>
+                    <Route path="UserDashboardPage" element={<UserDashboardPage />} />
+                    <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
+                    <Route path="DestinationRecommendationPage" element={<DestinationRecommendationPage />} />
+                    <Route path="QuestionnairePage" element={<QuestionnairePage />} />
+                    <Route path="DestinationPage" element={<DestinationPage />} />
+                  </Route>
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </BrowserRouter>
+            </PersistGate>
           </Provider>
         </AuthProvider>
     </ThemeProvider>

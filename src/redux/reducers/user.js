@@ -48,7 +48,7 @@ const userSlice = createSlice({
             })
             .addCase(loginUserAsync.fulfilled, (state, action) => {
                 state.loginUser = REQUEST_STATE.FULFILLED;
-                state.currUser = action.payload.foundUser; ///!!!TODOREDFLAG
+                state.currUser = action.payload.foundUser;
             })
             .addCase(loginUserAsync.rejected, (state, action) => {
                 state.loginUser = REQUEST_STATE.REJECTED;
