@@ -69,9 +69,8 @@ export const QuestionnairePage = (props) => {
 		for (const [key, value] of Object.entries(values)) {
 			updatedObject.question_responses[key] = value
 		}
-
-		dispatch(editUserAsync({id: userObject._id, toBeUpdated: updatedObject}))
-		props.setSnackbarOpen(true)
+		
+		props.save(userObject._id, updatedObject)
 	}
 
 return (

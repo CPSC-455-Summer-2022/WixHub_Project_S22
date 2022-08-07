@@ -22,7 +22,7 @@ export const PasswordSection = (props) => {
   };
 
   const save = (event) => {
-	// prevent default page reload
+	// prevent default page reload for form submissions
 	event.preventDefault()
 
 	if (values.password !== values.confirm) {
@@ -33,13 +33,13 @@ export const PasswordSection = (props) => {
 		password: values.password
 	}
 
-	dispatch(editUserAsync({id: userObject._id, toBeUpdated: updatedObject}))
+	props.save(userObject._id, updatedObject)
+
+	// Clear password values (aesthetic)
 	setValues({
 		password: '',
 		confirm: ''
 	})
-
-	props.setSnackbarOpen(true)
 }
 
   return (
