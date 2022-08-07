@@ -1,4 +1,4 @@
-import React, {useContext, useState,useEffect} from 'react'
+import React, {useContext, useState,useEffect, useRef} from 'react'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -10,21 +10,25 @@ import Grid from "@mui/material/Grid";
 
 
 // Step titles
-const labels = ['1','2','3','4','5', '6']
+const labels = ['1','2','3','4','5', '6', '7', '8']
 const handleSteps = (step: number, handleNext, handleBack, questions) => {
     switch (step) {
         case 0:
-            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions}/>
+            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions} steps={step}/>
         case 1:
-            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions}/>
+            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions} steps={step}/>
         case 2:
-            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions}/>
+            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions} steps={step}/>
         case 3:
-            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions}/>
+            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions} steps={step}/>
         case 4:
-            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions}/>
+            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions} steps={step}/>
         case 5:
-            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions}/>
+            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions} steps={step}/>
+        case 6:
+            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions} steps={step}/>
+        case 7:
+            return <FirstStep handleNext = {handleNext} handleBack = {handleBack} questions={questions} steps={step}/>
         default:
             throw new Error('Unknown step')
     }
@@ -33,8 +37,11 @@ const handleSteps = (step: number, handleNext, handleBack, questions) => {
 function Success() {
     return <h1>success</h1>;
 }
+//
+// const [questions, setQuestions] = useState([]);
+// const questionsJson = await questionService.getQuestions();
 
-function FirstStep({handleNext, handleBack, questions}) {
+function FirstStep({handleNext, handleBack, questions, steps}) {
     return(
         <div>
             <Grid container spacing={2}>
@@ -63,18 +70,12 @@ function FirstStep({handleNext, handleBack, questions}) {
             </Grid>
 
              <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                 <Button variant='contained' sx = {{mt: 3, ml: 1}} color='primary' disabled={steps == 0} onClick={handleBack}>Back</Button>
                 <Button variant='contained' sx = {{mt: 3, ml: 1}} color='primary' onClick={handleNext}>Next</Button>
             </Box>
         </div>);
 }
 
-function SecondStep({handleNext, handleBack}) {
-    return(<div>
-        <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
-            <Button variant='contained' sx = {{mt: 3, ml: 1}} color='primary' onClick={handleNext}>Next</Button>
-        </Box>
-    </div>);
-}
 
 const StepForm = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -85,8 +86,6 @@ const StepForm = () => {
     const handleBack = () => setActiveStep((prev) => prev - 1);
 
     useEffect(() => {
-        let isSubscribed = true // Prevent duplicate calls
-
         async function getQuestions() {
             const questionJson = await questionService.getQuestions();
             setQuestions(questionJson)
@@ -103,19 +102,6 @@ const StepForm = () => {
                 <Success />
             ) : (
                 <>
-                    {/*<div style={{ margin: '30px 0 50px' }}>*/}
-                    {/*    <Typography variant="h4" align="center">*/}
-                    {/*        Multi Step Form*/}
-                    {/*    </Typography>*/}
-                    {/*    <Typography*/}
-                    {/*        variant="subtitle2"*/}
-                    {/*        align="center"*/}
-                    {/*        style={{ margin: '10px 0' }}*/}
-                    {/*    >*/}
-                    {/*        React Material UI multi step form with basic form validation*/}
-                    {/*        logic.*/}
-                    {/*    </Typography>*/}
-                    {/*</div>*/}
                     <Stepper
                         activeStep={activeStep}
                         style={{ margin: '30px 0 15px' }}
