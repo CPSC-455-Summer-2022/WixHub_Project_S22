@@ -84,8 +84,31 @@ const loginUser = async (emailPass) => { ///!!!TODOREDFLAG
 };
 
 const logoutUser = async () => {
-    console.log("logged out and cleared object")
+    localStorage.removeItem('persistLogin');
+    console.log("logged out and cleared object");
 };
+
+const deleteUserDestination = async (arg) => {
+    const { id, toBeDeleted } = arg // createAsyncThunk only accepts one argument,
+    // therefore must send and destructure an object of the multiple arguments
+    const response = await fetch(`https://wixhub-server.herokuapp.com/users/deleteUserDestination/${id}?` + new URLSearchParams({
+        destinationToDelete: toBeDeleted
+    }), {
+    method: 'PATCH',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+    mode: 'cors'
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        const errorMsg = data?.message;
+        throw new Error(errorMsg)
+    }
+
+    return data;
+}
 
 const functions = {
     addUser,
@@ -95,7 +118,8 @@ const functions = {
     deleteAllUsers,
     editUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    deleteUserDestination
 };
 
 export default functions;

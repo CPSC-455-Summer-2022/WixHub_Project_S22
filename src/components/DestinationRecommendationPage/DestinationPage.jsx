@@ -5,7 +5,7 @@ import Typography from '../CommonComponents/Typography';
 import { ActivityAlbum } from "./ActivityAlbum";
 
 export const DestinationPage = () => {
-	const location = useLocation()
+	const { state } = useLocation()
 	const [destination, setDestination] = useState({
 		image: "",
 		city: "",
@@ -14,15 +14,23 @@ export const DestinationPage = () => {
 		activityRecommendations: []
 	})
 
+	const isObjectEmpty = (obj) => {
+		return (obj
+				&& Object.keys(obj).length === 0
+				&& Object.getPrototypeOf(obj) === Object.prototype
+		);
+	}
+
 	useEffect(() => {
-		setDestination(location.state.destination)
-	}, [location])
+		if (!isObjectEmpty(state.destination)) {
+			setDestination(state.destination)
+		}
+	}, [state])
 	
 	
 	return (
 		<React.Fragment>
 			<ImageHeroUnit
-			// !!!TODO: Make this not overlap with Navbar when on smaller screens
 				backgroundImage={destination.image}
 				header={`${destination.city}, ${destination.country}`}
 				description={destination.description}
@@ -30,6 +38,7 @@ export const DestinationPage = () => {
 				linkTo="/UserDashboardPage"
 				buttonDescription="Back to Dashboard"
 				smallText=""
+				breakpoint="xl"
 			/>
 			<Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
         		Activities in {destination.city}

@@ -2,16 +2,31 @@ import { Link } from "react-router-dom";
 import { AppBar, Button, IconButton, Toolbar, Typography, Stack } from "@mui/material";
 import AirplaneTicketIcon from '@mui/icons-material/AirplaneTicket';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/auth';
 import { useDispatch } from "react-redux";
 import { logoutUserAsync } from "../../redux/thunks/userThunks";
 import { useSelector } from "react-redux";
 
+import jwtDecode from 'jwt-decode';
+
 export const NavBar = () => {
 	const { logout } = useContext(AuthContext);
 	const userObject = useSelector(state => state.userReducer.currUser)
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (localStorage.getItem('jwtToken')) {
+			const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+		  
+			if (decodedToken.exp * 1000 < Date.now()) {
+				logOutProcess();
+			} else if (localStorage.getItem('persistLogin') === 'false') {
+				logOutProcess();
+			}
+		  } else console.log('No token found')
+// eslint-disable-next-line
+	}, [dispatch]);
 
 	function logOutProcess() {
 		logout();
