@@ -8,10 +8,13 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { addUserAsync, loginUserAsync } from '../../redux/thunks/userThunks';
+
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/auth';
+import userService from '../../services/userService'
 
 function Copyright(props) {
   return (
@@ -41,13 +44,13 @@ export default function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    dispatch(addUserAsync({
+    userService.addUser({
       f_name: data.get('firstName'),
       l_name: data.get('lastName'),
       country: data.get('country'),
       email: data.get('email'),
       password: data.get('password'),
-    }));
+    });
     const res = await dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),

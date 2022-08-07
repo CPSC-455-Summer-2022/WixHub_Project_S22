@@ -5,10 +5,10 @@ import Album from '../CommonComponents/Album';
 import { useEffect, useState } from "react";
 import GenerateRecommendationButton from './GenerateRecommendationButton';
 import destinationService from '../../services/destinationService';
-import userService from '../../services/userService';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
+import userService from "../../services/userService";
 
 export default function UserDashboardPage() {
 	const userObject = useSelector((state) => state.userReducer.currUser);
@@ -20,27 +20,28 @@ export default function UserDashboardPage() {
 		let isSubscribed = true // Prevent duplicate calls
 
 		async function getUserDestinations() {
-
 			const userJson = await userService.getUser(userObject._id)
 			const destinations = userJson.destinations
 
+			const newDestinations = [];
 			// loop through user object's destinations and add them to userDestinations
 			for (const destinationId of destinations) {
 				// set userDestinations
 				const destinationJson = await destinationService.getDestinationByDestinationID(destinationId)
 				if (isSubscribed) {
-					setUserDestinations(prevState => [...prevState, destinationJson])
+					newDestinations.push(destinationJson)
 				}
+			}
+			if (isSubscribed) {
+				setUserDestinations(newDestinations)
 			}
 		}
 		getUserDestinations();
 
+		setDescription(`Hello, ${userObject.f_name}`);
 		return () => isSubscribed = false;
 	}, [userObject])
 
-	useEffect(() => {
-		setDescription(`Hello, ${userObject.f_name}`);
-	}, [userObject])
 
 	useEffect(() => {
 		setTimeout(() => { setOpen(false); }, 500);

@@ -25,14 +25,13 @@ export const DestinationRecommendationPage = () => {
                 questionsAndAnswers[key] = value
             }
 
-            await new Promise(resolve => setTimeout(resolve, 2000));
             const destinationJsonResponse = await questionService.recommendationGenerator(questionsAndAnswers);
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Makes our generator seem like it's doing some hefty work ;)
 
             if (isSubscribed) {
                 setRecommendedDestination(destinationJsonResponse);
+                setOpen(false);
             }
-
-            setOpen(false);
         }
         setupDestinationRecommendationPage();
 
