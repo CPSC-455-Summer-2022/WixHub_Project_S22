@@ -13,13 +13,20 @@ import Typography from '@mui/material/Typography';
 import Copyright from "../CommonComponents/Copyright";
 import { AuthContext } from '../../context/auth';
 import { loginUserAsync } from '../../redux/thunks/userThunks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignInSide() {
   const dispatch = useDispatch();
   const context = React.useContext(AuthContext);
   const nav = useNavigate();
+  const userObject = useSelector(state => state.userReducer.currUser);
+
+  React.useEffect(() => {
+    if (userObject !== {}) {
+      nav("/UserDashboardPage");
+    };
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
