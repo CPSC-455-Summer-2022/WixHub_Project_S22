@@ -21,10 +21,19 @@ export default function AccountSettingsPage() {
 		setTimeout(() => {  setBackdropOpen(false); }, 500);
 	}, [])
 
-	const save = (id, updatedObject) => {
+	const save = (id, updatedObject, message) => {
 		dispatch(editUserAsync({id: id, toBeUpdated: updatedObject}))
+
+		// if (dispatch was successful) {
+		// 	setSeverity("success")
+		// } else {
+		// 	setSeverity("error")
+		// }
+
+		setSeverity("success")
+
+		setMessage(message)
 		setSnackbarOpen(true)
-		// set other snackbar stuff here
 	}
 
 	return (

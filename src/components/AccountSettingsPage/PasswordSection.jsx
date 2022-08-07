@@ -33,7 +33,7 @@ export const PasswordSection = (props) => {
 		password: values.password
 	}
 
-	props.save(userObject._id, updatedObject)
+	props.save(userObject._id, updatedObject, "password updated!")
 
 	// Clear password values (aesthetic)
 	setValues({

@@ -70,7 +70,7 @@ export const QuestionnairePage = (props) => {
 			updatedObject.question_responses[key] = value
 		}
 		
-		props.save(userObject._id, updatedObject)
+		props.save(userObject._id, updatedObject, "questions updated!")
 	}
 
 return (
