@@ -33,7 +33,7 @@ export default function SignUp() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if (userObject !== {}) {
+    if (userObject._id !== undefined) {
       nav("/UserDashboardPage");
     };
   }, []);

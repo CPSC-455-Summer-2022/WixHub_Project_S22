@@ -23,7 +23,7 @@ export default function SignInSide() {
   const userObject = useSelector(state => state.userReducer.currUser);
 
   React.useEffect(() => {
-    if (userObject !== {}) {
+    if (userObject._id !== undefined) {
       nav("/UserDashboardPage");
     };
   }, []);
