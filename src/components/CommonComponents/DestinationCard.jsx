@@ -35,7 +35,7 @@ export const DestinationCard = (props) => {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              {props.hasActions && <VacationActions cardId={props.cardId} setUserDestinations={props.setUserDestinations} destination={props.destination} />}
+              {props.hasActions && <VacationActions destinationId={props.destination.destinationId} />}
             </Card>
           </Grid>
 	);
