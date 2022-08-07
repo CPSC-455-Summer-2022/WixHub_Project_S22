@@ -10,6 +10,7 @@ import CustomizedSnackbar from "../CommonComponents/CustomizedSnackbar";
 import { useDispatch, useSelector } from 'react-redux';
 import { editUserAsync } from '../../redux/thunks/userThunks';
 import { REQUEST_STATE } from "../../redux/utils";
+import { resetEditUserStatus } from "../../redux/reducers/user";
 
 export default function AccountSettingsPage() {
 	const dispatch = useDispatch();
@@ -18,32 +19,39 @@ export default function AccountSettingsPage() {
 	const [message, setMessage] = useState("");
 	const userStoreState = useSelector(state => state.userReducer)
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
-	const [buttonClicked, setButtonClicked] = useState(false);
 
 	useEffect(() => {
+		dispatch(resetEditUserStatus())
 		setTimeout(() => {  setBackdropOpen(false); }, 500);
-	}, [])
+	}, [dispatch])
 
 	const save = (id, updatedObject, message) => {
 		dispatch(editUserAsync({id: id, toBeUpdated: updatedObject}))
 		setMessage(message)
-		setButtonClicked(true)
 	}
 
+	// Switch on async function result in the store
 	useEffect(() => {
-		if (buttonClicked) {
-			if (userStoreState.editUser === REQUEST_STATE.FULFILLED) {
+		switch(userStoreState.editUser) {
+			case REQUEST_STATE.FULFILLED:
 				setSeverity("success")
 				setSnackbarOpen(true)
-				setButtonClicked(false)
-			} else if (userStoreState.editUser === REQUEST_STATE.REJECTED) {
+
+				// Clear async function status
+				dispatch(resetEditUserStatus())
+				break;
+			case REQUEST_STATE.REJECTED:
 				setSeverity("error")
 				setMessage(userStoreState.error.message)
 				setSnackbarOpen(true)
-				setButtonClicked(false)
-			}
+
+				// Clear async function status
+				dispatch(resetEditUserStatus())
+				break;
+			default:
+				break;
 		}
-	}, [userStoreState.editUser, userStoreState.error, buttonClicked])
+	}, [userStoreState.editUser, userStoreState.error, dispatch])
 
 	return (
 		<React.Fragment>
