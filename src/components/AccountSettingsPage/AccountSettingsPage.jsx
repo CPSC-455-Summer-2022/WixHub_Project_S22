@@ -27,8 +27,8 @@ export default function AccountSettingsPage() {
       		</Backdrop>
 			<main>
 				<HeroUnit title="Account" />
-				<AccountSection />
-				<PasswordSection />
+				<AccountSection setSnackbarOpen={setSnackbarOpen} />
+				<PasswordSection setSnackbarOpen={setSnackbarOpen} />
 				<QuestionnairePage setSnackbarOpen={setSnackbarOpen} />
 			</main>
 			<Footer />
