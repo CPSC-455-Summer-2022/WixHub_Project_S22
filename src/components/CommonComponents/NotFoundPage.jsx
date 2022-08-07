@@ -35,7 +35,7 @@ export const NotFoundPage = () => (
               component={Link}
               to="/"
             >
-              Go back to dashboard
+              Go back home
             </Button>
         </Box>
       </Container>
