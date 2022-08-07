@@ -1,13 +1,15 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
-// import userService from "../../redux/services/userService";
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteUserDestinationAsync } from '../../redux/thunks/userThunks';
 
 export default function VacationActions(props) {
-	
+	const dispatch = useDispatch();
+	const userObject = useSelector(state => state.userReducer.currUser);
+
 	const deleteCard = () => {
-		props.setUserDestinations(prevState => [...prevState].filter(x => x._id !== props.cardId))
-		// !!!TODO: userService.editUser(remove the user's destination id). Just editing the redux store should update the list in the Album component
+		dispatch(deleteUserDestinationAsync({id: userObject._id, toBeDeleted: props.destinationId}))
 	}
 	
 	return (

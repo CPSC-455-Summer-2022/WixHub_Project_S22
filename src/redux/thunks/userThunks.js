@@ -29,3 +29,10 @@ export const logoutUserAsync = createAsyncThunk(
         return await UserService.logoutUser();
     }
 )
+
+export const deleteUserDestinationAsync = createAsyncThunk(
+    actionTypes.DELETE_USER_DESTINATION,
+    async (arg) => {
+        return await UserService.deleteUserDestination(arg);
+    }
+)

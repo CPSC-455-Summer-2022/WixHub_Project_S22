@@ -5,7 +5,6 @@ import Album from '../CommonComponents/Album';
 import { useEffect, useState } from "react";
 import GenerateRecommendationButton from './GenerateRecommendationButton';
 import destinationService from '../../services/destinationService';
-import userService from '../../services/userService';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
@@ -20,27 +19,26 @@ export default function UserDashboardPage() {
 		let isSubscribed = true // Prevent duplicate calls
 
 		async function getUserDestinations() {
-
-			const userJson = await userService.getUser(userObject._id)
-			const destinations = userJson.destinations
-
+			const destinations = userObject.destinations
+			const newDestinations = [];
 			// loop through user object's destinations and add them to userDestinations
 			for (const destinationId of destinations) {
 				// set userDestinations
 				const destinationJson = await destinationService.getDestinationByDestinationID(destinationId)
 				if (isSubscribed) {
-					setUserDestinations(prevState => [...prevState, destinationJson])
+					newDestinations.push(destinationJson)
 				}
+			}
+			if (isSubscribed) {
+				setUserDestinations(newDestinations)
 			}
 		}
 		getUserDestinations();
 
-		return () => isSubscribed = false;
-	}, [userObject])
-
-	useEffect(() => {
 		setDescription(`Hello, ${userObject.f_name}`);
-	}, [userObject])
+		return () => isSubscribed = false;
+	}, [userObject.destinations, userObject.f_name])
+
 
 	useEffect(() => {
 		setTimeout(() => { setOpen(false); }, 500);
@@ -57,7 +55,7 @@ export default function UserDashboardPage() {
 			<main>
 				<HeroUnit title={"User Dashboard"} description={description} />
 				<GenerateRecommendationButton text={"Generate another recommendation"} />
-				<Album userDestinations={userDestinations} setUserDestinations={setUserDestinations} hasActions={true} />
+				{userDestinations.length > 0 ? <Album userDestinations={userDestinations} setUserDestinations={setUserDestinations} hasActions={true} /> : null}
 			</main>
 			<Footer />
 		</React.Fragment>
