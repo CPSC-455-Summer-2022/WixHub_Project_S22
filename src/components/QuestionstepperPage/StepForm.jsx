@@ -8,6 +8,8 @@ import Paper from "@mui/material/Paper";
 import questionService from "../../services/questionService";
 import Grid from "@mui/material/Grid";
 import { useSelector } from 'react-redux';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Link } from "react-router-dom";
 
 
 // Step titles
@@ -39,7 +41,54 @@ function Success(props) {
     // !!!TODO: Call dispatch here and dispatch values
     // dispatch(props.values)
 
-    return <h1>success</h1>;
+    return (<Box
+        component="main"
+        sx={{
+            alignItems: 'center',
+            display: 'flex',
+            flexGrow: 1,
+            minHeight: '100%',
+            marginTop: 15
+        }}
+    >
+        <Container maxWidth="lg">
+            <Box
+                sx={{
+                    alignItems: 'center',
+                    display: 'flex',
+                    flexDirection: 'column'
+                }}
+            >
+                <img style={{ display: "block", marginLeft: 'auto', marginRight: 'auto', width: '50%' }} src='https://images.unsplash.com/photo-1497561813398-8fcc7a37b567?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' />
+                <br />
+                <br />
+                <Typography
+                    align="center"
+                    color="textPrimary"
+                    variant="h2"
+                >
+                    Success!!
+                </Typography>
+                <br />
+                <Typography
+                    align="center"
+                    color="textPrimary"
+                    variant="h5"
+                >
+                    You've completed your profile and are ready to get some destination recommendations ✈️
+                </Typography>
+                <Button
+                    startIcon={(<ArrowBackIcon fontSize="small" />)}
+                    sx={{ mt: 3 }}
+                    variant="contained"
+                    component={Link}
+                    to="/UserDashboardPage"
+                >
+                    Go to UserDashboard
+                </Button>
+            </Box>
+        </Container>
+    </Box>)
 }
 
 function FirstStep({ handleNext, handleBack, question, steps }) {
@@ -78,7 +127,7 @@ function FirstStep({ handleNext, handleBack, question, steps }) {
 }
 
 FirstStep.defaultProps = {
-    question: { }
+    question: {}
 }
 
 
@@ -134,7 +183,7 @@ const StepForm = () => {
             <Container maxWidth="md" sx={{ mb: 4 }}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     {activeStep === labels.length ? (
-                        <Success values={values}/>
+                        <Success values={values} />
                     ) : (
                         <>
                             <Stepper
