@@ -4,13 +4,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import questionService from "../../services/questionService";
 import { useNavigate } from "react-router-dom";
 import { Box, Container, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 export const DestinationRecommendationPage = () => {
 	const [open, setOpen] = useState(true)
     const [recommendedDestination, setRecommendedDestination] = useState({})
     const userObject = useSelector(state => state.userReducer.currUser)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         let isSubscribed = true // Prevent duplicate calls
@@ -27,7 +28,6 @@ export const DestinationRecommendationPage = () => {
 
             await new Promise(resolve => setTimeout(resolve, 2000));
             const destinationJsonResponse = await questionService.recommendationGenerator(questionsAndAnswers);
-
             if (isSubscribed) {
                 setRecommendedDestination(destinationJsonResponse);
             }
