@@ -31,7 +31,6 @@ export const DestinationPage = () => {
 	return (
 		<React.Fragment>
 			<ImageHeroUnit
-			// !!!TODO: Make this not overlap with Navbar when on smaller screens
 				backgroundImage={destination.image}
 				header={`${destination.city}, ${destination.country}`}
 				description={destination.description}
