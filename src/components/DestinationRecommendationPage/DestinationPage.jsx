@@ -5,7 +5,7 @@ import Typography from '../CommonComponents/Typography';
 import { ActivityAlbum } from "./ActivityAlbum";
 
 export const DestinationPage = () => {
-	const location = useLocation()
+	const { state } = useLocation()
 	const [destination, setDestination] = useState({
 		image: "",
 		city: "",
@@ -14,11 +14,18 @@ export const DestinationPage = () => {
 		activityRecommendations: []
 	})
 
+	const isObjectEmpty = (obj) => {
+		return (obj
+				&& Object.keys(obj).length === 0
+				&& Object.getPrototypeOf(obj) === Object.prototype
+		);
+	}
+
 	useEffect(() => {
-		if (location.state.destination) {
-			setDestination(location.state.destination)
+		if (!isObjectEmpty(state.destination)) {
+			setDestination(state.destination)
 		}
-	}, [location])
+	}, [state])
 	
 	
 	return (
@@ -36,7 +43,7 @@ export const DestinationPage = () => {
 			<Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
         		Activities in {destination.city}
       		</Typography>
-      		<ActivityAlbum activities={destination.activityRecommendations} />
+      		{destination.activityRecommendations > 0 ? <ActivityAlbum activities={destination.activityRecommendations} /> : null}
 		</React.Fragment>
 	);
 }
