@@ -7,15 +7,18 @@ import { PasswordSection } from './PasswordSection';
 import { AccountSection } from './AccountSection';
 import { QuestionnairePage } from '../QuestionnairePage/QuestionnairePage';
 import CustomizedSnackbar from "../CommonComponents/CustomizedSnackbar";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { editUserAsync } from '../../redux/thunks/userThunks';
+import { REQUEST_STATE } from "../../redux/utils";
 
 export default function AccountSettingsPage() {
 	const dispatch = useDispatch();
 	const [backdropOpen, setBackdropOpen] = useState(true);
-	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const [severity, setSeverity] = useState("");
 	const [message, setMessage] = useState("");
+	const userStoreState = useSelector(state => state.userReducer)
+	const [snackbarOpen, setSnackbarOpen] = useState(false);
+	const [buttonClicked, setButtonClicked] = useState(false);
 
 	useEffect(() => {
 		setTimeout(() => {  setBackdropOpen(false); }, 500);
@@ -23,18 +26,24 @@ export default function AccountSettingsPage() {
 
 	const save = (id, updatedObject, message) => {
 		dispatch(editUserAsync({id: id, toBeUpdated: updatedObject}))
-
-		// if (dispatch was successful) {
-		// 	setSeverity("success")
-		// } else {
-		// 	setSeverity("error")
-		// }
-
-		setSeverity("success")
-
 		setMessage(message)
-		setSnackbarOpen(true)
+		setButtonClicked(true)
 	}
+
+	useEffect(() => {
+		if (buttonClicked) {
+			if (userStoreState.editUser === REQUEST_STATE.FULFILLED) {
+				setSeverity("success")
+				setSnackbarOpen(true)
+				setButtonClicked(false)
+			} else if (userStoreState.editUser === REQUEST_STATE.REJECTED) {
+				setSeverity("error")
+				setMessage(userStoreState.error.message)
+				setSnackbarOpen(true)
+				setButtonClicked(false)
+			}
+		}
+	}, [userStoreState.editUser, userStoreState.error, buttonClicked])
 
 	return (
 		<React.Fragment>

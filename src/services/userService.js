@@ -63,12 +63,12 @@ const editUser = async (arg) => {
         mode: 'cors'
     });
 
-    const data = await response.json();
     if (!response.ok) {
-        const errorMsg = data?.message;
-        throw new Error(errorMsg)
+        const errorMsg = response.statusText // !!!TODO: Ask Josh for a more helpful error message
+        throw new Error(errorMsg) // TODO!!! Figure out how to pass in errors into thunk
     }
 
+    const data = await response.json();
     return data;
 };
 
