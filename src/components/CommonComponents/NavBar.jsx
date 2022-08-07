@@ -21,8 +21,11 @@ export const NavBar = () => {
 		  
 			if (decodedToken.exp * 1000 < Date.now()) {
 				logOutProcess();
+			} else if (localStorage.getItem('persistLogin') === 'false') {
+				logOutProcess();
 			}
 		  } else console.log('No token found')
+// eslint-disable-next-line
 	}, [dispatch]);
 
 	function logOutProcess() {
