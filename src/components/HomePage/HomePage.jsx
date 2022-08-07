@@ -42,6 +42,7 @@ export default function LandingPage() {
         buttonDescription="Find Vacation"
         linkTo="/DestinationRecommendationPage"
         smallText="Discover the experience"
+        breakpoint="sm"
       />
       <ProductValues />
       <Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
