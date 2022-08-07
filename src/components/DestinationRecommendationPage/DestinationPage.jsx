@@ -43,7 +43,7 @@ export const DestinationPage = () => {
 			<Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
         		Activities in {destination.city}
       		</Typography>
-      		{destination.activityRecommendations > 0 ? <ActivityAlbum activities={destination.activityRecommendations} /> : null}
+      		<ActivityAlbum activities={destination.activityRecommendations} />
 		</React.Fragment>
 	);
 }
