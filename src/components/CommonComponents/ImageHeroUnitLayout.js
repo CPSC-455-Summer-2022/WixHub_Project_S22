@@ -51,7 +51,7 @@ function ImageHeroUnitLayout(props) {
             top: 0,
             bottom: 0,
             backgroundColor: 'common.black',
-            opacity: 0.4, //!!!TODO: Ask Josh how dark he wants background
+            opacity: 0.4,
             zIndex: -1,
           }}
         />

@@ -64,8 +64,8 @@ const editUser = async (arg) => {
     });
 
     if (!response.ok) {
-        const errorMsg = response.statusText // !!!TODO: Ask Josh for a more helpful error message
-        throw new Error(errorMsg) // TODO!!! Figure out how to pass in errors into thunk
+        const errorMsg = await response.text()
+        throw new Error(errorMsg)
     }
 
     const data = await response.json();
