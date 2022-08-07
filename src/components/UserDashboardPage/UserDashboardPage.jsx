@@ -8,6 +8,7 @@ import destinationService from '../../services/destinationService';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
+import userService from "../../services/userService";
 
 export default function UserDashboardPage() {
 	const userObject = useSelector((state) => state.userReducer.currUser);
@@ -19,7 +20,9 @@ export default function UserDashboardPage() {
 		let isSubscribed = true // Prevent duplicate calls
 
 		async function getUserDestinations() {
-			const destinations = userObject.destinations
+			const userJson = await userService.getUser(userObject._id)
+			const destinations = userJson.destinations
+
 			const newDestinations = [];
 			// loop through user object's destinations and add them to userDestinations
 			for (const destinationId of destinations) {
@@ -37,7 +40,7 @@ export default function UserDashboardPage() {
 
 		setDescription(`Hello, ${userObject.f_name}`);
 		return () => isSubscribed = false;
-	}, [userObject.destinations, userObject.f_name])
+	}, [userObject])
 
 
 	useEffect(() => {
