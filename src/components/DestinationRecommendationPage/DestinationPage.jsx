@@ -15,7 +15,9 @@ export const DestinationPage = () => {
 	})
 
 	useEffect(() => {
-		setDestination(location.state.destination)
+		if (location.state.destination) {
+			setDestination(location.state.destination)
+		}
 	}, [location])
 	
 	
