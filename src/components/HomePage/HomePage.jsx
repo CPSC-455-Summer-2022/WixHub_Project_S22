@@ -29,7 +29,7 @@ const homePageDestinations = [
 ];
 
 const backgroundImage =
-  'https://source.unsplash.com/GA2sc8nIOsk';
+  'https://source.unsplash.com/OnXvKZldSJ0';
 
 export default function LandingPage() {
   return (
