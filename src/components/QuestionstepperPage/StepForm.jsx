@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 
 // Step titles
 const labels = ['1', '2', '3', '4', '5', '6', '7', '8']
-const handleSteps = (step: number, handleNext, handleBack, values) => {
+const handleSteps = (step, handleNext, handleBack, values) => {
     switch (step) {
         case 0:
             return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question1} steps={step} />
@@ -35,21 +35,14 @@ const handleSteps = (step: number, handleNext, handleBack, values) => {
     }
 }
 
-function Success() {
+function Success(props) {
+    // !!!TODO: Call dispatch here and dispatch values
+    // dispatch(props.values)
+
     return <h1>success</h1>;
 }
 
 function FirstStep({ handleNext, handleBack, question, steps }) {
-    if (question == undefined) {
-        question = {
-            question: "What type of traveller are you?",
-            image: "https://images.unsplash.com/photo-1524850011238-e3d235c7d4c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=564&q=80",
-            response1: "I like to go with the flow",
-            response2: "I plan everything",
-            response3: "I just want to relax",
-            response4: "I want to do everything"
-        };
-    }
     return (
         <div>
             <Grid container spacing={2}>
@@ -84,6 +77,10 @@ function FirstStep({ handleNext, handleBack, question, steps }) {
         </div>);
 }
 
+FirstStep.defaultProps = {
+    question: { }
+}
+
 
 const StepForm = () => {
     const [activeStep, setActiveStep] = useState(0);
@@ -91,7 +88,11 @@ const StepForm = () => {
     const [values, setValues] = useState({});
     const userObject = useSelector((state) => state.userReducer.currUser);
     // Proceed to next step
-    const handleNext = () => setActiveStep((prev) => prev + 1);
+    const handleNext = () => {
+        setActiveStep((prev) => prev + 1)
+        // update the values here!!!TODO
+        // setValues(...)
+    };
     // Go back to prev step
     const handleBack = () => setActiveStep((prev) => prev - 1);
 
@@ -133,7 +134,7 @@ const StepForm = () => {
             <Container maxWidth="md" sx={{ mb: 4 }}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     {activeStep === labels.length ? (
-                        <Success />
+                        <Success values={values}/>
                     ) : (
                         <>
                             <Stepper
