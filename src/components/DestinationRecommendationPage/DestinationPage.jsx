@@ -39,6 +39,7 @@ export const DestinationPage = () => {
 				linkTo="/UserDashboardPage"
 				buttonDescription="Back to Dashboard"
 				smallText=""
+				breakpoint="xl"
 			/>
 			<Typography variant="h3" marked="center" align="center" component="h2" marginTop={5} marginBottom={5}>
         		Activities in {destination.city}
