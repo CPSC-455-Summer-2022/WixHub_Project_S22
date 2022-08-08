@@ -10,12 +10,10 @@ import {
   TextField,
   Container
 } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
-import { editUserAsync } from '../../redux/thunks/userThunks';
+import { useSelector } from 'react-redux';
 
 export const AccountSection = (props) => {
   const userObject = useSelector((state) => state.userReducer.currUser);
-  const dispatch = useDispatch();	
 
   const [values, setValues] = useState({
 	firstName: userObject.f_name,
@@ -42,8 +40,7 @@ export const AccountSection = (props) => {
 		country: values.country
 	}
 
-	dispatch(editUserAsync({id: userObject._id, toBeUpdated: updatedObject}))
-	props.setSnackbarOpen(true)
+	props.save(userObject._id, updatedObject, "account info updated!")
 }
 
   return (

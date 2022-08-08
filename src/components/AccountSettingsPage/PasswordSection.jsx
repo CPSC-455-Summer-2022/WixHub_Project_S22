@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { Box, Button, Card, CardContent, CardHeader, Divider, TextField, Container } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { editUserAsync } from '../../redux/thunks/userThunks';
+import { useSelector } from 'react-redux';
 
 export const PasswordSection = (props) => {
   const userObject = useSelector((state) => state.userReducer.currUser);
-  const dispatch = useDispatch();
   const [error, setError] = useState(false)
 
   const [values, setValues] = useState({
@@ -22,7 +20,7 @@ export const PasswordSection = (props) => {
   };
 
   const save = (event) => {
-	// prevent default page reload
+	// prevent default page reload for form submissions
 	event.preventDefault()
 
 	if (values.password !== values.confirm) {
@@ -33,13 +31,13 @@ export const PasswordSection = (props) => {
 		password: values.password
 	}
 
-	dispatch(editUserAsync({id: userObject._id, toBeUpdated: updatedObject}))
+	props.save(userObject._id, updatedObject, "password updated!")
+
+	// Clear password values (aesthetic)
 	setValues({
 		password: '',
 		confirm: ''
 	})
-
-	props.setSnackbarOpen(true)
 }
 
   return (
