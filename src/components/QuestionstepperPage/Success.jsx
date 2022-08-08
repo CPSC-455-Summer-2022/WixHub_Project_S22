@@ -1,24 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import { Box, Button, Container } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from "react-router-dom";
 
 export function Success(values, save, id) {
-    const saveResponse = () => {
-        const updatedObject = {
-            question_responses: {}
+    useEffect(() => {
+        const saveResponse = () => {
+            const updatedObject = {
+                question_responses: {}
+            }
+
+            for (let count = 1; count <= 8; count++) {
+                let question = values.values["question" + count].question;
+                updatedObject.question_responses[question] = values.values.responses[count];
+            }
+
+            values.save(values.id, updatedObject, "questions updated!")
         }
-
-        for (let count = 1; count <= 8; count++) {
-            let question = values.values["question" + count].question;
-            updatedObject.question_responses[question] = values.values.responses[count];
-        }
-
-        values.save(values.id, updatedObject, "questions updated!")
-    }
-
-    saveResponse();
+        saveResponse();
+    }, [values]);
 
     return (<Box
         component="main"
