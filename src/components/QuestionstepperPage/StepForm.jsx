@@ -45,8 +45,6 @@ export const StepForm = (props) => {
             ...values,
             "responses" : allResponse
         };
-        console.log(allResponse);
-        console.log(value);
         setValues(value);
     };
 

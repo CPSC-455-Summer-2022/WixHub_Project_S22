@@ -25,7 +25,6 @@ export const NavBar = () => {
 				logOutProcess();
 			}
 		  } else console.log('No token found')
-// eslint-disable-next-line
 	}, [dispatch]);
 
 	function logOutProcess() {

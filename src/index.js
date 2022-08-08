@@ -110,5 +110,3 @@ root.render(
     </ThemeProvider>
   </React.StrictMode>
 );
-// !!!TODO: Sherman to figure out how to re-route if manually entering a url
-// and not logged in (because right now if I go to Account url when not logged in, it lets me)

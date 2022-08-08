@@ -15,11 +15,6 @@ export function Success(values, save, id) {
             updatedObject.question_responses[question] = values.values.responses[count];
         }
 
-        console.log(save);
-        console.log(values);
-        console.log(updatedObject);
-        console.log(values.id);
-
         values.save(values.id, updatedObject, "questions updated!")
     }
 
