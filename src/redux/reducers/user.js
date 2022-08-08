@@ -15,7 +15,11 @@ const INITIAL_STATE = {
 const userSlice = createSlice({
     name: 'user',
     initialState: INITIAL_STATE,
-    reducers: {},
+    reducers: {
+        resetEditUserStatus(state) {
+            state.editUser = REQUEST_STATE.IDLE
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(addUserAsync.pending, (state) => {
@@ -81,4 +85,5 @@ const userSlice = createSlice({
     }
 });
 
+export const { resetEditUserStatus } = userSlice.actions
 export default userSlice.reducer;

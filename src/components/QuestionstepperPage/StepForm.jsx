@@ -3,7 +3,7 @@ import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Typography from '@material-ui/core/Typography'
-import {Box, Button, Container, MenuItem, Select, TextField} from "@mui/material";
+import { Box, Button, Container, TextField } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import questionService from "../../services/questionService";
 import Grid from "@mui/material/Grid";
@@ -200,6 +200,21 @@ const StepForm = () => {
                         image: obj.questionImage,
                         response: obj.destinationMapping.map(r => r.response)
                     }];
+                    const currQuestion = obj.question
+                    const currImage = obj.questionImage
+                    const r1 = obj.destinationMapping[0].response
+                    const r2 = obj.destinationMapping[1].response
+                    const r3 = obj.destinationMapping[2].response
+                    const r4 = obj.destinationMapping[3].response
+                    num += 1
+                    return ["question" + num.toString(), {
+                        question: currQuestion,
+                        image: currImage,
+                        response1: r1,
+                        response2: r2,
+                        response3: r3,
+                        response4: r4
+                    }]
                 }));
                 setValues(values)
             }
