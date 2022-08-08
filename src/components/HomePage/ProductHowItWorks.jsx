@@ -68,7 +68,7 @@ function ProductHowItWorks() {
                 <Box sx={number}>2.</Box>
                 <TimelineOutlinedIcon fontSize='large' />
                 <Typography variant="h5" align="center">
-                  Our algorithm uses machine learning to find the best place for you to travel to.
+                  Our advanced algorithm matches you with the optimal vacation destination based on your profile.
                 </Typography>
               </Box>
             </Grid>
