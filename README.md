@@ -42,21 +42,21 @@ The objective of youfly is to use a **Machine Learning Tensorflow model** to ena
 Below are an evolving list of project requirements to develop a prototype version of youfly for CPSC 455. It will be continuously expanded on through GitHub's Project feature this summer as we approach August Demo.
 
 ### Minimal Requirements
-- Simple modern design and easy to use interface 
-- Straightforward and comprehensive profile creation process that maximizes retention
-- Vacation Destination matching to user profile
+- Simple modern design and easy to use interface ✅
+- Straightforward and comprehensive profile creation process that maximizes retention ✅
+- Vacation Destination matching to user profile ✅
 
 ### Standard Requirements (No ML Implemented)
-- Interactive welcome page with walk through tutorial
-- Multiple optimal travel destination options
-- Curating pre-planned travel recommendations in MongoDB
-- API integration with TripAdvisor to get a destinations top activities
+- Interactive welcome page with walk through tutorial ✅
+- Multiple optimal travel destination options ✅
+- Curating pre-planned travel recommendations in MongoDB ✅
+- Displaying top activities for each recommended destination ✅
 
 ### Stretch Requirements (Possible ML Implementation)
-- Selecting activities/excursions within that travel destination that match individual profile
-- Machine Learning model to ensure continuous optimization for travel destination matching
-- Profile linking and grouping between multiple individuals/parties looking to travel together
-- Direct booking capabilities through external booking site APIs (viability tbd)
+- Selecting activities/excursions within that travel destination that match individual profile ⛔
+- Machine Learning model to ensure continuous optimization for travel destination matching ⛔
+- Profile linking and grouping between multiple individuals/parties looking to travel together ⛔
+- Direct booking capabilities through external booking site APIs (viability tbd) ⛔
 
 ### Minimal Requirements Breakdown *(still expanding)*
 1. Simple modern design and easy to use interface 
