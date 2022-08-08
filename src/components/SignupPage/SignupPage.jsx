@@ -19,6 +19,9 @@ import userService from '../../services/userService'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+import { REQUEST_STATE } from "../../redux/utils";
+import { resetLoginUserStatus } from "../../redux/reducers/user";
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -38,13 +41,13 @@ export default function SignUp() {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = React.useState(false);
+  const userStoreState = useSelector(state => state.userReducer)
 
   React.useEffect(() => {
     if (userObject._id !== undefined) {
       nav("/UserDashboardPage");
     };
-// eslint-disable-next-line
-  }, []);
+  }, [nav, userObject._id]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,18 +59,30 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     });
-    const res = await dispatch(loginUserAsync({
+    dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),
     }));
-    if (res.error) {
-      setError(true);
-    } else {
-    const userData = res.payload;
-    context.login(userData);
-    nav("/QuestionsStepperPage");
-    }
   };
+
+  React.useEffect(() => {
+		switch(userStoreState.loginUser) {
+			case REQUEST_STATE.FULFILLED:
+				const userData = userStoreState.loginUserPayload;
+        context.login(userData);
+        nav("/QuestionnairePage");
+
+				dispatch(resetLoginUserStatus())
+				break;
+			case REQUEST_STATE.REJECTED:
+				setError(true);
+
+				dispatch(resetLoginUserStatus())
+				break;
+			default:
+				break;
+		}
+	}, [userStoreState.loginUser, userStoreState.error, context, nav, userStoreState.loginUserPayload, dispatch]);
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
