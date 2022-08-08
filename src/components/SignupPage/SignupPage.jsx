@@ -70,7 +70,7 @@ export default function SignUp() {
 			case REQUEST_STATE.FULFILLED:
 				const userData = userStoreState.loginUserPayload;
         context.login(userData);
-        nav("/QuestionnairePage");
+        nav("/QuestionsStepperPage");
 
 				dispatch(resetLoginUserStatus())
 				break;
