@@ -16,16 +16,21 @@ export const NavBar = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		function logOutNow() {
+			logout();
+			dispatch(logoutUserAsync());
+		};
+
 		if (localStorage.getItem('jwtToken')) {
 			const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
 		  
 			if (decodedToken.exp * 1000 < Date.now()) {
-				logOutProcess();
+				logOutNow();
 			} else if (localStorage.getItem('persistLogin') === 'false') {
-				logOutProcess();
+				logOutNow();
 			}
 		  } else console.log('No token found')
-	}, [dispatch]);
+	}, [dispatch, logout]);
 
 	function logOutProcess() {
 		logout();
