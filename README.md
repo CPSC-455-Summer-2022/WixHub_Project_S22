@@ -116,10 +116,6 @@ Since we used React for the frontend’s rendering and Material UI for styling, 
 ## Functionality and Feature Set
 
 ### Basic User Flows
-
-<p align="center">
-<img src="/assets/questionFlow.png" width="700px"/>
-  </p>
   
 ### Above and Beyond Functionality 
 Mention SwaggerUI documentation
