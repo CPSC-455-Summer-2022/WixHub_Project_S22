@@ -86,6 +86,24 @@ Description on how tech from Units 1-5 are implemented within our application.
 <p align="center">
 <img src="/assets/techStack.png" width="1000px"/>
   </p>
+  
+### React
+React was central in developing our frontend’s most important feature, the functionality and rendering of data. We utilized components to build each and every page you see from the ground up, along with rendering the component’s state and making API calls to the backend. Compared to other tech such as vanilla Javascript/CSS/HTML, React is the clear winner since it offers components that are both reusable and loosely coupled. From the User Dashboard to the Destination Card, we leveraged React components to build these crucial parts of our web app.
+
+### Redux
+Since React’s component-level state was not suitable for state that was needed at multiple different components throughout the app, we integrated Redux to create a store that acts as the single source of truth for our current user’s data. Since the user’s data depended on the server, we used Redux Thunks as middleware to dispatch asynchronous functions to the store.
+
+### Material UI
+Material UI was essential in making our frontend beautiful and responsive. Material UI gave us styling components that elevated the look at feel of our web app. We overrode some of the out-of-the-box styled components that we integrated into our frontend to make them better suit our web app’s style and brand. Compared to competitors such as Bootstrap, we thought Material UI has surpassed it in recent years, offering more visually appealing components that are easier to use.
+
+### React Router
+We used React Router DOM to allow the user to navigate through our React components. Traditionally, websites were multiple pages. However, React is a single-page web app, and to navigate through this (and to render different components on subsequent pages), we used React Router’s Route and Link elements. These elements are the backbone to allowing the user to navigate through our app when clicking on different buttons in the Navbar and visiting different destination recommendation cards.
+
+### Redux Persist
+Detecting when a user was logged in and what data the redux store had after the user left the web app seemed like a very hard problem at first. However, we overcame this problem by using Redux Persist, which gave us the necessary methods to persist the current session’s user data and rehydrate it when re-visiting the website.
+
+### Vanilla Javascript/CSS/HTML
+Since we used React for the frontend’s rendering and Material UI for styling, we didn’t have to rely that much on the old way of making a website. However, one does not simply make a React app without writing at least a little bit of this. We obviously had to use the Javascript language for creating functions in React. Sometimes we would use some inline CSS to style a few components when we wanted to make small customizations. Finally, React uses JSX, which encompasses the tags that look similar to HTML.
 
 ## Functionality and Feature Set
 
