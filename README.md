@@ -29,7 +29,7 @@ Youfly is a **travel booking web application** that allows users to create a per
 ## Project Description
 
 <p align="center">
-<img src="/assets/youflyIntro.png" width="700px"/>
+<img src="/assets/youflyIntro.png" width="800px"/>
   </p>
 
 Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and the top activities to do at that destination. Youfly is geared towards those **eager travellers who have been going stir crazy** over the course of the pandemic and are **ready to travel** with the reduced restrictions but **don't know where to go** first. Youfly makes the decision for our users by finding the optimal destination for each and every traveller. 
@@ -113,12 +113,34 @@ Detecting when a user was logged in and what data the redux store had after the 
 ### Vanilla Javascript/CSS/HTML
 Since we used React for the frontend’s rendering and Material UI for styling, we didn’t have to rely that much on the old way of making a website. However, one does not simply make a React app without writing at least a little bit of this. We obviously had to use the Javascript language for creating functions in React. Sometimes we would use some inline CSS to style a few components when we wanted to make small customizations. Finally, React uses JSX, which encompasses the tags that look similar to HTML.
 
+### Express.js
+TODO - Josh
+
+### MongoDB
+TODO - Josh
+
+### SwaggerUI
+TODO - Josh
+
 ## Functionality and Feature Set
 
+
+  <p align="center">
+<img src="/assets/featureFunctionality.png" width="700px"/>
+  </p>
+  
+
 ### Basic User Flows
+
+  <p align="center">
+<img src="/assets/userFlow.png" width="700px"/>
+  </p>
   
 ### Above and Beyond Functionality 
-Mention SwaggerUI documentation
+
+  <p align="center">
+<img src="/assets/uniqueFunctionality.png" width="900px"/>
+  </p>
 
 ## Next Steps
 
