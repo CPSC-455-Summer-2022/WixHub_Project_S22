@@ -1,174 +1,24 @@
-import React, { useContext, useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
-import Typography from '@material-ui/core/Typography'
-import { Box, Button, Container, TextField } from "@mui/material";
+import { Container } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import questionService from "../../services/questionService";
-import Grid from "@mui/material/Grid";
 import {useDispatch, useSelector} from 'react-redux';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Link } from "react-router-dom";
 import {editUserAsync} from "../../redux/thunks/userThunks";
-
-
-// Step titles
-const labels = ['1', '2', '3', '4', '5', '6', '7', '8']
-const handleSteps = (step, handleNext, handleBack, storeResponse, values) => {
-    let questionNum = step + 1;
-    return <FirstStep handleNext={handleNext} handleBack={handleBack} storeResponse={storeResponse} question={values["question" + questionNum]} steps={step} />;
-}
-
-function Success(values, save, id) {
-    const saveResponse = () => {
-        const updatedObject = {
-            question_responses: {}
-        }
-
-        for (let count = 1; count <= 8; count++) {
-            let question = values.values["question" + count].question;
-            updatedObject.question_responses[question] = values.values.responses[count];
-        }
-
-        console.log(save);
-        console.log(values);
-        console.log(updatedObject);
-        console.log(values.id);
-
-        values.save(values.id, updatedObject, "questions updated!")
-    }
-
-    saveResponse();
-
-    return (<Box
-        component="main"
-        sx={{
-            alignItems: 'center',
-            display: 'flex',
-            flexGrow: 1,
-            minHeight: '100%',
-            marginTop: 15
-        }}
-    >
-        <Container maxWidth="lg">
-            <Box
-                sx={{
-                    alignItems: 'center',
-                    display: 'flex',
-                    flexDirection: 'column'
-                }}
-            >
-                <img style={{ display: "block", marginLeft: 'auto', marginRight: 'auto', width: '50%' }} src='https://images.unsplash.com/photo-1497561813398-8fcc7a37b567?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80' />
-                <br />
-                <br />
-                <Typography
-                    align="center"
-                    color="textPrimary"
-                    variant="h2"
-                >
-                    Success!!
-                </Typography>
-                <br />
-                <Typography
-                    align="center"
-                    color="textPrimary"
-                    variant="h5"
-                >
-                    You've completed your profile and are ready to get some destination recommendations ✈️
-                </Typography>
-                <Button
-                    startIcon={(<ArrowBackIcon fontSize="small" />)}
-                    sx={{ mt: 3 }}
-                    variant="contained"
-                    component={Link}
-                    to="/UserDashboardPage"
-                >
-                    Go to UserDashboard
-                </Button>
-            </Box>
-        </Container>
-    </Box>)
-}
-
-function FirstStep({ handleNext, handleBack, storeResponse, question, steps }) {
-    if (Object.keys(question).length === 0) {
-        return null;
-    }
-    const handleChange = (event) => {
-        let targetResponse = event.target.value;
-        let responseNumber = 1;
-        for (let r of question.response) {
-            if (r === targetResponse) {
-                break;
-            }
-            responseNumber++;
-        }
-        storeResponse(steps, targetResponse, "" + responseNumber);
-    };
-    return (
-        <div>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <img style={{ display: "block", marginLeft: 'auto', marginRight: 'auto', width: '50%', }} src={question.image} />
-                </Grid>
-            </Grid>
-
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <div style={{ margin: '30px 0 0px' }}>
-                        <Typography variant="h4" align="center">
-                            {question.question}
-                        </Typography>
-                    </div>
-                </Grid>
-                <Grid item xs={12} sm={6} style={{ display: "block", marginLeft: 'auto', marginRight: 'auto' }}>
-                    <TextField variant="standard" margin="normal" fullWidth select SelectProps={{ native: true }} label="Response" name="response"
-                               onChange={handleChange}>
-                        {question.response.map((response, index) => {
-                            let itemKey = steps + "-" + index;
-                            return <option key={itemKey}>{response}</option>;
-                        })}
-                    </TextField>
-                </Grid>
-            </Grid>
-
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Button variant='contained' sx={{ mt: 3, ml: 1 }} color='primary' disabled={steps == 0} onClick={handleBack}>Back</Button>
-                <Button variant='contained' sx={{ mt: 3, ml: 1 }} color='primary' onClick={handleNext}>Next</Button>
-            </Box>
-        </div>);
-}
-
-FirstStep.defaultProps = {
-    question: {}
-}
+import { CurrentStep } from "./CurrentStep";
+import { Success } from "./Success";
 
 export const StepForm = (props) => {
     const [activeStep, setActiveStep] = useState(0);
-    const [questions, setQuestions] = useState([]);
     const [values, setValues] = useState({});
     const dispatch = useDispatch();
-    const [message, setMessage] = useState("");
     const userObject = useSelector((state) => state.userReducer.currUser);
-    const toBeUpdated = async function(){
-        const questionJson = await questionService.getQuestions()
-        setQuestions(questionJson)
-        const values = Object.fromEntries(questionJson.map(obj => {
-            const currQuestion = obj.question
-                return [currQuestion, {
-                    response: '',
-                    responseNumber: 0
-                }]
-            }));
-        setValues(values)
-    }
 
     const save = (id, updatedObject, message) => {
         dispatch(editUserAsync({id: id, toBeUpdated: updatedObject}))
-        setMessage(message)
     }
-    // console.log(props.state);
 
     if (Object.keys(values).length !== 0 && !values["responses"]) {
         Object.keys(values).forEach((key, index) => {
@@ -214,7 +64,6 @@ export const StepForm = (props) => {
         async function getQuestions() {
             const questionJson = await questionService.getQuestions()
             if (isSubscribed) {
-                setQuestions(questionJson)
                 let num = 0
                 const values = Object.fromEntries(questionJson.map(obj => {
                     let newIndex = ++num;
@@ -231,6 +80,13 @@ export const StepForm = (props) => {
 
         return () => isSubscribed = false;
     }, [userObject])
+
+    // Step titles
+    const labels = ['1', '2', '3', '4', '5', '6', '7', '8']
+    const handleSteps = (step, handleNext, handleBack, storeResponse, values) => {
+        let questionNum = step + 1;
+        return <CurrentStep handleNext={handleNext} handleBack={handleBack} storeResponse={storeResponse} question={values["question" + questionNum]} steps={step} />;
+    }
 
     return (
         <>
