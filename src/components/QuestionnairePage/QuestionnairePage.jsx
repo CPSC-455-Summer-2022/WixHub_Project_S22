@@ -26,10 +26,11 @@ export const QuestionnairePage = (props) => {
 			if (isSubscribed) {
 				setQuestions(questionJson)
 				const values = Object.fromEntries(questionJson.map(obj => {
-					const currQuestion = obj.question 
+					const currQuestion = obj.question
+					const existingUserResponses = userObject.question_responses
 					return [currQuestion, {
-						response: userObject.question_responses[currQuestion].response,
-						responseNumber: userObject.question_responses[currQuestion].responseNumber
+						response: existingUserResponses ? existingUserResponses[currQuestion].response : "",
+						responseNumber: existingUserResponses ? existingUserResponses[currQuestion].responseNumber : ""
 					}]
 				}));
 				setValues(values)
