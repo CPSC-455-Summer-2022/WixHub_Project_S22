@@ -7,9 +7,10 @@ import { Box, Button, Container, TextField } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import questionService from "../../services/questionService";
 import Grid from "@mui/material/Grid";
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from "react-router-dom";
+import {editUserAsync} from "../../redux/thunks/userThunks";
 
 
 // Step titles
@@ -19,9 +20,26 @@ const handleSteps = (step, handleNext, handleBack, storeResponse, values) => {
     return <FirstStep handleNext={handleNext} handleBack={handleBack} storeResponse={storeResponse} question={values["question" + questionNum]} steps={step} />;
 }
 
-function Success(props) {
-    // !!!TODO: Call dispatch here and dispatch values
-    // dispatch(props.values)
+function Success(values, save, id) {
+    const saveResponse = () => {
+        const updatedObject = {
+            question_responses: {}
+        }
+
+        for (let count = 1; count <= 8; count++) {
+            let question = values.values["question" + count].question;
+            updatedObject.question_responses[question] = values.values.responses[count];
+        }
+
+        console.log(save);
+        console.log(values);
+        console.log(updatedObject);
+        console.log(values.id);
+
+        values.save(values.id, updatedObject, "questions updated!")
+    }
+
+    saveResponse();
 
     return (<Box
         component="main"
@@ -86,7 +104,7 @@ function FirstStep({ handleNext, handleBack, storeResponse, question, steps }) {
             }
             responseNumber++;
         }
-        storeResponse(steps, targetResponse, responseNumber);
+        storeResponse(steps, targetResponse, "" + responseNumber);
     };
     return (
         <div>
@@ -126,12 +144,12 @@ FirstStep.defaultProps = {
     question: {}
 }
 
-
-
-const StepForm = () => {
+export const StepForm = (props) => {
     const [activeStep, setActiveStep] = useState(0);
     const [questions, setQuestions] = useState([]);
     const [values, setValues] = useState({});
+    const dispatch = useDispatch();
+    const [message, setMessage] = useState("");
     const userObject = useSelector((state) => state.userReducer.currUser);
     const toBeUpdated = async function(){
         const questionJson = await questionService.getQuestions()
@@ -146,11 +164,17 @@ const StepForm = () => {
         setValues(values)
     }
 
+    const save = (id, updatedObject, message) => {
+        dispatch(editUserAsync({id: id, toBeUpdated: updatedObject}))
+        setMessage(message)
+    }
+    // console.log(props.state);
+
     if (Object.keys(values).length !== 0 && !values["responses"]) {
         Object.keys(values).forEach((key, index) => {
             let defaultResponse = {
                 response: values[key].response[0],
-                responseNumber: 1
+                responseNumber: "1"
             };
             if (!values["responses"]) {
                 values["responses"] = {};
@@ -158,8 +182,6 @@ const StepForm = () => {
             values["responses"][index + 1] = defaultResponse;
         });
     }
-
-    console.log(values);
 
     const storeResponse = (step, response, responseNumber) => {
         step++;
@@ -173,6 +195,7 @@ const StepForm = () => {
             ...values,
             "responses" : allResponse
         };
+        console.log(allResponse);
         console.log(value);
         setValues(value);
     };
@@ -200,21 +223,6 @@ const StepForm = () => {
                         image: obj.questionImage,
                         response: obj.destinationMapping.map(r => r.response)
                     }];
-                    const currQuestion = obj.question
-                    const currImage = obj.questionImage
-                    const r1 = obj.destinationMapping[0].response
-                    const r2 = obj.destinationMapping[1].response
-                    const r3 = obj.destinationMapping[2].response
-                    const r4 = obj.destinationMapping[3].response
-                    num += 1
-                    return ["question" + num.toString(), {
-                        question: currQuestion,
-                        image: currImage,
-                        response1: r1,
-                        response2: r2,
-                        response3: r3,
-                        response4: r4
-                    }]
                 }));
                 setValues(values)
             }
@@ -229,7 +237,7 @@ const StepForm = () => {
             <Container maxWidth="md" sx={{ mb: 4 }}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     {activeStep === labels.length ? (
-                        <Success values={values} />
+                        <Success values={values} save={save} id={userObject._id}/>
                     ) : (
                         <>
                             <Stepper
@@ -250,5 +258,3 @@ const StepForm = () => {
         </>
     )
 }
-
-export default StepForm

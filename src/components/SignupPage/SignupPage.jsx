@@ -65,7 +65,7 @@ export default function SignUp() {
     } else {
     const userData = res.payload;
     context.login(userData);
-    nav("/QuestionnairePage");
+    nav("/QuestionsStepperPage");
     }
   };
 

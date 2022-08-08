@@ -45,7 +45,7 @@ import blue from '@mui/material/colors/blue';
 import purple from '@mui/material/colors/purple';
 import { QuestionnairePage } from './components/QuestionnairePage/QuestionnairePage';
 import { DestinationPage } from './components/DestinationRecommendationPage/DestinationPage';
-import StepForm from "./components/QuestionstepperPage/StepForm";
+import {StepForm} from "./components/QuestionstepperPage/StepForm";
 //
 
 const persistConfig = {
