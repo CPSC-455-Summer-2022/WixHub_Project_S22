@@ -94,12 +94,11 @@ root.render(
                   <Route path="/" element={<HomePage />} />
                   <Route path="LoginPage" element={<LoginPage />} />
                   <Route path="SignUpPage" element={<SignUpPage />} />
-                  <Route path="QuestionsStepperPage" element={<StepForm />} />
                   <Route element={<AuthRoute />}>
+                    <Route path="QuestionsStepperPage" element={<StepForm />} />
                     <Route path="UserDashboardPage" element={<UserDashboardPage />} />
                     <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
                     <Route path="DestinationRecommendationPage" element={<DestinationRecommendationPage />} />
-                    <Route path="QuestionnairePage" element={<QuestionnairePage />} />
                     <Route path="DestinationPage" element={<DestinationPage />} />
                   </Route>
                   <Route path="*" element={<NotFoundPage />} />
