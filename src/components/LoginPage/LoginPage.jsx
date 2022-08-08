@@ -17,6 +17,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { REQUEST_STATE } from "../../redux/utils";
+import { resetLoginUserStatus } from "../../redux/reducers/user";
+
 
 export default function SignInSide() {
   const dispatch = useDispatch();
@@ -25,29 +28,41 @@ export default function SignInSide() {
   const userObject = useSelector(state => state.userReducer.currUser);
   const [error, setError] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(true);
+  const userStoreState = useSelector(state => state.userReducer)
 
   React.useEffect(() => {
     if (userObject._id !== undefined) {
       nav("/UserDashboardPage");
     };
-// eslint-disable-next-line
-  }, []);
+  }, [nav, userObject._id]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const res = await dispatch(loginUserAsync({
+    dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),
     }));
-    if (res.error) {
-      setError(true);
-    } else {
-    const userData = res.payload;
-    context.login(userData);
-    nav("/UserDashboardPage");
-    };
   };
+
+  React.useEffect(() => {
+		switch(userStoreState.loginUser) {
+			case REQUEST_STATE.FULFILLED:
+				const userData = userStoreState.loginUserPayload;
+        context.login(userData);
+        nav("/UserDashboardPage");
+
+				dispatch(resetLoginUserStatus())
+				break;
+			case REQUEST_STATE.REJECTED:
+				setError(true);
+
+				dispatch(resetLoginUserStatus())
+				break;
+			default:
+				break;
+		}
+	}, [userStoreState.loginUser, userStoreState.error, dispatch, context, nav, userStoreState.loginUserPayload]);
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -135,11 +150,6 @@ export default function SignInSide() {
                 Log In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
                 <Grid item>
                   <Link href="SignUpPage" variant="body2">
                     {"Don't have an account? Sign Up"}

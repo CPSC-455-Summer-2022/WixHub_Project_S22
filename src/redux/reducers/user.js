@@ -7,6 +7,7 @@ const INITIAL_STATE = {
     addUser: REQUEST_STATE.IDLE,
     editUser: REQUEST_STATE.IDLE,
     loginUser: REQUEST_STATE.IDLE,
+    loginUserPayload: {},
     logoutUser: REQUEST_STATE.IDLE,
     deleteUserDestination: REQUEST_STATE.IDLE,
     error: null
@@ -18,6 +19,9 @@ const userSlice = createSlice({
     reducers: {
         resetEditUserStatus(state) {
             state.editUser = REQUEST_STATE.IDLE
+        },
+        resetLoginUserStatus(state) {
+            state.loginUser = REQUEST_STATE.IDLE
         }
     },
     extraReducers: (builder) => {
@@ -53,6 +57,7 @@ const userSlice = createSlice({
             .addCase(loginUserAsync.fulfilled, (state, action) => {
                 state.loginUser = REQUEST_STATE.FULFILLED;
                 state.currUser = action.payload.foundUser;
+                state.loginUserPayload = action.payload;
             })
             .addCase(loginUserAsync.rejected, (state, action) => {
                 state.loginUser = REQUEST_STATE.REJECTED;
@@ -85,5 +90,5 @@ const userSlice = createSlice({
     }
 });
 
-export const { resetEditUserStatus } = userSlice.actions
+export const { resetEditUserStatus, resetLoginUserStatus } = userSlice.actions
 export default userSlice.reducer;
