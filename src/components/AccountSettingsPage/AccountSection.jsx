@@ -13,7 +13,7 @@ import {
 import { useSelector } from 'react-redux';
 
 export const AccountSection = (props) => {
-  const userObject = useSelector((state) => state.userReducer.currUser);	
+  const userObject = useSelector((state) => state.userReducer.currUser);
 
   const [values, setValues] = useState({
 	firstName: userObject.f_name,
@@ -29,6 +29,20 @@ export const AccountSection = (props) => {
     });
   };
 
+  const save = (event) => {
+	// prevent default page reload
+	event.preventDefault()
+
+	const updatedObject = {
+		f_name: values.firstName,
+		l_name: values.lastName,
+		email: values.email,
+		country: values.country
+	}
+
+	props.save(userObject._id, updatedObject, "account info updated!")
+}
+
   return (
 	<Container maxWidth="lg">
 		<Grid
@@ -39,8 +53,7 @@ export const AccountSection = (props) => {
 	>
 		<form
 		autoComplete="off"
-		noValidate
-		{...props}
+		onSubmit={(event) => save(event)}
 		>
 		<Card raised>
 			<CardHeader
@@ -127,6 +140,7 @@ export const AccountSection = (props) => {
 			<Button
 				color="primary"
 				variant="contained"
+				type="submit"
 			>
 				Save
 			</Button>

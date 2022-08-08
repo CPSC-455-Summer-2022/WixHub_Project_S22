@@ -3,6 +3,8 @@ import { Box, Button, Card, CardContent, CardHeader, Divider, TextField, Contain
 import { useSelector } from 'react-redux';
 
 export const PasswordSection = (props) => {
+  const userObject = useSelector((state) => state.userReducer.currUser);
+  const [error, setError] = useState(false)
 
   const [values, setValues] = useState({
     password: '',
@@ -10,16 +12,38 @@ export const PasswordSection = (props) => {
   });
 
   const handleChange = (event) => {
+	setError(false)
     setValues({
       ...values,
       [event.target.name]: event.target.value
     });
   };
 
+  const save = (event) => {
+	// prevent default page reload for form submissions
+	event.preventDefault()
+
+	if (values.password !== values.confirm) {
+		setError(true)
+		return
+	}
+	const updatedObject = {
+		password: values.password
+	}
+
+	props.save(userObject._id, updatedObject, "password updated!")
+
+	// Clear password values (aesthetic)
+	setValues({
+		password: '',
+		confirm: ''
+	})
+}
+
   return (
 	<Container maxWidth="lg">
 		<Box marginBottom={5} sx={{ pt: 3 }}>
-			<form {...props}>
+			<form onSubmit={(event) => save(event)}>
 			<Card raised>
 				<CardHeader
 				subheader="Update password"
@@ -28,6 +52,9 @@ export const PasswordSection = (props) => {
 				<Divider />
 				<CardContent>
 					<TextField
+						required
+						error={error}
+						helperText={error ? "Passwords do not match" : ""}
 						fullWidth
 						label="Password"
 						margin="normal"
@@ -38,6 +65,9 @@ export const PasswordSection = (props) => {
 						variant="outlined"
 					/>
 					<TextField
+						required
+						error={error}
+						helperText={error ? "Passwords do not match" : ""}
 						fullWidth
 						label="Confirm password"
 						margin="normal"
@@ -59,6 +89,7 @@ export const PasswordSection = (props) => {
 				<Button
 					color="primary"
 					variant="contained"
+					type="submit"
 				>
 					Save
 				</Button>

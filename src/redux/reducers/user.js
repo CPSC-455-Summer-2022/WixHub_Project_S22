@@ -1,20 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
-import { addUserAsync, editUserAsync, loginUserAsync, logoutUserAsync } from '../thunks/userThunks';
+import { addUserAsync, deleteUserDestinationAsync, editUserAsync, loginUserAsync, logoutUserAsync } from '../thunks/userThunks';
 
 const INITIAL_STATE = {
     currUser: {},
     addUser: REQUEST_STATE.IDLE,
     editUser: REQUEST_STATE.IDLE,
     loginUser: REQUEST_STATE.IDLE,
+    loginUserPayload: null,
     logoutUser: REQUEST_STATE.IDLE,
+    deleteUserDestination: REQUEST_STATE.IDLE,
     error: null
 };
 
 const userSlice = createSlice({
     name: 'user',
     initialState: INITIAL_STATE,
-    reducers: {},
+    reducers: {
+        resetEditUserStatus(state) {
+            state.editUser = REQUEST_STATE.IDLE
+        },
+        resetLoginUserStatus(state) {
+            state.loginUser = REQUEST_STATE.IDLE
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(addUserAsync.pending, (state) => {
@@ -47,7 +56,8 @@ const userSlice = createSlice({
             })
             .addCase(loginUserAsync.fulfilled, (state, action) => {
                 state.loginUser = REQUEST_STATE.FULFILLED;
-                state.currUser = action.payload.foundUser; ///!!!TODOREDFLAG
+                state.currUser = action.payload.foundUser;
+                state.loginUserPayload = action.payload;
             })
             .addCase(loginUserAsync.rejected, (state, action) => {
                 state.loginUser = REQUEST_STATE.REJECTED;
@@ -64,8 +74,21 @@ const userSlice = createSlice({
             .addCase(logoutUserAsync.rejected, (state, action) => {
                 state.logoutUser = REQUEST_STATE.REJECTED;
                 state.error = action.error;
+            })
+            .addCase(deleteUserDestinationAsync.pending, (state) => {
+                state.deleteUserDestination = REQUEST_STATE.PENDING;
+                state.error = null;
+            })
+            .addCase(deleteUserDestinationAsync.fulfilled, (state, action) => {
+                state.deleteUserDestination = REQUEST_STATE.FULFILLED;
+                state.currUser = action.payload;
+            })
+            .addCase(deleteUserDestinationAsync.rejected, (state, action) => {
+                state.deleteUserDestination = REQUEST_STATE.REJECTED;
+                state.error = action.error;
             });
     }
 });
 
+export const { resetEditUserStatus, resetLoginUserStatus } = userSlice.actions
 export default userSlice.reducer;

@@ -10,15 +10,13 @@ import {
 } from '@mui/material';
 import { Question} from "./Question";
 import questionService from '../../services/questionService';
-import { useSelector, useDispatch } from 'react-redux';
-import { editUserAsync } from '../../redux/thunks/userThunks';
+import { useSelector } from 'react-redux';
 
 export const QuestionnairePage = (props) => {
 	const [questions, setQuestions] = useState([]);
 	const [values, setValues] = useState({});
 	const [disabled, setDisabled] = useState(true);
 	const userObject = useSelector((state) => state.userReducer.currUser);
-	const dispatch = useDispatch();
 	
 	useEffect(() => {
 		let isSubscribed = true // Prevent duplicate calls
@@ -28,10 +26,11 @@ export const QuestionnairePage = (props) => {
 			if (isSubscribed) {
 				setQuestions(questionJson)
 				const values = Object.fromEntries(questionJson.map(obj => {
-					const currQuestion = obj.question 
+					const currQuestion = obj.question
+					const existingUserResponses = userObject.question_responses
 					return [currQuestion, {
-						response: userObject.question_responses[currQuestion].response,
-						responseNumber: userObject.question_responses[currQuestion].responseNumber
+						response: existingUserResponses ? existingUserResponses[currQuestion].response : "",
+						responseNumber: existingUserResponses ? existingUserResponses[currQuestion].responseNumber : ""
 					}]
 				}));
 				setValues(values)
@@ -69,9 +68,8 @@ export const QuestionnairePage = (props) => {
 		for (const [key, value] of Object.entries(values)) {
 			updatedObject.question_responses[key] = value
 		}
-
-		dispatch(editUserAsync({id: userObject._id, toBeUpdated: updatedObject}))
-		props.setSnackbarOpen(true)
+		
+		props.save(userObject._id, updatedObject, "questions updated!")
 	}
 
 return (

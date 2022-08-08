@@ -13,6 +13,7 @@ export function ImageHeroUnit(props) {
         backgroundColor: '#7fc7d9', // Average color of the background image.
         backgroundPosition: 'center',
       }}
+      breakpoint={props.breakpoint}
     >
       {/* Increase the network loading priority of the background image. */}
       <img

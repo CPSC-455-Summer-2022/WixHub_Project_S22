@@ -8,10 +8,19 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useDispatch } from 'react-redux';
-import { addUserAsync, loginUserAsync } from '../../redux/thunks/userThunks';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUserAsync } from '../../redux/thunks/userThunks';
+
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/auth';
+import userService from '../../services/userService'
+
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
+import { REQUEST_STATE } from "../../redux/utils";
+import { resetLoginUserStatus } from "../../redux/reducers/user";
 
 function Copyright(props) {
   return (
@@ -27,27 +36,63 @@ function Copyright(props) {
 }
 
 export default function SignUp() {
-  const dispatch = useDispatch();
-  const nav = useNavigate();
   const context = React.useContext(AuthContext);
-  
+  const userObject = useSelector(state => state.userReducer.currUser);
+  const nav = useNavigate();
+  const dispatch = useDispatch();
+  const [error, setError] = React.useState(false);
+  const userStoreState = useSelector(state => state.userReducer)
+
+  React.useEffect(() => {
+    if (userObject._id !== undefined) {
+      nav("/UserDashboardPage");
+    };
+  }, [nav, userObject._id]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    dispatch(addUserAsync({
+    userService.addUser({
       f_name: data.get('firstName'),
       l_name: data.get('lastName'),
       country: data.get('country'),
       email: data.get('email'),
       password: data.get('password'),
-    }));
-    const res = await dispatch(loginUserAsync({
+    });
+    dispatch(loginUserAsync({
       email: data.get('email'),
       password: data.get('password'),
     }));
-    const userData = res.payload;
-    context.login(userData);
-    nav("/QuestionnairePage");
+  };
+
+  React.useEffect(() => {
+		switch(userStoreState.loginUser) {
+			case REQUEST_STATE.FULFILLED:
+				const userData = userStoreState.loginUserPayload;
+        context.login(userData);
+        nav("/QuestionnairePage");
+
+				dispatch(resetLoginUserStatus())
+				break;
+			case REQUEST_STATE.REJECTED:
+				setError(true);
+
+				dispatch(resetLoginUserStatus())
+				break;
+			default:
+				break;
+		}
+	}, [userStoreState.loginUser, userStoreState.error, context, nav, userStoreState.loginUserPayload, dispatch]);
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setError(false);
   };
 
   return (
@@ -136,6 +181,11 @@ export default function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+            <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                  Email already in use! Please try logging in or use a different email.
+                </Alert>
+              </Snackbar>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
