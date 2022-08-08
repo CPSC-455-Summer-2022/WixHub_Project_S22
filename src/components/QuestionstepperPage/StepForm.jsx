@@ -3,7 +3,7 @@ import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Typography from '@material-ui/core/Typography'
-import { Box, Button, Container, TextField } from "@mui/material";
+import {Box, Button, Container, MenuItem, Select, TextField} from "@mui/material";
 import Paper from "@mui/material/Paper";
 import questionService from "../../services/questionService";
 import Grid from "@mui/material/Grid";
@@ -14,9 +14,9 @@ import { Link } from "react-router-dom";
 
 // Step titles
 const labels = ['1', '2', '3', '4', '5', '6', '7', '8']
-const handleSteps = (step, handleNext, handleBack, values) => {
+const handleSteps = (step, handleNext, handleBack, storeResponse, values) => {
     let questionNum = step + 1;
-    return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values["question" + questionNum]} steps={step} />;
+    return <FirstStep handleNext={handleNext} handleBack={handleBack} storeResponse={storeResponse} question={values["question" + questionNum]} steps={step} />;
 }
 
 function Success(props) {
@@ -73,7 +73,21 @@ function Success(props) {
     </Box>)
 }
 
-function FirstStep({ handleNext, handleBack, question, steps }) {
+function FirstStep({ handleNext, handleBack, storeResponse, question, steps }) {
+    if (Object.keys(question).length === 0) {
+        return null;
+    }
+    const handleChange = (event) => {
+        let targetResponse = event.target.value;
+        let responseNumber = 1;
+        for (let r of question.response) {
+            if (r === targetResponse) {
+                break;
+            }
+            responseNumber++;
+        }
+        storeResponse(steps, targetResponse, responseNumber);
+    };
     return (
         <div>
             <Grid container spacing={2}>
@@ -91,12 +105,12 @@ function FirstStep({ handleNext, handleBack, question, steps }) {
                     </div>
                 </Grid>
                 <Grid item xs={12} sm={6} style={{ display: "block", marginLeft: 'auto', marginRight: 'auto' }}>
-                    <TextField variant="standard" margin="normal" fullWidth select SelectProps={{ native: true }} label="Response" name="response">
-                        <option value=""></option>
-                        <option value="1">{question.response1}</option>
-                        <option value="2">{question.response2}</option>
-                        <option value="3">{question.response3}</option>
-                        <option value="4">{question.response4}</option>
+                    <TextField variant="standard" margin="normal" fullWidth select SelectProps={{ native: true }} label="Response" name="response"
+                               onChange={handleChange}>
+                        {question.response.map((response, index) => {
+                            let itemKey = steps + "-" + index;
+                            return <option key={itemKey}>{response}</option>;
+                        })}
                     </TextField>
                 </Grid>
             </Grid>
@@ -119,14 +133,53 @@ const StepForm = () => {
     const [questions, setQuestions] = useState([]);
     const [values, setValues] = useState({});
     const userObject = useSelector((state) => state.userReducer.currUser);
-    const toBeUpdated = {
-        id: userObject._id // get from state
+    const toBeUpdated = async function(){
+        const questionJson = await questionService.getQuestions()
+        setQuestions(questionJson)
+        const values = Object.fromEntries(questionJson.map(obj => {
+            const currQuestion = obj.question
+                return [currQuestion, {
+                    response: '',
+                    responseNumber: 0
+                }]
+            }));
+        setValues(values)
     }
+
+    if (Object.keys(values).length !== 0 && !values["responses"]) {
+        Object.keys(values).forEach((key, index) => {
+            let defaultResponse = {
+                response: values[key].response[0],
+                responseNumber: 1
+            };
+            if (!values["responses"]) {
+                values["responses"] = {};
+            }
+            values["responses"][index + 1] = defaultResponse;
+        });
+    }
+
+    console.log(values);
+
+    const storeResponse = (step, response, responseNumber) => {
+        step++;
+        let res = {
+            response: response,
+            responseNumber: responseNumber
+        };
+        let allResponse = {...values["responses"]};
+        allResponse[step] = res;
+        let value = {
+            ...values,
+            "responses" : allResponse
+        };
+        console.log(value);
+        setValues(value);
+    };
 
     // Proceed to next step
     const handleNext = () => {
         setActiveStep((prev) => prev + 1)
-        // update the values here!!!TODO
         // setValues(...)
     };
     // Go back to prev step
@@ -141,21 +194,12 @@ const StepForm = () => {
                 setQuestions(questionJson)
                 let num = 0
                 const values = Object.fromEntries(questionJson.map(obj => {
-                    const currQuestion = obj.question
-                    const currImage = obj.questionImage
-                    const r1 = obj.destinationMapping[0].response
-                    const r2 = obj.destinationMapping[1].response
-                    const r3 = obj.destinationMapping[2].response
-                    const r4 = obj.destinationMapping[3].response
-                    num += 1
-                    return ["question" + num.toString(), {
-                        question: currQuestion,
-                        image: currImage,
-                        response1: r1,
-                        response2: r2,
-                        response3: r3,
-                        response4: r4
-                    }]
+                    let newIndex = ++num;
+                    return ["question" + newIndex, {
+                        question: obj.question,
+                        image: obj.questionImage,
+                        response: obj.destinationMapping.map(r => r.response)
+                    }];
                 }));
                 setValues(values)
             }
@@ -185,7 +229,7 @@ const StepForm = () => {
                                 ))}
                             </Stepper>
 
-                            {handleSteps(activeStep, handleNext, handleBack, values)}
+                            {handleSteps(activeStep, handleNext, handleBack, storeResponse, values)}
                         </>
                     )}</Paper></Container>
         </>
