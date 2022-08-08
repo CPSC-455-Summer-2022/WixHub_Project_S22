@@ -38,7 +38,7 @@ Youfly stores user **profile data** and their **accompanying destination matchin
 
 The objective of youfly is to use a **Machine Learning Tensorflow model** to enable optimal vacation destination matching, however if faced with time limitations our team can have **preset locations** based on the set answers the user makes to the series of profile questions. 
 
-## Project Task Requirements
+## Project Task Requirements (Pre-Project Planning)
 Below are an evolving list of project requirements to develop a prototype version of youfly for CPSC 455. It will be continuously expanded on through GitHub's Project feature this summer as we approach August Demo.
 
 ### Minimal Requirements
@@ -58,27 +58,35 @@ Below are an evolving list of project requirements to develop a prototype versio
 - Profile linking and grouping between multiple individuals/parties looking to travel together ⛔
 - Direct booking capabilities through external booking site APIs (viability tbd) ⛔
 
-### Minimal Requirements Breakdown *(still expanding)*
+### Requirements Breakdown
 1. Simple modern design and easy to use interface 
-    - Select colour palette
-    - Frame mockups in Figma
-    - Establish wireframing and navigation in Figma
-    - Select React boilerplate
-    - Create main/welcome page
-    - Create Navbar
-    - Create About page
-    - Create matched destination page
-    - Add in navigation
-    - Test and receive feedback from friends and family on UX
+    - Select colour palette ✅
+    - Frame mockups in Figma ✅
+    - Establish wireframing and navigation in Figma ✅
+    - Select React boilerplate ✅
+    - Create main/welcome page ✅
+    - Create Navbar ✅
+    - Create About page ✅
+    - Create matched destination page ✅
+    - Add in navigation ✅
+    - Test and receive feedback from friends and family on UX ✅
+    - Sign-In/Sign-Up Process Made ✅
+    - User Profile Questionaire ✅
+    - Website Responsiveness ✅
+    - Account Settings Page ✅
 2. Straightforward and comprehensive profile creation
-    - Establish series of questions
-    - Frame mockups in Figma
-    - Storing user information in database (setting up MongoDB and the necessary queries)
+    - Establish series of questions ✅
+    - Frame mockups in Figma ✅
+    - Storing user information in database (setting up MongoDB and the necessary queries) ✅
 3. Vacation Destination matching to user profile
-    - Establish a set series of destinations
-    - Create a mapping of question responses to vacation destinations
-    - Python script for webscraping data from vacation destination wikipedia pages
-    - Storing vacation destinations with large text scraped from wikipedia page for sentiment analysis (setting up MongoDB and the necessary queries)
+    - Establish a set series of destinations ✅
+    - Create a mapping of question responses to vacation destinations ✅
+    - Python script for webscraping data from vacation destination wikipedia pages ⛔
+4. Server 
+    - Comprehensive document schema for Users, Destinations and Questions ✅
+    - Effective error handling ✅
+    - Clear and concise endpoint documentation ✅
+    - Algorithm for destination matching to use within the destination recommendation endpoint ✅
 
 ## Technical Architecture
 Description on how tech from Units 1-5 are implemented within our application.
