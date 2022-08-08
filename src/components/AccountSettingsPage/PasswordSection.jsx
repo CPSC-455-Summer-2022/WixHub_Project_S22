@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { Box, Button, Card, CardContent, CardHeader, Divider, TextField, Container } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { editUserAsync } from '../../redux/thunks/userThunks';
+import { useSelector } from 'react-redux';
 
 export const PasswordSection = (props) => {
   const userObject = useSelector((state) => state.userReducer.currUser);
-  const dispatch = useDispatch();
   const [error, setError] = useState(false)
 
   const [values, setValues] = useState({

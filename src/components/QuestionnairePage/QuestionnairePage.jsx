@@ -10,15 +10,13 @@ import {
 } from '@mui/material';
 import { Question} from "./Question";
 import questionService from '../../services/questionService';
-import { useSelector, useDispatch } from 'react-redux';
-import { editUserAsync } from '../../redux/thunks/userThunks';
+import { useSelector } from 'react-redux';
 
 export const QuestionnairePage = (props) => {
 	const [questions, setQuestions] = useState([]);
 	const [values, setValues] = useState({});
 	const [disabled, setDisabled] = useState(true);
 	const userObject = useSelector((state) => state.userReducer.currUser);
-	const dispatch = useDispatch();
 	
 	useEffect(() => {
 		let isSubscribed = true // Prevent duplicate calls
