@@ -7,7 +7,7 @@ const INITIAL_STATE = {
     addUser: REQUEST_STATE.IDLE,
     editUser: REQUEST_STATE.IDLE,
     loginUser: REQUEST_STATE.IDLE,
-    loginUserPayload: {},
+    loginUserPayload: null,
     logoutUser: REQUEST_STATE.IDLE,
     deleteUserDestination: REQUEST_STATE.IDLE,
     error: null
