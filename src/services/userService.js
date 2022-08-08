@@ -72,7 +72,7 @@ const editUser = async (arg) => {
     return data;
 };
 
-const loginUser = async (emailPass) => { ///!!!TODOREDFLAG
+const loginUser = async (emailPass) => {
     const response = await fetch(`https://wixhub-server.herokuapp.com/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

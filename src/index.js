@@ -45,7 +45,7 @@ import blue from '@mui/material/colors/blue';
 import purple from '@mui/material/colors/purple';
 import { QuestionnairePage } from './components/QuestionnairePage/QuestionnairePage';
 import { DestinationPage } from './components/DestinationRecommendationPage/DestinationPage';
-import StepForm from "./components/QuestionstepperPage/StepForm";
+import {StepForm} from "./components/QuestionstepperPage/StepForm";
 //
 
 const persistConfig = {
@@ -94,12 +94,11 @@ root.render(
                   <Route path="/" element={<HomePage />} />
                   <Route path="LoginPage" element={<LoginPage />} />
                   <Route path="SignUpPage" element={<SignUpPage />} />
-                  <Route path="QuestionsStepperPage" element={<StepForm />}/>
                   <Route element={<AuthRoute />}>
+                    <Route path="QuestionsStepperPage" element={<StepForm />} />
                     <Route path="UserDashboardPage" element={<UserDashboardPage />} />
                     <Route path="AccountSettingsPage" element={<AccountSettingsPage />} />
                     <Route path="DestinationRecommendationPage" element={<DestinationRecommendationPage />} />
-                    <Route path="QuestionnairePage" element={<QuestionnairePage />} />
                     <Route path="DestinationPage" element={<DestinationPage />} />
                   </Route>
                   <Route path="*" element={<NotFoundPage />} />
@@ -111,5 +110,3 @@ root.render(
     </ThemeProvider>
   </React.StrictMode>
 );
-// !!!TODO: Sherman to figure out how to re-route if manually entering a url
-// and not logged in (because right now if I go to Account url when not logged in, it lets me)
