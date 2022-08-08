@@ -15,26 +15,8 @@ import { Link } from "react-router-dom";
 // Step titles
 const labels = ['1', '2', '3', '4', '5', '6', '7', '8']
 const handleSteps = (step, handleNext, handleBack, values) => {
-    switch (step) {
-        case 0:
-            return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question1} steps={step} />
-        case 1:
-            return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question2} steps={step} />
-        case 2:
-            return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question3} steps={step} />
-        case 3:
-            return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question4} steps={step} />
-        case 4:
-            return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question5} steps={step} />
-        case 5:
-            return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question6} steps={step} />
-        case 6:
-            return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question7} steps={step} />
-        case 7:
-            return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values.question8} steps={step} />
-        default:
-            throw new Error('Unknown step')
-    }
+    let questionNum = step + 1;
+    return <FirstStep handleNext={handleNext} handleBack={handleBack} question={values["question" + questionNum]} steps={step} />;
 }
 
 function Success(props) {
@@ -131,11 +113,16 @@ FirstStep.defaultProps = {
 }
 
 
+
 const StepForm = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [questions, setQuestions] = useState([]);
     const [values, setValues] = useState({});
     const userObject = useSelector((state) => state.userReducer.currUser);
+    const toBeUpdated = {
+        id: userObject._id // get from state
+    }
+
     // Proceed to next step
     const handleNext = () => {
         setActiveStep((prev) => prev + 1)
