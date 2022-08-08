@@ -9,12 +9,20 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
 import userService from "../../services/userService";
+import { useNavigate } from 'react-router-dom';
 
 export default function UserDashboardPage() {
 	const userObject = useSelector((state) => state.userReducer.currUser);
 	const [userDestinations, setUserDestinations] = useState([]);
-	const [description, setDescription] = useState("")
-	const [open, setOpen] = useState(true)
+	const [description, setDescription] = useState("");
+	const [open, setOpen] = useState(true);
+	const nav = useNavigate();
+
+	React.useEffect(() => {
+		if (userObject.question_responses === undefined) {
+		  nav("/QuestionsStepperPage");
+		};
+	  }, [nav, userObject.question_responses]);
 
 	useEffect(() => {
 		let isSubscribed = true // Prevent duplicate calls

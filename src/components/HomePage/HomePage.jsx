@@ -6,6 +6,8 @@ import { ImageHeroUnit } from '../CommonComponents/ImageHeroUnit';
 import ProductValues from './ProductValues';
 import ProductHowItWorks from './ProductHowItWorks';
 import Typography from '../CommonComponents/Typography';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const homePageDestinations = [
   {
@@ -32,6 +34,16 @@ const backgroundImage =
   'https://source.unsplash.com/OnXvKZldSJ0';
 
 export default function LandingPage() {
+  const nav = useNavigate();
+
+	const userObject = useSelector((state) => state.userReducer.currUser);
+
+	React.useEffect(() => {
+		if (userObject._id && userObject.question_responses === undefined) {
+		  nav("/QuestionsStepperPage");
+		};
+	  }, [nav, userObject.question_responses, userObject]);
+
   return (
     <React.Fragment>
       <main>
