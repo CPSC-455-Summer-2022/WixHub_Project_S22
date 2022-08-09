@@ -244,6 +244,7 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 - Ensure that users that did not complete the question process will be directed to the Question stepper process prior to allowing them access to the User Dashboard or the Generate Destination pages
 - Created the Figma web application mockups and determine what features our site would need to feature in order to provide a good user experience
 - Created the conditional Navigation bar determined through logged in or logged out status as well as refining the routing between pages, and having correct page to page navigation
+- Assisted in discovering bugs, errors, and other abnormalities and resolving issues with other groupmates
 - Collaborated with Ronin on front-end components that revolve around the signup/login process
 - Collaborated with Josh on server side modifications that allowed for signup/login as well as ensuring that signup does not conflict with existing accounts and that login had the correct authentication
 - Collaborated with Kevin on server side modifications, as well as working with him on Question Stepper process for new-account signup flow and ensuring that the flow into the stepper and out of the stepper was maintained
