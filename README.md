@@ -218,7 +218,13 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 - Aided in the debugging of frontend components. 
 
 ### Ronin Cunningham - m0c2b 
-
+- Responsible for the development, architecture, infrastructure, and debugging all of the central components of the frontend
+- Created the entire user flow (Landing Page, User Dashboard, Account Page, Generate Recommendation Page, Destination Page, Activity Page)
+- Set up the core Redux infrastructure to store the userObject in the redux store
+- Set up Thunks to allow asynchronous functions to be compatible with Redux
+- Set up the global styling for all components with Material UI
+- Collaborated with Sherman on Routing with the Login and Signup
+- Squashed bugs and refactored code to match best practices
 
 ### Sherman Lam - z2o2b
 
