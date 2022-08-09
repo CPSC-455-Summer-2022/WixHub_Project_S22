@@ -11,18 +11,19 @@ Youfly is a **travel booking web application** that allows users to create a per
 ### Table of Contents
 1. [Repositories](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#repositories)
 2. [Deployments](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#deployments)
-3. [Project Team]
-4. [Project Description]
-5. [Project Task Requirements]
-6. [Technical Architecture]
-    - [Description of Technology Used]
-    - [Directory/File Structures]
-8. [Functionality and Feature Set]
-    - [Unique/Special Feature]
-    - [Additional Out of Scope Features]
-9. [Next Steps]
-10. [Team Contributions] 
-11. [Miscellaneous] 
+3. [Project Team](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#project-team)
+4. [Project Description](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#project-description)
+5. [Project Task Requirements](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#project-task-requirements-pre-project-planning)
+6. [Technical Architecture](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#technical-architecture)
+    - [Descriptions of Technology Used](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#react)
+    - [Directory/File Structures](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#repository-folder-structures)
+8. [Functionality and Feature Set](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#functionality-and-feature-set)
+    - [Use Cases](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#basic-user-flows)
+    - [Unique/Special Feature](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#above-and-beyond-functionality)
+    - [Additional Out of Scope Features](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#additional-features-beyond-course-scope)
+9. [Next Steps](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#next-steps)
+10. [Team Contributions](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#team-contributions)
+11. [Miscellaneous](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#miscellaneous)
 
 ### Repositories
 **Client:** [WixHub Client Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22)   
