@@ -198,7 +198,13 @@ Below are some additional features where our team went outside the scope of the 
 ## Team Contributions
 
 ### Josh Tillson - i4i2b
-
+- Responsible for the development, aligning, response/error handling and debugging all of the Express.js server. 
+- Collaborated with Weichong on MongoDB schemas. 
+- Generated all default data for Users, Destinations and Questions. 
+- Developed the project documentation (README & SwaggerUI). 
+- Created the service structure (functions that call the server endpoints). 
+- Collaborated with Ronin on the Redux store and thunks structure. 
+- Aided in the debugging of frontend components. 
 
 ### Ronin Cunningham - m0c2b 
 
