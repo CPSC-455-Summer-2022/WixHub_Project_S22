@@ -25,8 +25,7 @@ function ImageHeroUnitLayout(props) {
     display: 'flex',
     alignItems: 'center',
     [theme.breakpoints.up(breakpoint)]: {
-      height: '80vh',
-      minHeight: 500,
+      minHeight: 800,
       maxHeight: 1300,
     },
   }));

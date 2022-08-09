@@ -52,18 +52,18 @@ export default function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    userService.addUser({
+      userService.addUser({
       f_name: data.get('firstName'),
       l_name: data.get('lastName'),
       country: data.get('country'),
       email: data.get('email'),
       password: data.get('password'),
-    }).then(() => {
-      dispatch(loginUserAsync({
-        email: data.get('email'),
-        password: data.get('password'),
-      }));
-    });
+      }).catch((err) => setError(true)).then(() => {
+        dispatch(loginUserAsync({
+          email: data.get('email'),
+          password: data.get('password'),
+        }));
+      });
   };
 
   React.useEffect(() => {

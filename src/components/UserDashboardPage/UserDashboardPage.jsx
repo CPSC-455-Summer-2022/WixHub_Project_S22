@@ -65,7 +65,7 @@ export default function UserDashboardPage() {
 			</Backdrop>
 			<main>
 				<HeroUnit title={"User Dashboard"} description={description} />
-				<GenerateRecommendationButton text={"Generate another recommendation"} />
+				<GenerateRecommendationButton text={"Generate Recommendation"} />
 				<Album userDestinations={userDestinations} setUserDestinations={setUserDestinations} hasActions={true} />
 			</main>
 			<Footer />

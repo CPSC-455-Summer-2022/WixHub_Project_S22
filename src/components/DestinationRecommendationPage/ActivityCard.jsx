@@ -16,6 +16,7 @@ export const ActivityCard = (props) => {
 						component="img"
 						image={props.activity.activityImage}
 						alt="destination"
+						height={"300px"}
 					/>
 					<CardContent sx={{ flexGrow: 1 }}>
 						<Typography gutterBottom variant="h5" component="h2">

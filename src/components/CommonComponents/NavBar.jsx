@@ -7,6 +7,7 @@ import { AuthContext } from '../../context/auth';
 import { useDispatch } from "react-redux";
 import { logoutUserAsync } from "../../redux/thunks/userThunks";
 import { useSelector } from "react-redux";
+import { resetEditUserStatus } from "../../redux/reducers/user";
 
 import jwtDecode from 'jwt-decode';
 
@@ -52,7 +53,7 @@ export const NavBar = () => {
 				<Stack direction='row' spacing={2}>
 					<Button component={Link} to="/" color='inherit'>Home</Button>
 					{userObject._id ? <Button component={Link} to="UserDashboardPage" color='inherit'>User Dashboard</Button> : null}
-					{userObject._id ? <Button component={Link} to="AccountSettingsPage" color='inherit'>Account</Button> : null}
+					{userObject._id ? <Button onClick={() => dispatch(resetEditUserStatus())} component={Link} to="AccountSettingsPage" color='inherit'>Account</Button> : null}
 					{LogInOrOut}
 				</Stack>
 			</Toolbar>
