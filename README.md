@@ -8,6 +8,22 @@ With just the click of a button, get swept away by the perfect vacation tailored
 
 Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and the top activities to do at that destination.
 
+### Table of Contents
+1. [Repositories](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#repositories)
+2. [Deployments](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#deployments)
+3. [Project Team]
+4. [Project Description]
+5. [Project Task Requirements]
+6. [Technical Architecture]
+    - [Description of Technology Used]
+    - [Directory/File Structures]
+8. [Functionality and Feature Set]
+    - [Unique/Special Feature]
+    - [Additional Out of Scope Features]
+9. [Next Steps]
+10. [Team Contributions] 
+11. [Miscellaneous] 
+
 ### Repositories
 **Client:** [WixHub Client Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22)   
 
@@ -15,6 +31,8 @@ Youfly is a **travel booking web application** that allows users to create a per
 
 ### Deployments
 **Client:** [WixHub Client Deployed Site](https://wixhub-client.herokuapp.com/)   
+_Try our test account: { user_name: john.doe@gmail.com, password: 1234password }_
+
 
 **Server:** [WixHub Server Deployed Site](https://wixhub-server.herokuapp.com/)  
 
