@@ -222,7 +222,7 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 - Created the components necessary for the entire user flow (Landing Page, User Dashboard, Account Page, Generate Recommendation Page, Destination Page, Activity Page, Not Found Page, Image Hero Unit) and the routing between them
 - Built the core Redux infrastructure to store the logged-in userObject in the Redux store. Added thunks for asynchronous functions
 - Designed the global styling for all components with Material UI
-- Built the central form components all throughout the app along with the data structures used to dispatch user data to the backend to be updated
+- Built the central form components all throughout the app along with the data structures used to dispatch user data to the backend
 - Fixed bugs (race conditions, etc.) and refactored code smells to match best practices
 - Collaborated with Sherman on the Login and Signup page routing, collaborated with Josh to specify endpoints and user db model for fetching
 
