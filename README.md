@@ -220,7 +220,7 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 ### Ronin Cunningham - m0c2b 
 - Responsible for the development, infrastructure, architecture, and debugging all of the central components of the frontend
 - Created the components necessary for the entire user flow (Landing Page, User Dashboard, Account Page, Generate Recommendation Page, Destination Page, Activity Page, Not Found Page, Image Hero Unit) and the routing between them
-- Built the core Redux infrastructure to store the current logged-in userObject in the Redux store. Added thunks for asynchronous functions
+- Built the core Redux infrastructure to store the logged-in userObject in the Redux store. Added thunks for asynchronous functions
 - Designed the global styling for all components with Material UI
 - Built the central form components all throughout the app along with the data structures used to dispatch user data to the backend to be updated
 - Fixed bugs (race conditions, etc.) and refactored code smells to match best practices
