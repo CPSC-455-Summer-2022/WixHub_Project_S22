@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
-import { Container } from "@mui/material";
-import Paper from "@mui/material/Paper";
+import { Container, Paper } from "@mui/material";
+// import Paper from "@mui/material/Paper";
 import questionService from "../../services/questionService";
 import {useDispatch, useSelector} from 'react-redux';
 import {editUserAsync} from "../../redux/thunks/userThunks";
@@ -108,7 +108,9 @@ export const StepForm = (props) => {
 
                             {handleSteps(activeStep, handleNext, handleBack, storeResponse, values)}
                         </>
-                    )}</Paper></Container>
+                    )}
+                </Paper>
+            </Container>
         </>
     )
 }
