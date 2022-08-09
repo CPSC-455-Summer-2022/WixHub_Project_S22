@@ -230,7 +230,23 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 - Collaborated with Josh to specify required endpoints to allow data from the backend to be fetched and rendered on the frontend along with the user db models
 
 ### Sherman Lam - z2o2b
-
+- Responsible for the creation, development and debugging of all aspects of user sign-up, login authentication
+- Developed the protected routing of allowing only User Dashboard, Account , Generate Recommendation, Destination, and Activity pages to users who are logged into our site
+- Created guards in place to prevent unauthorized access of pages when URL of the page is manually entered regardless of signed in/ logged out
+- Implemented page redirection to navigate users between pages to enhance ease of user-flow and increase user accesibility
+- Prevent logged-in users from accessing pages that they should not have access to, such as log in and signup pages
+- Created authentication architecture, utilizing JWT (Javascript Web Token) technology in order to procure a time-limited user token, which is stored in the browser's localstorage in order to allow for persistence of the user's log in status
+- Developed the process in which our application can access the localstorage to verify that the token is still active and determining whether the user should still be logged in based on the token's expiration time
+- Created the process to store the user's current state into Redux in order for the rest of the application to access the user's information as well as update
+- Created the thunks, services, as well as server-side changes in order to allow for user-login processes
+- Implemented Redux-Persist in order to have the redux store state be persisted throughout new tabs, new windows, as long as the user specifies that they want to have their account status "remember me" upon login, whilst still having checks in place such that regardless of remember status, will log the user out if the token has expired
+- Implemented the "remember me" functionality using token technology to persist user status throughout differnt windows/ sessions as long as the user's logged in token is valid
+- Ensure that users that did not complete the question process will be directed to the Question stepper process prior to allowing them access to the User Dashboard or the Generate Destination pages
+- Created the Figma web application mockups and determine what features our site would need to feature in order to provide a good user experience
+- Created the conditional Navigation bar determined through logged in or logged out status as well as refining the routing between pages, and having correct page to page navigation
+- Collaborated with Ronin on front-end components that revolve around the signup/login process
+- Collaborated with Josh on server side modifications that allowed for signup/login as well as ensuring that signup does not conflict with existing accounts and that login had the correct authentication
+- Collaborated with Kevin on server side modifications, as well as working with him on Question Stepper process for new-account signup flow and ensuring that the flow into the stepper and out of the stepper was maintained
 
 ### Weichong Zhao - x4x2b 
 
