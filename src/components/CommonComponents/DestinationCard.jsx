@@ -25,6 +25,7 @@ export const DestinationCard = (props) => {
                   component="img"
                   image={props.destination.image}
                   alt="destination"
+                  height={"300px"}
                 />
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h5" component="h2">
