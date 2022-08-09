@@ -194,6 +194,17 @@ Below are some additional features where our team went outside the scope of the 
   </p>
 
 ## Next Steps
+The future of youfly is bright and we're only just getting started. Through our extensive research and work developing solutions for the travel and vacationing space, it's clear that there's a need for solutions like youfly to take the stress out of planning vacations. That's why we plan on continuing to expand youfly's offerings and functionality. The following are our main next steps going forward:
+
+1. **Authentication**
+Our application currently has basic authentication but minimal security features for passwords. We plan to begin by changing the way we store passwords to use bcrypt/scrypt/PBKDF2 for maximimum security robustness. We will then also aim to add forgot password flow using email as a verification process. Finally, we look to integrate social platform APIs to enable single sign on (i.e. Google/Facebook).
+
+2. **Algorithm**
+To further distinguish our solution and the value it brings as a destination recommendation engine, we look towards building out our available destinations to recommend to include a large dataset of destinations worldwide. We also plan to add more varying questions (allowing users to get different questions every time they submit a new recommendation request. Finally and most importantly we aim to build a machine learning model for our algorithm to match destinations to users based. We will do this by generating a series of sentiments and key words from the users question as well as developing a web scraper for destination information from Wikipedia. Using this information we can then run a pre-built NLP model from a platform like Tensorflow to match users with destinations. 
+
+3. **Trip Booking**
+Finally, to make the booking process seamless for users, we hop to build in the ability to both book destinations and activities directly on the site, enabling them to do everything without having to navigate away. This will be an extensive process as it will require various integrations with existing booking platforms. 
+
 
 ## Team Contributions
 
