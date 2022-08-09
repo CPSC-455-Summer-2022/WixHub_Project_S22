@@ -170,6 +170,7 @@ youfly has two main use cases:
 2. The ability for logged in users to view the top activities (as rated by trip advisor) for each of the recommended destinations with direct links to find out more information and book these activities. 
 
 ### Basic User Flows
+Below is a walkthrough of the user flow within youfly outlining in addition the two main use cases our application provides users. 
 
   <p align="center">
 <img src="/assets/userFlow.png" width="700px"/>
@@ -179,7 +180,8 @@ youfly has two main use cases:
 <img src="/assets/useCase.png" width="500px"/>
   </p>
   
-### Above and Beyond Functionality 
+### Unique Functionality 
+Our team's unique functionality is our recommendation generator algorithm. This algorithm, was created within our Express.js server using Node.js and is called in our front end questionService using a well documented endpoint. It takes in a userID and a user's profile (their responses to a series of 8 tailored questions) as inputs and returns a destination as an output. Currently our algorithm assigns a "matching score" to each destination where depending on a user response to each question, each stored destination will receive x number of points. The destination with the greatest matching score after going through each question is returned. The algorithm also checks to ensure the recommended destination is unique (isn't already a destination that the user has been recommended). Tune into the next section to see our plan's for the algorithm going forward. 
 
   <p align="center">
 <img src="/assets/uniqueFunctionality.png" width="900px"/>
