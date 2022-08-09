@@ -218,13 +218,16 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 - Aided in the debugging of frontend components. 
 
 ### Ronin Cunningham - m0c2b 
-- Responsible for the development, architecture, infrastructure, and debugging all of the central components of the frontend
-- Created the entire user flow (Landing Page, User Dashboard, Account Page, Generate Recommendation Page, Destination Page, Activity Page)
-- Set up the core Redux infrastructure to store the userObject in the redux store
-- Set up Thunks to allow asynchronous functions to be compatible with Redux
-- Set up the global styling for all components with Material UI
-- Collaborated with Sherman on Routing with the Login and Signup
-- Squashed bugs and refactored code to match best practices
+- Responsible for the development, infrastructure, architecture, and debugging all of the central components of the frontend
+- Created the components necessary for the entire user flow (Landing Page, User Dashboard, Account Page, Generate Recommendation Page, Destination Page, Activity Page, Not Found Page, Image Hero Unit)
+- Developed the functionality for routing between the above components using React Router
+- Built the core Redux infrastructure to store the current logged-in userObject in the Redux store
+- Set up Thunks to allow asynchronous functions to be compatible with Redux and dispatched asynchronous functions when clicking buttons
+- Designed the global styling for all components with Material UI
+- Built the central form components all throughout the app along with the data structures used to dispatch user data to the backend to be updated
+- Fixed bugs (race conditions, etc.) and refactored code smells to match best practices
+- Collaborated with Sherman on the Login and Signup page routing
+- Collaborated with Josh to specify required endpoints to allow data from the backend to be fetched and rendered on the frontend along with the user db models
 
 ### Sherman Lam - z2o2b
 
