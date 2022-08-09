@@ -1,14 +1,14 @@
 <p align="center">
 <img src="/assets/Banner.png" width="700px"/>
   </p>
- 
+
 # ✈️ YOUFLY - The Perfect Vacation
 ### A CPSC 455 Project
 With just the click of a button, get swept away by the perfect vacation tailored just for you.
 
-Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and the top activities to do at that destination.
-
-### Table of Contents
+Youfly is a **travel booking web application** that allows users to create a personalized profile by answering a series of questions. Based on their profile youfly will provide optimal travel destination recommendations and the top activities to do at that destination. 
+ 
+ ### Table of Contents
 1. [Repositories](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#repositories)
 2. [Deployments](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#deployments)
 3. [Project Team](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#project-team)
@@ -24,6 +24,7 @@ Youfly is a **travel booking web application** that allows users to create a per
 9. [Next Steps](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#next-steps)
 10. [Team Contributions](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#team-contributions)
 11. [Miscellaneous](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22#miscellaneous)
+# 
 
 ### Repositories
 **Client:** [WixHub Client Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22)   
