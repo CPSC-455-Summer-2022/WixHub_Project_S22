@@ -224,7 +224,7 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 - Designed the global styling for all components with Material UI
 - Built the central form components all throughout the app along with the data structures used to dispatch user data to the backend
 - Fixed bugs (race conditions, etc.) and refactored code smells to match best practices
-- Collaborated with Josh to specify endpoints and db model for fetching, collaborated with Kevin for Questionnaire Flow Stepper
+- Collaborated with Josh to specify endpoints and db model for fetching, collaborated with Kevin for Questionnaire Flow page
 
 ### Sherman Lam - z2o2b
 - Responsible for the creation, development and debugging of all aspects of user sign-up, login authentication
