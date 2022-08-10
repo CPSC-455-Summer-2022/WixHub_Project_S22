@@ -30,6 +30,7 @@ Youfly is a **travel booking web application** that allows users to create a per
 **Client:** [WixHub Client Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Project_S22)   
 
 **Server:** [WixHub Server Repo](https://github.com/CPSC-455-Summer-2022/WixHub_Server)   
+**Note:** Due to migrating our server out of our mono-repo to a separate respository, commit history from team members has been squashed
 
 ### Deployments
 **Client:** [WixHub Client Deployed Site](https://wixhub-client.herokuapp.com/)   
