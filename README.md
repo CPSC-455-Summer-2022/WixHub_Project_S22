@@ -245,7 +245,14 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 - Collaborated with Josh on server side modifications that allowed for signup/login as well as ensuring that signup does not conflict with existing accounts and that login had the correct authentication
 - Collaborated with Kevin on server side modifications, as well as working with him on Question Stepper process for new-account signup flow and ensuring that the flow into the stepper and out of the stepper was maintained
 
-### Weichong Zhao - x4x2b 
+### Weichong(Kevin) Zhao - x4x2b 
+- Responsible for the development, infrastructure of the data structure for MongoDB as well as aspects of API.
+- Led the process of implementing MongoDB Atlas and ensuring optimal communication between server and database 
+- Created MongoDB schemas and Built the database architecture with all preloaded data
+- Built service structure with MongoDB associated endpoints method to query the mongoDB instance and fetching it with frontend component
+- Developed frontend stepper component for sign up user flow and routing it between sign-up and User Dashboard pages
+- Collaborated with Sherman regarding issues with authentication, making server-side modifications to align with client
+- Assisted with debugging components relating to question stepper and database persistence
 
 ## Miscellaneous
 
