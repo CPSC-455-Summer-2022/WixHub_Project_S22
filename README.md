@@ -209,13 +209,12 @@ Finally, to make the booking process seamless for users, we hop to build in the 
 ## Team Contributions
 
 ### Josh Tillson - i4i2b
-- Responsible for the development, aligning, response/error handling and debugging all of the Express.js server. 
-- Collaborated with Weichong on MongoDB schemas. 
+- Responsible for the development, architecture, infrastructure, alignment, response/error handling and debugging all of the Express.js server. 
+- Collaborated with Weichong on MongoDB schemas and populating the question_stepper with data. 
 - Generated all default data for Users, Destinations and Questions. 
 - Developed the project documentation (README & SwaggerUI). 
 - Created the service structure (functions that call the server endpoints). 
-- Collaborated with Ronin on the Redux store and thunks structure. 
-- Aided in the debugging of frontend components. 
+- Collaborated with Ronin on the Redux store and thunks structure and aided in the debugging of frontend components. 
 
 ### Ronin Cunningham - m0c2b 
 - Responsible for the development, infrastructure, architecture, and debugging all of the central components of the frontend
