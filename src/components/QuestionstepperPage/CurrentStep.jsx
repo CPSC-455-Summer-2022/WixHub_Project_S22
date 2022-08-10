@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 export function CurrentStep({ handleNext, handleBack, storeResponse, question, steps }) {
     if (Object.keys(question).length === 0) {
         return null;
-    }
+    };
     const handleChange = (event) => {
         let targetResponse = event.target.value;
         let responseNumber = 1;
@@ -19,7 +19,7 @@ export function CurrentStep({ handleNext, handleBack, storeResponse, question, s
         storeResponse(steps, targetResponse, "" + responseNumber);
     };
     return (
-        <div>
+        <React.Fragment>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <img style={{ display: "block", marginLeft: 'auto', marginRight: 'auto', width: '50%', }} src={question.image} alt="current question"/>
@@ -49,7 +49,8 @@ export function CurrentStep({ handleNext, handleBack, storeResponse, question, s
                 <Button variant='contained' sx={{ mt: 3, ml: 1 }} color='primary' disabled={steps === 0} onClick={handleBack}>Back</Button>
                 <Button variant='contained' sx={{ mt: 3, ml: 1 }} color='primary' onClick={handleNext}>Next</Button>
             </Box>
-        </div>);
+        </React.Fragment>
+    );
 }
 
 CurrentStep.defaultProps = {
