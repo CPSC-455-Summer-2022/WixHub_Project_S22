@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import Stepper from '@material-ui/core/Stepper'
-import Step from '@material-ui/core/Step'
-import StepLabel from '@material-ui/core/StepLabel'
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 import { Container, Paper } from "@mui/material";
-// import Paper from "@mui/material/Paper";
 import questionService from "../../services/questionService";
 import {useDispatch, useSelector} from 'react-redux';
 import {editUserAsync} from "../../redux/thunks/userThunks";
 import { CurrentStep } from "./CurrentStep";
 import { Success } from "./Success";
 
-export const StepForm = (props) => {
+export default function StepForm() {
     const [activeStep, setActiveStep] = useState(0);
     const [values, setValues] = useState({});
     const dispatch = useDispatch();
@@ -87,7 +86,7 @@ export const StepForm = (props) => {
     }
 
     return (
-        <>
+        <React.Fragment>
             <Container maxWidth="md" sx={{ mb: 4 }}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     {activeStep === labels.length ? (
@@ -111,6 +110,6 @@ export const StepForm = (props) => {
                     )}
                 </Paper>
             </Container>
-        </>
-    )
+        </React.Fragment>
+    );
 }

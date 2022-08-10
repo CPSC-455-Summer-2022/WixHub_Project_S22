@@ -44,7 +44,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import blue from '@mui/material/colors/blue';
 import purple from '@mui/material/colors/purple';
 import { DestinationPage } from './components/DestinationRecommendationPage/DestinationPage';
-import {StepForm} from "./components/QuestionstepperPage/StepForm";
+import StepForm from "./components/QuestionstepperPage/StepForm";
 //
 
 const persistConfig = {
